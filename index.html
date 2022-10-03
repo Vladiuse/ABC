@@ -13,6 +13,8 @@
     crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!--  -->
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="comments.css">
 </head>
 
 <body>
@@ -54,93 +56,106 @@
       </div>
     </nav>
   </header>
-  <style>body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  }
-  
-  #chartdiv {
-      width: 100%;
-      height: 500px;
-    }
-  </style>
-  <style>
-    .images{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-
-    }
-      .item{
-        width: 150px;
-        margin: 0px;
-        padding: 0px;
-        display: flex;
-        margin: 2px;
-        transition: all 0.2s ease-out;
-        align-items: center;
-        justify-content: center;
-        /* background-color: aquamarine; */
-
-
-
-      -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none;   /* Chrome/Safari/Opera */
-      -khtml-user-select: none;    /* Konqueror */
-      -moz-user-select: none;      /* Firefox */
-      -ms-user-select: none;       /* Internet Explorer/Edge */
-      user-select: none;    
-      }
-  
-      .item img{
-        width: 100%;
-        
-      }
-      .item.active{
-        padding: 10px;
-      }
-      .item.active img{
-        border: 5px solid #8cbffb;
-        border-radius: 10px;
-        opacity: 0.8;
-      }
-  </style>
-  <style>
-    #people-info{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    #people-info img{
-      max-height: 200px;
-    }
-  </style>
 
 <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 <div id="chartdiv"></div>
-<ul class="nav nav-tabs justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#" id="geo-group">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Аватарки</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled">Disabled</a>
-  </li>
-</ul>
-<div id="app" class="container">
-<div id="people-info">
-  <img src="https://static.mk.ru/upload/entities/2015/06/17/articles/detailPicture/95/b2/5e/ba2886266_1912640.jpg">
-  <img src="https://aviasovet.ru/blog/wp-content/uploads/2013/08/532-arabskie-muzhchiny.jpg">
-  <img src="https://images.pexels.com/photos/8350545/pexels-photo-8350545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-  <img src="https://autogear.ru/misc/i/gallery/42406/1382837.jpg">
-  <img src="https://arabperevod.ru/sites/default/files/arabicvalues.jpg">
-  <img src="https://www.meme-arsenal.com/memes/d863c25216d12f20ecf00a442b0bcaa7.jpg">
+<div id="tabs">
+  <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" data-target="county-geo-info"  id="geo-group">Европейцы</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"  data-target="avatars">Аватарки</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled">Disabled</a>
+    </li>
+  </ul>
 </div>
-<div class="images" id="avatars">
+<div id="app" class="container">
+<div id="county-geo-info">
+  <div id="people-info">
+    <img src="https://static.mk.ru/upload/entities/2015/06/17/articles/detailPicture/95/b2/5e/ba2886266_1912640.jpg">
+    <img src="https://aviasovet.ru/blog/wp-content/uploads/2013/08/532-arabskie-muzhchiny.jpg">
+    <img src="https://images.pexels.com/photos/8350545/pexels-photo-8350545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+    <img src="https://autogear.ru/misc/i/gallery/42406/1382837.jpg">
+    <img src="https://arabperevod.ru/sites/default/files/arabicvalues.jpg">
+    <img src="https://www.meme-arsenal.com/memes/d863c25216d12f20ecf00a442b0bcaa7.jpg">
+  </div>
+  <div id="comments-exsamples" class="container-sm">
+       <!-- Comment  -->
+       <div class="comment">
+        <div class="comment-avatar">
+          <img src="https://cdn1.flamp.ru/1f32505af8fa3c6d5c3ea74b411bc428.JPG">
+        </div>
+        <div class="comment-box">
+          <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto temporibus iste nostrum dolorem natus recusandae incidunt voluptatum.</div>
+          <div class="comment-footer">
+            <div class="comment-info">
+              <span class="comment-author">
+                <a href="mailto:sexar@pagelab.io">Sexar</a>
+              </span>
+              <span class="comment-date">Feb 2, 2013 11:32:04 PM</span>
+            </div>
+  
+            <div class="comment-actions">
+              <a href="#">Reply</a>
+            </div>
+          </div>
+        </div>
+      </div>
+       <!-- Comment  -->
+          <!-- Comment  -->
+          <div class="comment">
+            <div class="comment-avatar">
+              <img src="https://peopletalk.ru/wp-content/uploads/2021/09/photo_2021-09-08-14.19.32-640x640.jpeg">
+            </div>
+            <div class="comment-box">
+              <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto temporibus iste nostrum dolorem natus recusandae incidunt voluptatum.</div>
+              <div class="comment-footer">
+                <div class="comment-info">
+                  <span class="comment-author">
+                    <a href="mailto:sexar@pagelab.io">Sexar</a>
+                  </span>
+                  <span class="comment-date">Feb 2, 2013 11:32:04 PM</span>
+                </div>
+      
+                <div class="comment-actions">
+                  <a href="#">Reply</a>
+                </div>
+              </div>
+            </div>
+          </div>
+           <!-- Comment  -->
+              <!-- Comment  -->
+       <div class="comment">
+        <div class="comment-avatar">
+          <img src="https://www.meme-arsenal.com/memes/d863c25216d12f20ecf00a442b0bcaa7.jpg">
+        </div>
+        <div class="comment-box">
+          <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto temporibus iste nostrum dolorem natus recusandae incidunt voluptatum.</div>
+          <div class="comment-footer">
+            <div class="comment-info">
+              <span class="comment-author">
+                <a href="mailto:sexar@pagelab.io">Sexar</a>
+              </span>
+              <span class="comment-date">Feb 2, 2013 11:32:04 PM</span>
+            </div>
+  
+            <div class="comment-actions">
+              <a href="#">Reply</a>
+            </div>
+          </div>
+        </div>
+      </div>
+       <!-- Comment  -->
+  </div>
+</div>
+
+<div class="images" id="avatars" style="display: none;">
 
   <div class="item">
     <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
@@ -271,6 +286,14 @@
         $('.item').removeClass('active')
     }
 });
+
+$('#tabs a').click(function(){
+  let target = $(this).data('target')
+  $('#tabs a').removeClass('active')
+  $(this).addClass('active')
+  $('#app').children().hide()
+  $('#'+target).show()
+})
 </script>
 
 
