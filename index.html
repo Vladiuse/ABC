@@ -6,15 +6,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <!-- BOOTSTRAP -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!--  -->
-<link rel="stylesheet" href="main.css">
-<link rel="stylesheet" href="comments.css">
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script>
+  <!-- JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- MAP -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+  <!-- MY -->
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="comm_n_tabs.css">
+  <!--ICONS-->
+  <script src="https://kit.fontawesome.com/da43c2ea11.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -57,13 +66,11 @@
     </nav>
   </header>
 
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
 <div id="chartdiv"></div>
 <div id="tabs">
-  <ul class="nav nav-tabs justify-content-center">
+  <!-- https://codepen.io/FlorinPop17/pen/ZZajGB -->
+  <!-- <ul class="nav nav-tabs justify-content-center">
     <li class="nav-item">
       <a class="nav-link active" data-target="county-geo-info"  id="geo-group">Европейцы</a>
     </li>
@@ -73,7 +80,25 @@
     <li class="nav-item">
       <a class="nav-link disabled">Disabled</a>
     </li>
-  </ul>
+  </ul> -->
+  <div class="tab-nav-container">
+    <div class="tab active purple" id="color" data-target="county-geo-info">
+      <i class="fa-sharp fa-solid fa-circle-info" ></i>
+        <p>Info</p>
+    </div>
+    <div class="tab pink" data-f="man" data-target="avatars" >
+      <i class="fa-solid fa-mars" ></i>
+        <p>Man</p>
+    </div>
+    <div class="tab yellow" data-f="woman" data-target="avatars" >
+      <i class="fa-solid fa-venus" ></i>
+        <p>Woman</p>
+    </div>
+    <div class="tab teal" data-f="other" data-target="avatars" >
+        <i class="far fa-user" ></i>
+        <p>Other</p>
+    </div>
+</div>
 </div>
 <div id="app" class="container">
 <div id="county-geo-info">
@@ -157,115 +182,70 @@
 
 <div class="images" id="avatars" style="display: none;">
 
-  <div class="item">
+  <div class="item man">
     <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
   </div>
-  <div class="item">
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
     <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
   </div>
-  <div class="item">
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
     <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
   </div>
-  <div class="item">
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
     <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
   </div>
-  <div class="item">
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
     <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
   </div>
 
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
 </div>
 </div>
 
@@ -287,12 +267,21 @@
     }
 });
 
-$('#tabs a').click(function(){
+// Переключение контента при нажатии на tabs
+$('#tabs .tab').click(function(){
   let target = $(this).data('target')
-  $('#tabs a').removeClass('active')
+  $('#tabs .tab').removeClass('active')
   $(this).addClass('active')
   $('#app').children().hide()
   $('#'+target).show()
+  if ($(this).data('f')){
+    let filterCalss = $(this).data('f');
+    let imagesToShow = $('#avatars .item').filter(function(){
+      if ($(this).hasClass(filterCalss)){return true}
+    })
+    $('#avatars .item').hide()
+    imagesToShow.show()
+  }
 })
 </script>
 
@@ -360,9 +349,11 @@ var legend = chart.children.push(am5.Legend.new(root, {
     // При клике на фильтр
     legend.itemContainers.template.events.on("click", function(ev) {
       let poligon = ev.target.dataItem.dataContext._settings
-      console.log(poligon.id, 'label ID')
-      console.log(poligon.coors, 'coors')
-      console.log(poligon.zoom, 'zoom')
+      // console.log(poligon.id, 'label ID')
+      // console.log(poligon.coors, 'coors')
+      // console.log(poligon.zoom, 'zoom')
+      // console.log(poligon.fill, 'fill')
+      changeTabColor(poligon.fill)
       filterImg(poligon.id + ' ' + poligon.name)
       zoomTo(poligon)
       hideLast()
@@ -506,6 +497,35 @@ function zoomTo(poligon){
 
 
 
+</script>
+<style>
+ 
+</style>
+<script>
+
+  function changeTabColor(hex){
+    $('#color').css('color', `rgb(${hex.r},${hex.g},${hex.b})`)
+    $('#color').css('background-color', `rgb(${hex.r},${hex.g},${hex.b},0.2)`)
+  }
+  // Get all the tabs
+const tabs = document.querySelectorAll('.tab');
+
+tabs.forEach(clickedTab => {
+    // Add onClick event listener on each tab
+    clickedTab.addEventListener('click', () => {
+      $('#tabs .tab').removeAttr('style')
+        // Remove the active class from all the tabs (this acts as a "hard" reset)
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        // Add the active class on the clicked tab
+        clickedTab.classList.add('active');
+		const clickedTabBGColor = getComputedStyle(clickedTab).getPropertyValue('color');
+		// console.log(clickedTabBGColor);
+		// document.body.style.background = clickedTabBGColor;
+    });
+});
 </script>
 </body>
 
