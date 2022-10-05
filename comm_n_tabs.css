@@ -126,6 +126,10 @@ NAV TABS */
     /* margin: 0; */
     /* min-height: 100vh; */
   }
+  #tabs div[class^=col]{
+    display: flex;
+    justify-content: center;
+  }
   
   h2 {
     color: #fff;
@@ -177,22 +181,22 @@ NAV TABS */
       margin-top: none;
   }
   
-  .tab.active.purple {
+  .tab.active.country-color {
       background-color: rgba(91, 55, 183, 0.2);
       color: rgba(91, 55, 183, 1);
   }
   
-  .tab.active.pink {
+  .tab.active.man {
       background-color: rgba(25, 165, 230, 0.2);
       color: rgb(25, 165, 230);
   }
   
-  .tab.active.yellow {
+  .tab.active.woman {
       background-color: rgba(201, 55, 157, 0.2);
       color: rgba(201, 55, 157, 1);
   }
   
-  .tab.active.teal {
+  .tab.active.other {
       background-color: rgba(158, 158, 158, 0.2);
       /* color: rgba(28, 150, 162, 1); */
       color: rgb(158, 158, 158);
