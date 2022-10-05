@@ -1,0 +1,516 @@
+{% extends 'image_store/base.html' %}
+{% block content %}
+{%load comment_block%}
+
+
+<div id="chartdiv"></div>
+<div id="tabs">
+  <!-- https://codepen.io/FlorinPop17/pen/ZZajGB -->
+  <!-- <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" data-target="county-geo-info"  id="geo-group">Европейцы</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"  data-target="avatars">Аватарки</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled">Disabled</a>
+    </li>
+  </ul> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-3">xxx</div>
+      <div class="col-6">
+        <div class="tab-nav-container">
+          <div class="tab active country-color" id="color" data-target="county-geo-info">
+            <i class="fa-sharp fa-solid fa-circle-info" ></i>
+              <!-- <p>Info</p> -->
+          </div>
+          <div class="tab man" data-f="man" data-target="avatars" >
+            <i class="fa-solid fa-mars" ></i>
+              <p>Man</p>
+          </div>
+          <div class="tab woman" data-f="woman" data-target="avatars" >
+            <i class="fa-solid fa-venus" ></i>
+              <p>Woman</p>
+          </div>
+          <div class="tab other" data-f="other" data-target="avatars" >
+              <i class="far fa-user" ></i>
+              <p>Other</p>
+          </div>
+      </div>
+      </div>
+      <div class="col-3">xxx</div>
+    </div>
+  </div>
+
+
+</div>
+<div id="app" class="container">
+<div id="county-geo-info">
+  <div id="people-info">
+    <img src="https://static.mk.ru/upload/entities/2015/06/17/articles/detailPicture/95/b2/5e/ba2886266_1912640.jpg">
+    <img src="https://aviasovet.ru/blog/wp-content/uploads/2013/08/532-arabskie-muzhchiny.jpg">
+    <img src="https://images.pexels.com/photos/8350545/pexels-photo-8350545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+    <img src="https://autogear.ru/misc/i/gallery/42406/1382837.jpg">
+    <img src="https://arabperevod.ru/sites/default/files/arabicvalues.jpg">
+    <img src="https://www.meme-arsenal.com/memes/d863c25216d12f20ecf00a442b0bcaa7.jpg">
+  </div>
+  <div id="comments-exsamples" class="container-sm">
+    <div class="row">
+      <div class="col">
+        {%comment_block%}
+          https://cdn1.flamp.ru/1f32505af8fa3c6d5c3ea74b411bc428.JPG
+        {%end%}
+        {%comment_block%}
+         https://peopletalk.ru/wp-content/uploads/2021/09/photo_2021-09-08-14.19.32-640x640.jpeg
+        {%end%}
+      </div>
+      <div class="col">
+        {%comment_block%}
+          https://rsute.ru/wp-content/uploads/2021/01/600x600_1_568fd8f12747229ea33f997b1b93be18-640x640_0xac120003_13901261841572539756.jpg
+        {%end%}
+        {%comment_block%}
+          https://yaturisto.ru/wp-content/uploads/2019/10/ebec3c8e84fd23a57256976eac2db73d-e1571170440969.jpg
+        {%end%}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="images" id="avatars" style="display: none;">
+
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+  <div class="item man">
+    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+  </div>
+  <div class="item woman">
+    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
+  </div>
+  <div class="item other">
+    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
+  </div>
+
+</div>
+</div>
+
+
+
+
+<div class="download">
+
+</div>
+<script>
+  $('.item').click(function(){
+    $(this).toggleClass('active')
+  })
+
+
+  $(document).keyup(function(e) {
+     if (e.key === "Escape") { // escape key maps to keycode `27`
+        $('.item').removeClass('active')
+    }
+});
+
+// Переключение контента при нажатии на tabs
+$('#tabs .tab').click(function(){
+  let target = $(this).data('target')
+  $('#tabs .tab').removeClass('active')
+  $(this).addClass('active')
+  $('#app').children().hide()
+  $('#'+target).show()
+  if ($(this).data('f')){
+    let filterCalss = $(this).data('f');
+    let imagesToShow = $('#avatars .item').filter(function(){
+      if ($(this).hasClass(filterCalss)){return true}
+    })
+    $('#avatars .item').hide()
+    imagesToShow.show()
+  }
+})
+</script>
+
+<script>
+var root = am5.Root.new("chartdiv");
+let lastId = 0;
+
+// Set themes
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
+
+
+// Create chart
+var chart = root.container.children.push(am5map.MapChart.new(root, {
+  homeZoomLevel: 4,
+  homeGeoPoint: { longitude: 10, latitude: 50 },
+  panX: true,
+  panY: false,
+  wheelX: false,
+  wheelY: false,
+}));
+
+
+// Create world polygon series
+var worldSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
+  geoJSON: am5geodata_worldLow,
+  exclude: ["AQ"]
+}));
+
+worldSeries.mapPolygons.template.setAll({
+  fill: am5.color(0xaaaaaa)
+});
+
+
+worldSeries.events.on("datavalidated", () => {
+      chart.goHome();
+    });
+
+var legend = chart.children.push(am5.Legend.new(root, {
+
+      useDefaultMarker: false,
+      centerX: am5.p50,
+      x: am5.p50,
+      centerY: am5.p100,
+      y: am5.p100,
+      dy: -20,
+      fill: am5.color(0x000000),
+      layout: am5.GridLayout.new(root, {
+          maxColumns: 5,
+          fixedWidthGrid: true
+        }),
+      background: am5.RoundedRectangle.new(root, {
+        fill: am5.color(0xffffff),
+        fillOpacity: 1
+      })
+    }));
+
+
+    // legend.valueLabels.template.set("forceH1idden", true)
+
+    // При клике на фильтр
+    legend.itemContainers.template.events.on("click", function(ev) {
+      let poligon = ev.target.dataItem.dataContext._settings
+      // console.log(poligon.id, 'label ID')
+      // console.log(poligon.coors, 'coors')
+      // console.log(poligon.zoom, 'zoom')
+      // console.log(poligon.fill, 'fill')
+      changeTabColor(poligon.fill)
+      // filterImg(poligon.id + ' ' + poligon.name)
+      zoomTo(poligon)
+      hideLast()
+      lastId = poligon.id
+    });
+
+
+    // стили фильтров
+    legend.labels.template.setAll({
+    fontSize: 16,
+    fontWeight: "800",
+    disabled: true,
+    fill: am5.color(0x000000),
+    // fill: 'red',
+  });
+
+    // Create series for each group
+    var colors = am5.ColorSet.new(root, {
+      step: 2
+    });
+    colors.next();
+
+countrysData = [
+  {"name": "Европейцы",
+  "data": ['AT', 'BY', 'BE', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'HU', 'IE', 'LV', 'LT', 'LU', 'MD', 'NL', 'NO', 'PL', 'RU', 'RS', 'SK', 'SI', 'SE', 'CH', 'UA', 'GB', "US", "CA", "AU"],
+  "coors":{ longitude: 10, latitude: 50 },
+  "zoom": 5 },
+
+  {"name": "Южная европа",
+  "data": ['BA', 'HR', 'CY', 'GR', 'IT', 'ME', 'MK', 'PT', 'ES'],
+  "coors":{ longitude: 10, latitude: 40 },
+  "zoom": 5 },
+
+  {"name": "Арабы",
+  "data": ['DZ', 'EG', 'LY', 'MA', 'TN', 'IQ', 'JO', 'KW', 'LB', 'OM', 'QA', 'SA', 'SY', 'AE', 'YE'],
+  "coors":{ longitude: 12, latitude: 30 },
+  "zoom": 5 } ,
+
+  {"name": "Индейцы",
+  "data": ['BZ', 'CR', 'CU', 'DO', 'SV', 'GT', 'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'PR', 'AR', 'BO', 'BR', 'CL', 'CO', 'EC', 'GF', 'GY', 'PY', 'PE', 'SR', 'UY', 'VE'],
+  "coors":{ longitude: -65, latitude: -15 },
+  "zoom": 2.4 },
+
+  {"name": "Турки и албанцы",
+  "data": ['AL', 'XK', 'TR'],
+  "coors":{ longitude: 25, latitude: 40 },
+  "zoom": 10 },
+
+  {"name": "Индийцы",
+  "data": ['BD', 'BT', 'IN', 'NP', 'PK', "LK"],
+  "coors":{ longitude: 78, latitude: 19 },
+  "zoom": 5 },
+
+  {"name": "Африка",
+  "data": ['AO', 'BJ', 'BW', 'BF', 'BI', 'CM', 'CF', 'TD', 'CI', 'CD', 'DJ', 'GQ', 'ER', 'SZ', 'ET', 'GA', 'GH', 'GN', 'GW', 'KE', 'LS', 'LR', 'MG', 'MW', 'ML', 'MR', 'MZ', 'NA', 'NE', 'NG', 'CG', 'RW', 'SN', 'SL', 'SO', 'ZA', 'SS', 'SD', 'TZ', 'TG', 'UG', 'EH', 'ZM', 'ZW'],
+  "coors":{ longitude: 24, latitude: -5 },
+  "zoom": 3 },
+
+  {"name": "Азиаты",
+  "data": ['KH', 'CN', 'JP', 'LA', 'MM', 'KP', 'KR', 'TH', 'VN'],
+  "coors":{ longitude: 110, latitude: 30 },
+  "zoom": 3 },
+
+  {"name": "Папуасы",
+  "data": ['ID', 'PH', 'TL', 'PG', 'MY'],
+  "coors":{ longitude: 124, latitude: 0 },
+  "zoom": 5 },
+  {"name": "Центральная азия и кавказ",
+  "data": ['AM', 'AZ', 'GE', 'KZ', 'KG', 'TJ', 'TM', 'UZ'],
+  "coors":{ longitude: 45, latitude: 40 },
+  "zoom": 4 },
+  ]
+
+poligons = []
+function addpoligons(){
+  for (i in countrysData){
+        let color = colors.next()
+
+        group = countrysData[i]
+        let polygonSeries = chart.series.push(
+        am5map.MapPolygonSeries.new(root, {
+        geoJSON: am5geodata_worldLow,
+        include: group.data,
+        fill: color,
+        name: group.name,
+        id: i,
+        coors: group.coors,
+        zoom: group.zoom,
+      }));
+  if (i != 0){polygonSeries.hide(0)}
+
+
+
+  polygonSeries.mapPolygons.template.setAll({
+        tooltipText: "[bold]{name}[/] [bold]({id})[/]",
+        interactive: false,
+        fill: color,
+        strokeWidth: 2,
+
+      });
+
+
+  polygonSeries.mapPolygons.template.states.create("hover", {
+        fill: am5.Color.brighten(color, -0.25)
+      });
+
+      polygonSeries.mapPolygons.template.events.on("pointerover", function(ev) {
+        ev.target.series.mapPolygons.each(function(polygon) {
+          polygon.states.applyAnimate("hover");
+        });
+      });
+
+      polygonSeries.mapPolygons.template.events.on("pointerout", function(ev) {
+        ev.target.series.mapPolygons.each(function(polygon) {
+          polygon.states.applyAnimate("default");
+        });
+      });
+
+  legend.data.push(polygonSeries);
+
+  poligons.push(polygonSeries)
+  }
+
+}
+
+
+addpoligons()
+
+function hideLast(){
+  for (i in poligons){
+  let poligon = poligons[i]
+  if (poligon.get('id') == lastId){
+    poligon.hide(0)
+  }
+}}
+
+function zoomTo(poligon){
+  chart.zoomToGeoPoint(poligon.coors,poligon.zoom,true);
+}
+
+
+
+
+</script>
+<style>
+
+</style>
+<script>
+
+  function changeTabColor(hex){
+    $('#color').css('color', `rgb(${hex.r},${hex.g},${hex.b})`)
+    $('#color').css('background-color', `rgb(${hex.r},${hex.g},${hex.b},0.2)`)
+  }
+  // Get all the tabs
+const tabs = document.querySelectorAll('.tab');
+
+tabs.forEach(clickedTab => {
+    // Add onClick event listener on each tab
+    clickedTab.addEventListener('click', () => {
+      $('#tabs .tab').removeAttr('style')
+        // Remove the active class from all the tabs (this acts as a "hard" reset)
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        // Add the active class on the clicked tab
+        clickedTab.classList.add('active');
+		const clickedTabBGColor = getComputedStyle(clickedTab).getPropertyValue('color');
+		// console.log(clickedTabBGColor);
+		// document.body.style.background = clickedTabBGColor;
+    });
+});
+</script>
+{% endblock %}

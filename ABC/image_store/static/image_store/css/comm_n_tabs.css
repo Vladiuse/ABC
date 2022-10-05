@@ -1,0 +1,220 @@
+.comment{
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 0;
+    max-width: 600px;
+  }
+  
+  .comment-form .comment-avatar,
+  .comment .comment-avatar{
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+    height: 80px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 80px;
+  }
+  
+  .comment-form .comment-avatar img,
+  .comment .comment-avatar img{
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+  
+  .comment .comment-box{
+    background-color: #fcfcfc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+    margin-left: 100px;
+    min-height: 60px;
+    position: relative;
+    padding: 15px;
+  }
+  
+  .comment .comment-box:before,
+  .comment .comment-box:after{
+    border-width: 10px 10px 10px 0;
+    border-style: solid;
+    border-color: transparent #FCFCFC;
+    content: "";
+    left: -10px;
+    position: absolute;
+    top: 20px;
+  }
+  
+  .comment .comment-box:before{
+    border-color: transparent rgba(0, 0, 0, .05);
+     top: 22px;
+  }
+  
+  .comment .comment-text{
+    color: #555f77;
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+  
+  .comment .comment-footer{
+    color: #acb4c2;
+    font-size: 13px;
+  }
+  
+  .comment .comment-footer:after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .comment .comment-footer a{
+    color: #acb4c2;
+    text-decoration: none;
+  
+    -webkit-transition: 350ms color;
+    -moz-transition: 350ms color;
+    -ms-transition: 350ms color;
+    -o-transition: 350ms color;
+    transition: 350ms color;
+  }
+  
+  .comment .comment-footer a:hover{
+    color: #555f77;
+    text-decoration: underline;
+  }
+  
+  .comment .comment-info{
+    float: left;
+    width: 85%;
+  }
+  
+  .comment .comment-author{ }
+  .comment .comment-date{ }
+  
+  .comment .comment-date:before{
+    content: "|";
+    margin: 0 10px;
+  }
+  
+  .comment-actions{
+    float: left;
+    text-align: right;
+    width: 15%;
+  }
+  
+/* 
+NAV TABS */
+
+  @import url('https://fonts.googleapis.com/css?family=Lato');
+
+  /* * {
+    box-sizing: border-box;
+  } */
+  
+  #tabs {
+    /* background: rgba(91, 55, 183, 1); */
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: background 0.4s linear;
+  
+    text-align: center;
+    /* margin: 0; */
+    /* min-height: 100vh; */
+  }
+  #tabs div[class^=col]{
+    display: flex;
+    justify-content: center;
+  }
+  
+  h2 {
+    color: #fff;
+    position: absolute;
+    top: 20px;
+  }
+  
+  .tab-nav-container {
+      background-color: #fff;
+      border-bottom-right-radius: 30px;
+      border-bottom-left-radius: 30px;
+      border-radius: 30px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      display: flex;
+      justify-content: space-between;
+      padding: 30px;
+      width: 450px;
+  }
+  
+  .tab {
+      background-color: #ffffff;
+      border-radius: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      margin: 0 10px;
+  
+      transition: background 0.4s linear;
+  }
+  
+  .tab i {
+      font-size: 1.2em;
+  }
+  
+  .tab p {
+      font-weight: bold;
+      overflow: hidden;
+      max-width: 0;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+  }
+  
+  .tab.active p {
+      margin-left: 10px;
+      max-width: 200px;
+      transition: max-width 0.4s linear;
+      margin-top: none;
+  }
+  
+  .tab.active.country-color {
+      background-color: rgba(91, 55, 183, 0.2);
+      color: rgba(91, 55, 183, 1);
+  }
+  
+  .tab.active.man {
+      background-color: rgba(25, 165, 230, 0.2);
+      color: rgb(25, 165, 230);
+  }
+  
+  .tab.active.woman {
+      background-color: rgba(201, 55, 157, 0.2);
+      color: rgba(201, 55, 157, 1);
+  }
+  
+  .tab.active.other {
+      background-color: rgba(158, 158, 158, 0.2);
+      /* color: rgba(28, 150, 162, 1); */
+      color: rgb(158, 158, 158);
+  }
+  
+  @media (max-width: 450px) {
+      .tab-nav-container {
+          padding: 20px;
+          width: 350px;
+      }
+  
+      .tab {
+          padding: 0 10px;
+          margin: 0;
+      }
+  
+      .tab i {
+          font-size: 1em;
+      }
+  }
+  
