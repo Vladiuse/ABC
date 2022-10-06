@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-a3cd@aq-y9=wvx#x52x1zt^5kwq_dpc71-gacyxko@-qrk5eo!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['abc.vim-store.ru', '127.0.0.1']
 
 
 # Application definition
@@ -124,6 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/v/vladiuse/abc/public_html/static'
 # MEDIA_ROOT = '/media/'os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
