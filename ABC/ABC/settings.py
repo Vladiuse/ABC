@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #apps
     'image_store.apps.ImageStoreConfig',
+
+    #extensions
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

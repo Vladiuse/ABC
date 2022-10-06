@@ -25,19 +25,19 @@ class Avatar(models.Model):
         (PAPUA, 'Папуасы'),
         (CENTRAL_ASIA, 'Центральная азия и кавказ'),
     ]
-    M = 'M'
-    W = 'W'
-    NO = 'NO'
+    M = 'man'
+    W = 'woman'
+    NO = 'other'
     SEX = [
         (M, 'Мужской'),
         (W, 'Женский'),
-        (NO, '-'),
+        (NO, 'нет'),
     ]
 
 
     image = models.ImageField(upload_to='avatars')
     category = models.CharField(max_length=20, choices=RACE_CATEGORY)
-    sex = models.CharField(max_length=2, blank=True, choices=SEX)
+    sex = models.CharField(max_length=10, blank=True, choices=SEX)
 
     # def save(self):
     #     self.image.name = '1.png'

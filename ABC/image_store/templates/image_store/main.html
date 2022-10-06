@@ -6,17 +6,6 @@
 <div id="chartdiv"></div>
 <div id="tabs">
   <!-- https://codepen.io/FlorinPop17/pen/ZZajGB -->
-  <!-- <ul class="nav nav-tabs justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link active" data-target="county-geo-info"  id="geo-group">Европейцы</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link"  data-target="avatars">Аватарки</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled">Disabled</a>
-    </li>
-  </ul> -->
   <div class="container">
     <div class="row">
       <div class="col-3">xxx</div>
@@ -81,159 +70,12 @@
 
 <div class="images" id="avatars" style="display: none;">
 
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
+
+  {%for avatar in avatars%}
+  <div class="item {{avatar.sex}}">
+    <img src="{{avatar.image.url}}">
   </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
-  <div class="item man">
-    <img src="https://play-lh.googleusercontent.com/fvSu5irXm8vUNPNsxKotdUxciekJObwfpmdEz2q_NKdWNJvFbzy6Ck1ylNIR4aezPQ">
-  </div>
-  <div class="item woman">
-    <img src="https://2x1dks3q6aoj44bz1r1tr92f-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/Square-face-shape-bespke-unit-Bordered.png">
-  </div>
-  <div class="item other">
-    <img src="https://thumbs.dreamstime.com/b/woman-square-face-shape-type-makeup-glasses-fashion-style-vector-97136808.jpg">
-  </div>
+  {%endfor%}
 
 </div>
 </div>
