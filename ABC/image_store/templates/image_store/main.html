@@ -1,8 +1,29 @@
 {% extends 'image_store/base.html' %}
 {% block content %}
 {%load comment_block%}
-
+<style>
+  #page-up{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    /* background-color: red; */
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+</style>
 <div id="chartdiv"></div>
+<div id="page-up" style="display: none;">
+  <i class="fa-solid fa-caret-up"></i>
+</div>
 <div id="tabs">
   <!-- https://codepen.io/FlorinPop17/pen/ZZajGB -->
   <div class="container">
@@ -366,7 +387,7 @@ tabs.forEach(clickedTab => {
 
   function handleImg(myImg, observer){
     myImg.forEach(myImgSingle => {
-      console.log(myImgSingle.intersectionRatio);
+      // console.log(myImgSingle.intersectionRatio);
       if (myImgSingle.intersectionRatio > 0){
         loadImage(myImgSingle.target)
       }
@@ -374,7 +395,7 @@ tabs.forEach(clickedTab => {
   }
 
   function loadImage(image){
-    console.log(image.getAttribute('data-src'))
+    // console.log(image.getAttribute('data-src'))
     image.src = image.getAttribute('data-src')
   }
 
@@ -383,5 +404,18 @@ tabs.forEach(clickedTab => {
   images.forEach(img => {
     observer.observe(img)
   })
+</script>
+<script>
+  // page up button
+  $(window).scroll(function (event) {
+    if ($(window).height() < window.scrollY) {
+        $('#page-up').show()
+    } else {
+      $('#page-up').hide()
+    }
+});
+$('#page-up').click(function(){
+  window.scrollTo(0, 0);
+})
 </script>
 {% endblock %}
