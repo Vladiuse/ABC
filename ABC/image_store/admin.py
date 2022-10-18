@@ -3,4 +3,9 @@ from .models import Avatar
 
 # Register your models here.
 
-admin.site.register(Avatar)
+class AvatarAdmin(admin.ModelAdmin):
+    list_display = ['id', 'sex', 'category']
+    list_display_links = ['id', 'sex', 'category']
+    list_filter = ['category']
+
+admin.site.register(Avatar, AvatarAdmin)

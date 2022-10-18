@@ -8,3 +8,11 @@ def index(requests):
         'avatars': avatars,
     }
     return render(requests, 'image_store/main.html', content)
+
+
+def all(request):
+    images = Avatar.objects.all()
+    content = {
+        'images': images,
+    }
+    return render(request, 'image_store/all.html', content)

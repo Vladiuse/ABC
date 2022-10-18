@@ -24,6 +24,7 @@ overscroll-behavior: none;
 }
 .item{
     width: 150px;
+    height: 150px;
     margin: 0px;
     padding: 0px;
     display: flex;

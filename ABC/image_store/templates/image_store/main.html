@@ -107,16 +107,22 @@
 
 </div>
 <script>
+  let currentGeoGroup = 'europe-north';
+  let currentAge = null;
+  let currentSex = null;
+
+
+
   $('.item').click(function(){
     $(this).toggleClass('active')
   })
 
-
+  // При клике на ESC
   $(document).keyup(function(e) {
      if (e.key === "Escape") { // escape key maps to keycode `27`
         $('.item').removeClass('active')
-    }
-});
+      }
+  });
 
 // Переключение контента при нажатии на tabs
 $('#tabs .tab').click(function(){
@@ -137,6 +143,11 @@ $('#tabs .tab').click(function(){
 </script>
 
 <script>
+
+
+
+
+
 var root = am5.Root.new("chartdiv");
 let lastId = 0;
 
@@ -201,7 +212,8 @@ var legend = chart.children.push(am5.Legend.new(root, {
       // console.log(poligon.coors, 'coors')
       // console.log(poligon.zoom, 'zoom')
       // console.log(poligon.fill, 'fill')
-      changeTabColor(poligon.fill)
+      console.log(poligon.key_filter)
+      // changeTabColor(poligon.key_filter)
       // filterImg(poligon.id + ' ' + poligon.name)
       zoomTo(poligon)
       hideLast()
@@ -228,50 +240,60 @@ countrysData = [
   {"name": "Европейцы",
   "data": ['AT', 'BY', 'BE', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'HU', 'IE', 'LV', 'LT', 'LU', 'MD', 'NL', 'NO', 'PL', 'RU', 'RS', 'SK', 'SI', 'SE', 'CH', 'UA', 'GB', "US", "CA", "AU"],
   "coors":{ longitude: 10, latitude: 50 },
+  "key_filter": 'europe-north',
   "zoom": 5 },
 
   {"name": "Южная европа",
   "data": ['BA', 'HR', 'CY', 'GR', 'IT', 'ME', 'MK', 'PT', 'ES'],
   "coors":{ longitude: 10, latitude: 40 },
+  "key_filter": 'europe-south',
   "zoom": 5 },
 
   {"name": "Арабы",
   "data": ['DZ', 'EG', 'LY', 'MA', 'TN', 'IQ', 'JO', 'KW', 'LB', 'OM', 'QA', 'SA', 'SY', 'AE', 'YE'],
   "coors":{ longitude: 12, latitude: 30 },
+  "key_filter": 'arabs',
   "zoom": 5 } ,
 
   {"name": "Индейцы",
   "data": ['BZ', 'CR', 'CU', 'DO', 'SV', 'GT', 'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'PR', 'AR', 'BO', 'BR', 'CL', 'CO', 'EC', 'GF', 'GY', 'PY', 'PE', 'SR', 'UY', 'VE'],
   "coors":{ longitude: -65, latitude: -15 },
+  "key_filter": 'latam',
   "zoom": 2.4 },
 
   {"name": "Турки и албанцы",
   "data": ['AL', 'XK', 'TR'],
   "coors":{ longitude: 25, latitude: 40 },
+  "key_filter": 'turkish',
   "zoom": 10 },
 
   {"name": "Индийцы",
   "data": ['BD', 'BT', 'IN', 'NP', 'PK', "LK"],
   "coors":{ longitude: 78, latitude: 19 },
+  "key_filter": 'india',
   "zoom": 5 },
 
   {"name": "Африка",
   "data": ['AO', 'BJ', 'BW', 'BF', 'BI', 'CM', 'CF', 'TD', 'CI', 'CD', 'DJ', 'GQ', 'ER', 'SZ', 'ET', 'GA', 'GH', 'GN', 'GW', 'KE', 'LS', 'LR', 'MG', 'MW', 'ML', 'MR', 'MZ', 'NA', 'NE', 'NG', 'CG', 'RW', 'SN', 'SL', 'SO', 'ZA', 'SS', 'SD', 'TZ', 'TG', 'UG', 'EH', 'ZM', 'ZW'],
   "coors":{ longitude: 24, latitude: -5 },
+  "key_filter": 'afro',
   "zoom": 3 },
 
   {"name": "Азиаты",
   "data": ['KH', 'CN', 'JP', 'LA', 'MM', 'KP', 'KR', 'TH', 'VN'],
   "coors":{ longitude: 110, latitude: 30 },
+  "key_filter": 'asia',
   "zoom": 3 },
 
   {"name": "Папуасы",
   "data": ['ID', 'PH', 'TL', 'PG', 'MY'],
   "coors":{ longitude: 124, latitude: 0 },
+  "key_filter": 'papua',
   "zoom": 5 },
   {"name": "Центральная азия и кавказ",
   "data": ['AM', 'AZ', 'GE', 'KZ', 'KG', 'TJ', 'TM', 'UZ'],
   "coors":{ longitude: 45, latitude: 40 },
+  "key_filter": 'central_asia',
   "zoom": 4 },
   ]
 
@@ -286,6 +308,7 @@ function addpoligons(){
         geoJSON: am5geodata_worldLow,
         include: group.data,
         fill: color,
+        key_filter: group.key_filter,
         name: group.name,
         id: i,
         coors: group.coors,
@@ -350,11 +373,11 @@ function zoomTo(poligon){
 
 </style>
 <script>
-
-  function changeTabColor(hex){
-    $('#color').css('color', `rgb(${hex.r},${hex.g},${hex.b})`)
-    $('#color').css('background-color', `rgb(${hex.r},${hex.g},${hex.b},0.2)`)
-  }
+  // подтягивание цвета из карты
+  // function changeTabColor(hex){
+  //   $('#color').css('color', `rgb(${hex.r},${hex.g},${hex.b})`)
+  //   $('#color').css('background-color', `rgb(${hex.r},${hex.g},${hex.b},0.2)`)
+  // }
   // Get all the tabs
 const tabs = document.querySelectorAll('.tab');
 
