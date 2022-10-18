@@ -39,10 +39,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Аватарки</a>
+              <a class="nav-link active" aria-current="page" href="{%url 'image_store:index'%}">Аватарки</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Генератор имен</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'archive:index'%}">Шаблоны</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -50,9 +53,13 @@
                 Формы
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{%url 'forms:examples'%}">Примеры</a></li>
                 <li><a class="dropdown-item" href="#">Локализация</a></li>
-                <li><a class="dropdown-item" href="#">Примеры</a></li>
+               
               </ul>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Бэйджы и скидки</a>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

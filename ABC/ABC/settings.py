@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     #apps
     'image_store.apps.ImageStoreConfig',
+    'forms.apps.FormsConfig',
+    'archive.apps.ArchiveConfig',
 
     #extensions
     'django_extensions',
