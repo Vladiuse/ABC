@@ -64,6 +64,9 @@
     <img src="https://autogear.ru/misc/i/gallery/42406/1382837.jpg">
     <img src="https://arabperevod.ru/sites/default/files/arabicvalues.jpg">
     <img src="https://www.meme-arsenal.com/memes/d863c25216d12f20ecf00a442b0bcaa7.jpg">
+    <img src="https://islam.ru/sites/default/files/img/2017/kultura/arabskaya-odezhda.jpg" alt="" class="src">
+    <img src="https://images.pexels.com/photos/5206277/pexels-photo-5206277.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+    <img src="https://st3.depositphotos.com/2853475/18754/i/450/depositphotos_187546510-stock-photo-arabic-handsome-man-studio-portraits.jpg" alt="">
   </div>
   <div id="comments-exsamples" class="container-sm">
     <div class="row">
@@ -74,6 +77,15 @@
         {%comment_block%}
          https://peopletalk.ru/wp-content/uploads/2021/09/photo_2021-09-08-14.19.32-640x640.jpeg
         {%end%}
+        {%comment_block%}
+        https://st.depositphotos.com/1809585/4775/i/450/depositphotos_47755009-stock-photo-arab-saudi-emirates-man-pointing.jpg
+        {%end%}
+        {%comment_block%}
+        https://ae04.alicdn.com/kf/H986e89e0cbd04a6bbfe047038476c0ec4.jpg_350x350.jpg
+        {%end%}
+        {%comment_block%}
+        https://ae01.alicdn.com/kf/HTB1o.ZpBf9TBuNjy0Fcq6zeiFXay.jpg
+        {%end%}
       </div>
       <div class="col">
         {%comment_block%}
@@ -81,6 +93,15 @@
         {%end%}
         {%comment_block%}
           https://yaturisto.ru/wp-content/uploads/2019/10/ebec3c8e84fd23a57256976eac2db73d-e1571170440969.jpg
+        {%end%}
+        {%comment_block%}
+        https://images11.graziamagazine.ru/upload/custom/b96/b960709a5fe4fff838cf7387b7900641.jpg
+        {%end%}
+        {%comment_block%}
+        https://peopletalk.ru/wp-content/uploads/2021/09/photo_2021-09-08-14.18.15-640x640.jpeg
+        {%end%}
+        {%comment_block%}
+        https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGO53fy4PyHBopa5VpELkqKTi3A9eAq6cNRQ&usqp=CAU
         {%end%}
       </div>
     </div>
@@ -92,7 +113,7 @@
 
 
   {%for avatar in avatars%}
-  <div class="item {{avatar.sex}}">
+  <div class="item {{avatar.sex}} {{avatar.age}}" data-filter="{{avatar.sex}} {{avatar.age}} {{avatar.category}}">
     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{avatar.image.url}}" class="">
   </div>
   {%endfor%}
@@ -108,8 +129,8 @@
 </div>
 <script>
   let currentGeoGroup = 'europe-north';
-  let currentAge = null;
-  let currentSex = null;
+  let currentAge = '';
+  let currentSex = '';
 
 
 
@@ -124,6 +145,20 @@
       }
   });
 
+
+  // фильтрация аватарок по выбраным фильтрам
+  function filterAvatars(){
+    console.log(currentGeoGroup,currentAge,currentSex)
+    let imagesToShow = $('#avatars .item').filter(function(){
+      let avatarData = $(this).data('filter').split(' ')
+      avatarData.push('')
+      if (avatarData.includes(currentGeoGroup) && avatarData.includes(currentAge) && avatarData.includes(currentSex))
+      {return true}
+    })
+    $('#avatars .item').hide()
+    imagesToShow.show()
+  }
+
 // Переключение контента при нажатии на tabs
 $('#tabs .tab').click(function(){
   let target = $(this).data('target')
@@ -133,11 +168,13 @@ $('#tabs .tab').click(function(){
   $('#'+target).show()
   if ($(this).data('f')){
     let filterCalss = $(this).data('f');
-    let imagesToShow = $('#avatars .item').filter(function(){
-      if ($(this).hasClass(filterCalss)){return true}
-    })
-    $('#avatars .item').hide()
-    imagesToShow.show()
+    currentSex = filterCalss
+    filterAvatars()
+    // let imagesToShow = $('#avatars .item').filter(function(){
+    //   if ($(this).hasClass(filterCalss)){return true}
+    // })
+    // $('#avatars .item').hide()
+    // imagesToShow.show()
   }
 })
 </script>
@@ -208,16 +245,11 @@ var legend = chart.children.push(am5.Legend.new(root, {
     // При клике на фильтр
     legend.itemContainers.template.events.on("click", function(ev) {
       let poligon = ev.target.dataItem.dataContext._settings
-      // console.log(poligon.id, 'label ID')
-      // console.log(poligon.coors, 'coors')
-      // console.log(poligon.zoom, 'zoom')
-      // console.log(poligon.fill, 'fill')
-      console.log(poligon.key_filter)
-      // changeTabColor(poligon.key_filter)
-      // filterImg(poligon.id + ' ' + poligon.name)
+      currentGeoGroup = poligon.key_filter
       zoomTo(poligon)
       hideLast()
       lastId = poligon.id
+      filterAvatars()
     });
 
 
