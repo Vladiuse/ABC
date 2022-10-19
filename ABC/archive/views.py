@@ -1,6 +1,11 @@
 from django.shortcuts import render
+from .models import Site
 
 # Create your views here.
 
 def index(requests):
-    return render(requests, 'archive/index.html')
+    sites = Site.objects.all()
+    content = {
+        'sites': sites
+    }
+    return render(requests, 'archive/index.html', content)
