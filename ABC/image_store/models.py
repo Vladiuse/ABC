@@ -6,29 +6,14 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 # Create your models here.
 
+class GeoGroup(models.Model):
+    eng_name = models.CharField(max_length=40, verbose_name='eng', primary_key=True)
+    name = models.CharField(max_length=40, verbose_name='Регион', unique=True)
+
+    def __str__(self):
+        return f'{self.eng_name} {self.name}'
+
 class Avatar(models.Model):
-    EUROPE_NORTH = 'europe-north' #
-    EUROPE_SOUTH = 'europe-south' #
-    ARABS = 'arabs' #
-    INDIA = 'india' #
-    TURKISH = 'turkish' #
-    LATAM = 'latam'
-    AFRICA = 'afro' #
-    ASIA = 'asia' #
-    PAPUA = 'papua' #
-    CENTRAL_ASIA = 'central_asia' #
-    RACE_CATEGORY = [
-        (EUROPE_NORTH, 'Европейцы'),
-        (EUROPE_SOUTH, 'Южная европа'),
-        (ARABS, 'Арабы'),
-        (INDIA, 'Индейцы'),
-        (TURKISH, 'Турки и албанцы'),
-        (LATAM, 'Индийцы'),
-        (AFRICA, 'Африка'),
-        (ASIA, 'Азиаты'),
-        (PAPUA, 'Папуасы'),
-        (CENTRAL_ASIA, 'Центральная азия и кавказ'),
-    ]
     M = 'man'
     W = 'woman'
     NO = 'other'
@@ -44,8 +29,8 @@ class Avatar(models.Model):
     ]
 
 
-    image = models.ImageField(upload_to='avatars', )
-    category = models.CharField(max_length=20, choices=RACE_CATEGORY)
+    image = models.ImageField(upload_to='avatars')
+    category = models.ForeignKey(GeoGroup, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Категория')
     sex = models.CharField(max_length=10, blank=True, choices=SEX)
     age = models.CharField(max_length=10, blank=True,choices=AGE)
 
