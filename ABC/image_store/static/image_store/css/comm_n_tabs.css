@@ -146,10 +146,26 @@ NAV TABS */
       display: flex;
       justify-content: space-between;
       padding: 30px;
-      width: 450px;
+      /* width: 450px; */
+  }
+
+  #chose-sex .tab-nav-container{
+    width: 700px;
+  }
+  #load-tabs{
+    position: fixed;
+    bottom: 10px;
+    /* left: 30px; */
+    z-index: 10;
+  }
+
+  #load-tabs.tab-nav-container{
+    min-width: 200px;
+    padding: 15px;
+    border-radius: 15px;
   }
   
-  .tab {
+  .tab, .check {
       background-color: #ffffff;
       border-radius: 50px;
       cursor: pointer;
@@ -158,7 +174,7 @@ NAV TABS */
       justify-content: center;
       padding: 0 20px;
       margin: 0 10px;
-  
+      white-space: nowrap;
       transition: background 0.4s linear;
   }
   
@@ -172,6 +188,7 @@ NAV TABS */
       max-width: 0;
       margin-top: 1rem;
       margin-bottom: 1rem;
+      white-space: nowrap;
   }
   
   .tab.active p {
@@ -201,6 +218,12 @@ NAV TABS */
       /* color: rgba(28, 150, 162, 1); */
       color: rgb(158, 158, 158);
   }
+
+  .tab.active.esc {
+    background-color: rgba(187, 0, 0, 0.2);
+    /* color: rgba(28, 150, 162, 1); */
+    color: rgb(155, 0, 0);
+}
   
   @media (max-width: 450px) {
       .tab-nav-container {

@@ -24,92 +24,75 @@
 <div id="page-up" style="display: none;">
   <i class="fa-solid fa-caret-up"></i>
 </div>
-<div id="tabs">
-  <!-- https://codepen.io/FlorinPop17/pen/ZZajGB -->
+<div id="tabs" >
+
+  <div class="tab-nav-container" id="load-tabs">
+    <div class="tab active country-color active" id="load-button" style="display: none;">
+      <i class="fa-sharp fa-solid fa-download"></i>
+        <p>Скачать</p>
+    </div>
+    <div class="tab country-color active"  id="image-count">
+      <i class="fa-solid fa-image"></i>
+        <p>Выберите фото</p>
+    </div>
+    <div class="tab country-color active"  id="chosen-avatars-link" style="display: none;">
+      <i class="fa-solid fa-share-nodes"></i>
+        <p>Ссылка на выбраные</p>
+    </div>
+    <div class="tab esc active"  id="esc-avatars" style="display: none;">
+      <i class="fa-solid fa-xmark"></i>
+        <p>ESC</p>
+    </div>
+</div>
+
+
+
+
   <div class="container">
     <div class="row">
-      <div class="col-3">xxx</div>
-      <div class="col-6">
+
+      <div class="col-3">
+        xxx
+      </div>
+
+      <div class="col-6" id="chose-sex">
         <div class="tab-nav-container">
-          <div class="tab active country-color" id="color" data-target="county-geo-info">
-            <i class="fa-sharp fa-solid fa-circle-info" ></i>
-              <p>Европейцы</p>
-          </div>
-          <div class="tab man" data-f="man" data-target="avatars" >
+          <div class="tab man active" data-f="man">
             <i class="fa-solid fa-mars" ></i>
-              <p>Man</p>
+              <p>Мужчины</p>
           </div>
-          <div class="tab woman" data-f="woman" data-target="avatars" >
+          <div class="tab woman" data-f="woman" >
             <i class="fa-solid fa-venus" ></i>
-              <p>Woman</p>
+              <p>Женшины</p>
           </div>
-          <!-- <div class="tab other" data-f="other" data-target="avatars" >
-              <i class="far fa-user" ></i>
-              <p>Other</p>
-          </div> -->
+          <div class="check" >
+              <input type="checkbox" checked>
+              <labe>18-34</labe>
+          </div>
+          <div class="check" >
+              <input type="checkbox" checked>
+              <labe>35-50</labe>
+          </div>
+          <div class="check" >
+              <input type="checkbox" checked>
+              <labe>50+</labe>
+          </div>
       </div>
       </div>
-      <div class="col-3">xxx</div>
+
+      <div class="col-3">
+        xxx
+      </div>
+
     </div>
   </div>
 
 
 </div>
 <div id="app" class="container">
-<div id="county-geo-info">
-  <div id="people-info">
-    <img src="https://static.mk.ru/upload/entities/2015/06/17/articles/detailPicture/95/b2/5e/ba2886266_1912640.jpg">
-    <img src="https://aviasovet.ru/blog/wp-content/uploads/2013/08/532-arabskie-muzhchiny.jpg">
-    <img src="https://images.pexels.com/photos/8350545/pexels-photo-8350545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-    <img src="https://autogear.ru/misc/i/gallery/42406/1382837.jpg">
-    <img src="https://arabperevod.ru/sites/default/files/arabicvalues.jpg">
-    <img src="https://www.meme-arsenal.com/memes/d863c25216d12f20ecf00a442b0bcaa7.jpg">
-    <img src="https://islam.ru/sites/default/files/img/2017/kultura/arabskaya-odezhda.jpg" alt="" class="src">
-    <img src="https://images.pexels.com/photos/5206277/pexels-photo-5206277.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
-    <img src="https://st3.depositphotos.com/2853475/18754/i/450/depositphotos_187546510-stock-photo-arabic-handsome-man-studio-portraits.jpg" alt="">
-  </div>
-  <div id="comments-exsamples" class="container-sm">
-    <div class="row">
-      <div class="col">
-        {%comment_block%}
-          https://cdn1.flamp.ru/1f32505af8fa3c6d5c3ea74b411bc428.JPG
-        {%end%}
-        {%comment_block%}
-         https://peopletalk.ru/wp-content/uploads/2021/09/photo_2021-09-08-14.19.32-640x640.jpeg
-        {%end%}
-        {%comment_block%}
-        https://st.depositphotos.com/1809585/4775/i/450/depositphotos_47755009-stock-photo-arab-saudi-emirates-man-pointing.jpg
-        {%end%}
-        {%comment_block%}
-        https://ae04.alicdn.com/kf/H986e89e0cbd04a6bbfe047038476c0ec4.jpg_350x350.jpg
-        {%end%}
-        {%comment_block%}
-        https://ae01.alicdn.com/kf/HTB1o.ZpBf9TBuNjy0Fcq6zeiFXay.jpg
-        {%end%}
-      </div>
-      <div class="col">
-        {%comment_block%}
-          https://rsute.ru/wp-content/uploads/2021/01/600x600_1_568fd8f12747229ea33f997b1b93be18-640x640_0xac120003_13901261841572539756.jpg
-        {%end%}
-        {%comment_block%}
-          https://yaturisto.ru/wp-content/uploads/2019/10/ebec3c8e84fd23a57256976eac2db73d-e1571170440969.jpg
-        {%end%}
-        {%comment_block%}
-        https://images11.graziamagazine.ru/upload/custom/b96/b960709a5fe4fff838cf7387b7900641.jpg
-        {%end%}
-        {%comment_block%}
-        https://peopletalk.ru/wp-content/uploads/2021/09/photo_2021-09-08-14.18.15-640x640.jpeg
-        {%end%}
-        {%comment_block%}
-        https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGO53fy4PyHBopa5VpELkqKTi3A9eAq6cNRQ&usqp=CAU
-        {%end%}
-      </div>
-    </div>
 
-  </div>
-</div>
 
-<div class="images" id="avatars" style="display: none;">
+<div class="images" id="avatars" style="">
 
 
   {%for avatar in avatars%}
@@ -124,24 +107,52 @@
 
 
 
-<div class="download">
+<!-- <div class="download">
 
-</div>
+</div> -->
+<div class="space-footer"></div>
 <script>
   let currentGeoGroup = 'europe-north';
   let currentAge = '';
-  let currentSex = '';
+  let currentSex = 'man';
 
 
 
   $('.item').click(function(){
     $(this).toggleClass('active')
+    countChosenImages()
+  })
+
+  function countChosenImages(){
+    let count = $('#avatars .item.active').length
+    if (count == 0) {
+      escAvatars()
+    } else {
+      $('#image-count p').text(count)
+      $('#esc-avatars').show()
+      $('#load-button').show()
+      $('#chosen-avatars-link').show()
+    }
+    
+  }
+
+
+  function escAvatars(){
+    $('#esc-avatars').hide()
+    $('#load-button').hide()
+    $('#chosen-avatars-link').hide()
+    $('.item').removeClass('active')
+    $('#image-count p').text('Выберите фото')
+    
+  }
+  $('#esc-avatars').click(function(){
+    escAvatars()
   })
 
   // При клике на ESC
   $(document).keyup(function(e) {
      if (e.key === "Escape") { // escape key maps to keycode `27`
-        $('.item').removeClass('active')
+      escAvatars()
       }
   });
 
@@ -159,16 +170,20 @@
     imagesToShow.show()
   }
 
+
+
+  filterAvatars()
 // Переключение контента при нажатии на tabs
-$('#tabs .tab').click(function(){
-  let target = $(this).data('target')
-  $('#tabs .tab').removeClass('active')
+$('#chose-sex .tab').click(function(){
+  // let target = $(this).data('target')
+  $('#chose-sex .tab').removeClass('active')
   $(this).addClass('active')
-  $('#app').children().hide()
-  $('#'+target).show()
+  // $('#app').children().hide()
+  // $('#'+target).show()
+  console.log($(this).data('f'))
   if ($(this).data('f')){
-    let filterCalss = $(this).data('f');
-    currentSex = filterCalss
+    let filterClass = $(this).data('f');
+    currentSex = filterClass
     filterAvatars()
     // let imagesToShow = $('#avatars .item').filter(function(){
     //   if ($(this).hasClass(filterCalss)){return true}
@@ -411,24 +426,28 @@ function zoomTo(poligon){
   //   $('#color').css('background-color', `rgb(${hex.r},${hex.g},${hex.b},0.2)`)
   // }
   // Get all the tabs
-const tabs = document.querySelectorAll('.tab');
 
-tabs.forEach(clickedTab => {
-    // Add onClick event listener on each tab
-    clickedTab.addEventListener('click', () => {
-      $('#tabs .tab').removeAttr('style')
-        // Remove the active class from all the tabs (this acts as a "hard" reset)
-        tabs.forEach(tab => {
-            tab.classList.remove('active');
-        });
+// const tabs = document.querySelectorAll('.tab');
 
-        // Add the active class on the clicked tab
-        clickedTab.classList.add('active');
-		const clickedTabBGColor = getComputedStyle(clickedTab).getPropertyValue('color');
-		// console.log(clickedTabBGColor);
-		// document.body.style.background = clickedTabBGColor;
-    });
-});
+// tabs.forEach(clickedTab => {
+//     // Add onClick event listener on each tab
+//     clickedTab.addEventListener('click', () => {
+//       $('#chose-sex .tab').removeAttr('style')
+//         // Remove the active class from all the tabs (this acts as a "hard" reset)
+//         tabs.forEach(tab => {
+//             tab.classList.remove('active');
+//         });
+
+//         // Add the active class on the clicked tab
+//         clickedTab.classList.add('active');
+//     });
+// });
+
+$('#chose-sex .tab').click(function(){
+  $('#chose-sex .tab').removeClass('active')
+  $(this).addClass('active')
+})
+
 </script>
 <script>
   // LAZY LOAD
