@@ -14,7 +14,8 @@
             <img src="{{form.image_url}}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">ID: {{form.id}}</h5>
-              <a href="{{form.url}}" class="btn btn-primary" target="_blank">Link</a>
+              <a href="{{form.url}}" class="btn btn-primary" target="_blank">site Link</a>
+              <a href="{% url 'forms:show_form' form.id %}" class="btn btn-primary" target="_blank">Show form</a>
             </div>
           </div>
         </div>

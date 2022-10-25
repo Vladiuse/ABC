@@ -4,6 +4,9 @@ from django.db import models
 
 
 class FormExample(models.Model):
-    image_url = models.URLField(blank=False)
-    url = models.URLField()
+    image_url = models.URLField(blank=True)
+    url = models.URLField(blank=True)
+    html = models.TextField(blank=True)
+    css = models.TextField(blank=True)
+    js = models.TextField(blank=True)
 

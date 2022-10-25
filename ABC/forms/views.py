@@ -10,3 +10,11 @@ def examples(requests):
         'forms': forms
     }
     return render(requests, 'forms/examples.html', content)
+
+
+def show_form(requests, form_id):
+    form = FormExample.objects.get(pk=form_id)
+    content = {
+        'form': form,
+    }
+    return render(requests, 'forms/show_form.html', content)
