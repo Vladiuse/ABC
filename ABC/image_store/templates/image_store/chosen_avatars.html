@@ -1,0 +1,13 @@
+{%extends 'image_store/base.html'%}
+{%block content%}
+
+<div class="container">
+  <a class="btn btn-primary" href="{%url 'image_store:download_chosen_avatars'%}?avatars_ids={{avatars_ids}}" role="button">
+    <i class="fa-sharp fa-solid fa-download"></i>
+    Скачать</a>
+    <br>
+    {%for avatar in avatars%}
+    <img src="{{avatar.image.url}}">
+    {%endfor%}
+</div>
+{%endblock%}

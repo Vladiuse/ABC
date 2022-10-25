@@ -1,29 +1,9 @@
 {% extends 'image_store/base.html' %}
 {% block content %}
 {%load comment_block%}
-<style>
-  #page-up{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    /* background-color: red; */
-    background-color: #fff;
-    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
-    font-size: 30px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-</style>
+
 <div id="chartdiv"></div>
-<div id="page-up" style="display: none;">
-  <i class="fa-solid fa-caret-up"></i>
-</div>
+
 <div id="tabs" >
 
   <div class="tab-nav-container" id="load-tabs">
@@ -43,7 +23,7 @@
       <i class="fa-solid fa-xmark"></i>
         <p>ESC</p>
     </div>
-</div>
+  </div>
 
 
 
@@ -96,7 +76,7 @@
 
 
   {%for avatar in avatars%}
-  <div class="item {{avatar.sex}} {{avatar.age}}" data-filter="{{avatar.sex}} {{avatar.age}} {{avatar.category}}">
+  <div class="item {{avatar.sex}} {{avatar.age}}" data-filter="{{avatar.sex}} {{avatar.age}} {{avatar.category}}" data-id="{{avatar.id}}">
     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{avatar.image.url}}" class="">
   </div>
   {%endfor%}
@@ -106,10 +86,6 @@
 
 
 
-
-<!-- <div class="download">
-
-</div> -->
 <div class="space-footer"></div>
 <script>
   let currentGeoGroup = 'europe-north';
@@ -149,6 +125,35 @@
     escAvatars()
   })
 
+  
+  function getChosenAvatarsId(){
+    // получить список id выбраных аватарок
+    let chosenAvatars = $('#avatars .item.active')
+    let ids = []
+    chosenAvatars.each(function(){
+      avatarId = $(this).data('id')
+      ids.push(avatarId)
+    })
+    return ids
+  }
+
+  
+  // ссылка на просмотр выбранных аватарок
+  $('#chosen-avatars-link').click(function(){
+    let strIds = getChosenAvatarsId().join(',')
+    let url = "{%url 'image_store:chosen_avatars'%}?avatars_ids=" + strIds
+    window.open(url, '_blank')
+  })
+
+  
+
+  $('#load-button').click(function(){
+    console.log('DOWNLOAD')
+    let strIds = getChosenAvatarsId().join(',')
+    let url = "{%url 'image_store:download_chosen_avatars'%}?avatars_ids=" + strIds
+    window.open(url, '_self')
+  })
+
   // При клике на ESC
   $(document).keyup(function(e) {
      if (e.key === "Escape") { // escape key maps to keycode `27`
@@ -175,21 +180,13 @@
   filterAvatars()
 // Переключение контента при нажатии на tabs
 $('#chose-sex .tab').click(function(){
-  // let target = $(this).data('target')
   $('#chose-sex .tab').removeClass('active')
   $(this).addClass('active')
-  // $('#app').children().hide()
-  // $('#'+target).show()
   console.log($(this).data('f'))
   if ($(this).data('f')){
     let filterClass = $(this).data('f');
     currentSex = filterClass
     filterAvatars()
-    // let imagesToShow = $('#avatars .item').filter(function(){
-    //   if ($(this).hasClass(filterCalss)){return true}
-    // })
-    // $('#avatars .item').hide()
-    // imagesToShow.show()
   }
 })
 </script>
@@ -479,17 +476,5 @@ $('#chose-sex .tab').click(function(){
     observer.observe(img)
   })
 </script>
-<script>
-  // page up button
-  $(window).scroll(function (event) {
-    if ($(window).height() < window.scrollY) {
-        $('#page-up').show()
-    } else {
-      $('#page-up').hide()
-    }
-});
-$('#page-up').click(function(){
-  window.scrollTo(0, 0);
-})
-</script>
+
 {% endblock %}

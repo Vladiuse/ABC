@@ -2,8 +2,20 @@ from django.db import models
 import os
 import uuid
 import zipfile
+import random as r
 from PIL import Image
 from django.core.files.uploadedfile import SimpleUploadedFile
+
+def get_random_archive_name():
+    symbols = 'qwertyuiopasdfghjklzxcvbnm'
+    res = ''
+    for char in range(8):
+        char = r.choice(symbols)
+        if r.randint(0,1):
+            char = char.upper()
+        res += char
+    return res
+
 
 
 class SexCounter:
@@ -73,10 +85,13 @@ class Avatar(models.Model):
         ('50+', '50+'),
     ]
 
+    TEMP_ZIPS_PATH = 'avatars_zip_tmp'
+
     image = models.ImageField(upload_to=get_avatar_save_path)
     category = models.ForeignKey(GeoGroup, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Категория')
     sex = models.CharField(max_length=10, blank=True, choices=SEX)
     age = models.CharField(max_length=10, blank=True, choices=AGE)
+
 
     def delete(self):
         if os.path.exists(self.image.path):
