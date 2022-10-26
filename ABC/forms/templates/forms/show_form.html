@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Стили подкрашивания кода формы */
+        {{form.colored_styes}}
+    </style>
+    <style id="user-stiles">
+        .glowing:hover {
+          color: rgba(255, 255, 255, 1);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+          border-color: blue;
+        }
+        </style>
+        <style>
+            {{form.css|safe}}
+        </style>
+        <style>
+            #source-code-wrapper{
+                background-color: black;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 50px;
+            }
+            #source-code-wrapper .code-block{
+                width: 30%;
+                padding: 10px;
+            }
+            #source-code-wrapper .code-block h5{
+                color: white;
+            }
+            #source-code-wrapper .code-block {
+                width: 100%;
+                /* height: 300px; */
+                
+            }
+
+            #source-code-wrapper .code-block .highlight {
+                padding: 10px;
+                height: 300px;
+                
+            }
+            #source-code-wrapper .code-block.have_content .highlight  {
+                overflow-x: scroll;
+                overflow-y: scroll;
+            }
+            #source-code-wrapper .code-block .highlight span{
+                white-space: normal;
+            }
+        </style>
+</head>
+<body>
+    <div id="source-code-wrapper">
+        <div class="code-block {%if form.html%}have_content{%endif%}">
+            <h5>html</h5>
+            {{form.html_colored|safe}}
+<!--            <textarea>{{form.html}}</textarea>-->
+        </div>
+        <div class="code-block {%if form.css%}have_content{%endif%}">
+            <h5>CSS</h5>
+<!--            <textarea>{{form.css}}</textarea>-->
+            {{form.css_colored|safe}}
+        </div>
+        <div class="code-block {%if form.js%}have_content{%endif%}">
+            <h5>JS</h5>
+            {{form.js_colored|safe}}
+<!--            <textarea disabled>{{form.js}}</textarea>-->
+        </div>
+    </div>
+    {{form.html|safe}}
+    <script>
+        {{form.js|safe}}
+    </script>
+</body>
+</html>
