@@ -17,6 +17,7 @@ class Site(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название', blank=True)
     description = models.CharField(max_length=255, verbose_name='Описание', blank=True)
     zip_archive = models.FileField(blank=True, upload_to='archive_zips')
+    preview = models.URLField(blank=True)
 
 
     def get_url(self):

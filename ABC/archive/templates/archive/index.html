@@ -1,16 +1,27 @@
 {%extends 'image_store/base.html'%}
 {%block content%}
+<style>
+    body{
+      background-color: rgba(0, 0, 0, .7);
+  }
+  .card .card-title{
+    text-align: center;
+    font-weight: 700;
+  }
+</style>
 <h1>Archive</h1>
 <div class="container">
     <div class="row row-cols-1 row-cols-md-2 g-4">
         {%for site in sites%}
         <div class="col">
-          <div class="card">
-            <img src="https://cdn.dribbble.com/users/683081/screenshots/2728654/exfuse_app_main_nocontent.png" class="card-img-top" alt="...">
+          <div class="card h-100">
+            <img src="{{site.preview}}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{site.name}}</h5>
               <p class="card-text">{{site.description}}</p>
-              <a href="{{site.get_url}}" class="btn btn-primary" target="_blank" >SHOW</a>
+              <a href="{{site.get_url}}" class="btn btn-primary" target="_blank" >
+                <i class="fa-solid fa-eye"></i>
+                Посмотреть</a>
             </div>
           </div>
         </div>

@@ -20,20 +20,18 @@ class FormExample(models.Model):
     css = models.TextField(blank=True)
     js = models.TextField(blank=True)
 
+
+    def get_colored_code(self, code, lexer):
+        return highlight(code, lexer(encodings='utf-8'), HtmlFormatter())
+
     def html_colored(self):
-        lexer = HtmlLexer
-        html_colored = highlight(self.html, lexer(encodings='utf-8'), HtmlFormatter())
-        return html_colored
+        return self.get_colored_code(self.html, HtmlLexer)
 
     def css_colored(self):
-        lexer = CssLexer
-        css_colored = highlight(self.css, lexer(encodings='utf-8'), HtmlFormatter())
-        return css_colored
+        return self.get_colored_code(self.css, CssLexer)
 
     def js_colored(self):
-        lexer = CssLexer
-        js_colored = highlight(self.js, lexer(encodings='utf-8'), HtmlFormatter())
-        return js_colored
+        return self.get_colored_code(self.js, JavascriptLexer)
 
     def colored_styes(self):
         return HtmlFormatter(style=FormExample.COLORED_STYLE).get_style_defs('.highlight')
