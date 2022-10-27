@@ -142,7 +142,13 @@
 <script>
     function copyTextCode(elem){
         let text = $('#'+elem).children().text()
-        console.log(text)
+        navigator.clipboard.writeText(text)
+        .then(() => {
+            console.log('Text copied to clipboard');
+        })
+        .catch(err => {
+            console.error('Error in copying text: ', err);
+        });
     }
 </script>
 </html>
