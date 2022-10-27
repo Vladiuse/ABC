@@ -13,6 +13,7 @@ def index(requests):
 
 
 def show_site(requests, site_id):
+    """Показать сайт"""
     site = get_object_or_404(Site, pk=site_id)
     site_html = site.render_template()
     return HttpResponse(site_html)
