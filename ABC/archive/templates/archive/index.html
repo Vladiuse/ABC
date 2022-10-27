@@ -20,9 +20,10 @@
             <div class="card-body">
               <h5 class="card-title">{{site.name}}</h5>
               <p class="card-text">{{site.description}}</p>
-              <a href="{{site.get_url}}" class="btn btn-primary" target="_blank" >
+              <a href="{%url 'archive:show_site' site.id %}" class="btn btn-primary" target="_blank" >
                 <i class="fa-solid fa-eye"></i>
                 Посмотреть</a>
+                <a href="{{site.get_url}}">x</a>
             </div>
           </div>
         </div>

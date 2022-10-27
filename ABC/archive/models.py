@@ -3,17 +3,23 @@ from django.conf import settings
 import os
 from zipfile import ZipFile
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.template import Template
+from django.template import Context
 
 # Create your models here.
+from django.conf import settings
+import os
 
 
 
 class Site(models.Model):
 
-    SITES_DIR_PATH = os.path.join(settings.MEDIA_ROOT, 'archive')
+
+    ARCHIVE_DIR_NAME = 'archive'
+    ARCHIVE_DIR_PATH = os.path.join(settings.MEDIA_ROOT, ARCHIVE_DIR_NAME)
     ZIPS_PATH = os.path.join(settings.MEDIA_ROOT, 'archive_zips')
 
-    dir_path = models.CharField(max_length=255, verbose_name='Пусть к папке сайта', unique=True)
+    dir_name = models.CharField(max_length=255, verbose_name='Пусть к папке сайта', unique=True)
     name = models.CharField(max_length=255, verbose_name='Название', blank=True)
     description = models.CharField(max_length=255, verbose_name='Описание', blank=True)
     zip_archive = models.FileField(blank=True, upload_to='archive_zips')
@@ -22,12 +28,39 @@ class Site(models.Model):
 
     def get_url(self):
         """получить ссылку на index.html сайта"""
-        return f'/media/archive/{self.dir_path}/index.html'
+        return f'/media/{self.ARCHIVE_DIR_NAME}/{self.dir_name}/index.html'
+
+    @property
+    def base_tag_url(self):
+        return f'/media/{self.ARCHIVE_DIR_NAME}/{self.dir_name}/'
+
+    def get_base_tag(self):
+        return f'<base href="{self.base_tag_url}">'
+
+
+
+    @property
+    def index_path(self):
+        full_dir_path = os.path.join(settings.MEDIA_ROOT, str(self.ARCHIVE_DIR_PATH), str(self.dir_name))
+        index_path = os.path.join(full_dir_path, 'index.html')
+        return index_path
+
+
+    def render_template(self):
+        with open(self.index_path) as file:
+            index = file.read()
+        data = {
+            'base_tag': self.get_base_tag()
+        }
+        context = Context(data)
+        template = Template(index)
+        res = template.render(context)
+        return str(res)
 
     def create_zip(self):
         """Создать архив сайта"""
-        dir_path = os.path.join(self.SITES_DIR_PATH, str(self.dir_path))
-        zip_path_to_save = os.path.join(self.ZIPS_PATH, str(self.dir_path)) + '.zip'
+        dir_path = os.path.join(self.ARCHIVE_DIR_PATH, str(self.dir_name))
+        zip_path_to_save = os.path.join(self.ZIPS_PATH, str(self.dir_name)) + '.zip'
         zip_file = ZipFile(zip_path_to_save, 'w')
         for root, dirs, files in os.walk(dir_path):
             for file in files:
