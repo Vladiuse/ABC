@@ -78,6 +78,19 @@
             #source-code-wrapper .code-block .highlight span{
                 white-space: normal;
             }
+            #source-code-wrapper .copy{
+                margin-top: 15px;
+                background-color: #505050;
+                color: #ccc;
+                border: none;
+                padding: 10px;
+                border-radius: 10px;
+            }
+            #source-code-wrapper .copy:hover{
+                background-color: #818181;
+                cursor: pointer;
+                font-weight: bold;
+            }
         </style>
 </head>
 <body>
@@ -93,6 +106,7 @@
         <div class="code-block {%if form.html%}have_content{%endif%}" id="html">
             {{form.html_colored|safe}}
         </div>
+        <button class="copy" onclick="copyTextCode('html');">Скопировать</button>
         </div>
         <div class="col">
             <div class="code-tab">
@@ -104,6 +118,7 @@
         <div class="code-block {%if form.css%}have_content{%endif%}" id="css">
             {{form.css_colored|safe}}
         </div> 
+        {%if form.css%}<button class="copy" onclick="copyTextCode('css');">Скопировать</button>{%endif%}
         </div>
         <div class="col">
             <div class="code-tab">
@@ -116,6 +131,7 @@
         <div class="code-block {%if form.js%}have_content{%endif%}" id="js">
             {{form.js_colored|safe}}
         </div>
+        {%if form.js%}<button class="copy" onclick="copyTextCode('js');">Скопировать</button>{%endif%}
         </div>
     </div>
     {{form.html|safe}}
@@ -123,22 +139,10 @@
         {{form.js|safe}}
     </script>
 </body>
+<script>
+    function copyTextCode(elem){
+        let text = $('#'+elem).children().text()
+        console.log(text)
+    }
+</script>
 </html>
-
-
-
-// объект, который надо выделить
-var element = document.getElementById("html");
-
-// создание выделения
-var range = document.createRange();
-range.selectNode(element);
-
-// выделение объекта
-window.getSelection().addRange(range);
-
-document.getElementById('html').addEventListener('click', function() {
-    var r = document.createRange();
-    r.selectNode(this);
-    document.getSelection().addRange(r);
-});
