@@ -47,7 +47,7 @@ class Site(models.Model):
 
     def _get_index_html_text(self) -> str:
         """Возвращает текст index.html сайта"""
-        with open(self.index_path) as file:
+        with open(self.index_path, encoding='utf-8') as file:
             index = file.read()
         return index
 
