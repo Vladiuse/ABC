@@ -21,3 +21,5 @@ https://codepen.io/FlorinPop17/pen/ZZajGB
 
 
 https://pygments.org/
+
+никаких селекторов по тегу!! https://i.imgur.com/54NRl17.png

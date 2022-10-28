@@ -5,6 +5,7 @@ from zipfile import ZipFile
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.template import Template
 from django.template import Context
+from forms.models import FormExample
 
 # Create your models here.
 from django.conf import settings
@@ -52,9 +53,12 @@ class Site(models.Model):
 
     def render_template(self) -> str:
         """рендеринг сайта - добавление base и формы"""
+        form = FormExample.objects.get(pk=1)
+
         index_html = self._get_index_html_text()
         data = {
-            'base_tag': self.get_base_tag()
+            'base_tag': self.get_base_tag(),
+            # 'form': form,
         }
         context = Context(data)
         template = Template(index_html)
