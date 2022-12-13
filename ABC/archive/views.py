@@ -12,8 +12,8 @@ def index(requests):
     return render(requests, 'archive/index.html', content)
 
 
-def show_site(requests, site_id):
+def show_site(requests, site_dir_name):
     """Показать сайт"""
-    site = get_object_or_404(Site, pk=site_id)
+    site = get_object_or_404(Site, dir_name=site_dir_name)
     site_html = site.render_template()
     return HttpResponse(site_html)

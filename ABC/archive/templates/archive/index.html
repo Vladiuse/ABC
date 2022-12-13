@@ -2,16 +2,136 @@
 {%block content%}
 
 <style>
-    body{
+    /* body{
       background-color: rgba(0, 0, 0, .7);
-  }
+  } */
   .card .card-title{
     text-align: center;
     font-weight: 700;
   }
 </style>
-<h1>Archive</h1>
-<div class="container">
+<style>
+  .ipad {
+    margin-left: 2em;
+    height: 600px;
+    width: 800px;
+    line-height: 45.8vmin;
+    border-width: 30px !important;
+    border-radius: 4.2857142857vmin;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), #111), url(https://www.apple.com/v/ipad-pro/s/images/overview/retina_screen_1__csuokryyjb42_large.jpg);
+    z-index: 100;
+}
+.iphone, .ipad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    color: #fff;
+    text-align: center;
+    font-family: "SF Pro Display", Helvetica Neue, Arial, sans-serif;
+    letter-spacing: -0.022em;
+    font-size: 2.5vmin;
+    text-shadow: 0 0 0.5em #000;
+    background-color: #000;
+    background-size: auto 200%, cover;
+    background-repeat: no-repeat, no-repeat;
+    border: solid #111;
+    /* margin-bottom: 2em; */
+    position: relative;
+    box-shadow: 0 0.5em 2em 0.2em rgb(0 0 0 / 33%), 0 0 0 0.5px #000 inset;
+    transition: all 0.1s linear, line-height 0s linear;
+    /* background-position: 50% 100%, center; */
+    background-position: 50% -100%, center center;
+    transform-origin: bottom center;
+}
+.iphone {
+    width: 300px;
+    height: 600px;
+    line-height: 51.4455445545vmin;
+    border-width: 1.5207920792vmin;
+    border-radius: 4.0550130098vmin;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), #111), url(https://www.apple.com/v/iphone-xs/d/images/overview/screen_display_wallpaper_iphonexs_large.jpg);
+    z-index: 200;
+}
+.iphone:hover, .ipad:hover {
+  background-position: 50% 100%, center;
+
+
+    /* color: transparent; */
+    text-shadow: 0 0 0em transparent;
+    /* background-position: 50% -100%, center center; */
+    transition: all 0.15s linear, line-height 5s linear;
+    line-height: 0vmin;
+}
+.iphone span, .ipad span{
+  opacity: 0;
+}
+.iphone:hover, .ipad:hover {
+  opacity: 1;
+}
+</style>
+<style>
+  .site {
+    padding: 20px 0 60px 0;
+  }
+   .site-desc{
+    padding-left: 40px;
+    display: flex;
+    justify-content: start;
+   }
+  .site-desc h3{
+    display: inline-block;
+  }
+  .site-desc a{
+    width: 100px;
+    margin-left: 30px;
+  }
+  .site p{
+    padding: 0 70px ;
+    /* text-align: center; */
+  }
+</style>
+<div class="container site">
+  <div class="row">
+    <div class="col-8">
+      <figure class='ipad'><span>Desctop</span></figure>
+    </div>
+    <div class="col-4">
+      <figure class='iphone'><span>Phone</span></figure>
+    </div>
+  </div>
+  <div class="site-desc">
+    <h3 class="site-desc">Some descripton</h3>
+    <button class="btn btn-secondary"><i class="fa-solid fa-eye"></i></button>
+  </div>
+</div>
+{%for site in sites%}
+<div class="container site">
+  <div class="row">
+    <div class="col-8">
+    
+      <figure class='ipad' style="
+          background-image: linear-gradient(rgba(0, 0, 0, 0), #111), url({{site.preview}});      
+      ">Desctop</figure>
+    </div>
+    <div class="col-4">
+      <figure class='iphone' style="
+          background-image: linear-gradient(rgba(0, 0, 0, 0), #111), url({{site.preview_mob}});
+      ">Phone</figure>
+    </div>
+  </div>
+  <div class="site-desc">
+    <h3 class="site-desc">{{site.name}}</h3>
+    <a class="btn btn-secondary" href="{%url 'archive:show_site' site.dir_name%}" target="_blank"><i class="fa-solid fa-eye"></i></a>
+  </div>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quas corporis magnam, architecto ducimus aspernatur asperiores quod eos, nisi est nulla! Eos tempora quas magni ducimus distinctio impedit vero amet.
+  </p>  <img src="{{site.preview}}" width="3px"> <img src="{{site.preview_mob}}" width="3px">
+</div>
+{%endfor%}
+<!-- <h1>Archive</h1> -->
+<!-- <div class="container">
     <div class="row row-cols-1 row-cols-md-2 g-4">
         {%for site in sites%}
         <div class="col">
@@ -27,6 +147,7 @@
             </div>
           </div>
         </div>
-    {%endfor%}
+        {%endfor%}
 </div>
+</div> -->
 {%endblock%}

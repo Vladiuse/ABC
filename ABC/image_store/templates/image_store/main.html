@@ -418,29 +418,6 @@ function zoomTo(poligon){
 
 </style>
 <script>
-  // подтягивание цвета из карты
-  // function changeTabColor(hex){
-  //   $('#color').css('color', `rgb(${hex.r},${hex.g},${hex.b})`)
-  //   $('#color').css('background-color', `rgb(${hex.r},${hex.g},${hex.b},0.2)`)
-  // }
-  // Get all the tabs
-
-// const tabs = document.querySelectorAll('.tab');
-
-// tabs.forEach(clickedTab => {
-//     // Add onClick event listener on each tab
-//     clickedTab.addEventListener('click', () => {
-//       $('#chose-sex .tab').removeAttr('style')
-//         // Remove the active class from all the tabs (this acts as a "hard" reset)
-//         tabs.forEach(tab => {
-//             tab.classList.remove('active');
-//         });
-
-//         // Add the active class on the clicked tab
-//         clickedTab.classList.add('active');
-//     });
-// });
-
 $('#chose-sex .tab').click(function(){
   $('#chose-sex .tab').removeClass('active')
   $(this).addClass('active')

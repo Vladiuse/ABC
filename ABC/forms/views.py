@@ -18,3 +18,6 @@ def show_form(requests, form_id):
         'form': form,
     }
     return render(requests, 'forms/show_form.html', content)
+
+def casino(requests):
+    return render(requests, 'forms/casino.html')

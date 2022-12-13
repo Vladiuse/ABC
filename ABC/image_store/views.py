@@ -49,3 +49,7 @@ def download_chosen_avatars(requests):
     response = FileResponse(open(zip_file_path, 'rb'), filename='avatars.zip')
     return response
 
+
+def badges(requests):
+    return render(requests, 'image_store/badges.html')
+
