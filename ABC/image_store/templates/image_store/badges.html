@@ -57,33 +57,33 @@ hr {
     border-radius: 45px ;
     padding: 10px;
 }
-#side-scroll div{
+#side-scroll a{
     cursor: pointer;
     margin-top: 3px;
     width: 100px;
     padding: 8px;
     transition: 0.2s;
 }
-#side-scroll div:hover{
+#side-scroll a.active{
     padding: 0;
 }
-#side-scroll div img{
+#side-scroll a img{
     width: 100%;
 }
 </style>
 <div id="side-scroll">
-    <div>
+    <a class="active">
         <img src="https://cdn.pixabay.com/photo/2013/07/12/19/31/tag-154930_1280.png">
-    </div>
-    <div>
+    </a>
+    <a>
         <img src="https://www.pngmart.com/files/21/30-Off-PNG-Photo.png">
-    </div>
-    <div>
+    </a>
+    <a>
         <img src="https://amazing-cdn.com/variless-new.com/img/reward_02.png" alt="" >
-    </div>
-    <div>
+    </a>
+    <a>
         <img src="https://amazing-cdn.com/cap.detonnic-new.com/img/satisfaction.png" alt="" >
-    </div>
+    </a>
 </div>
 <h1>Badges Collections</h1>
 <div class="container">
@@ -154,4 +154,10 @@ hr {
     <img src="https://amazing-cdn.com/cap.detonnic-new.com/img/satisfaction.png" alt="" >
 </div>
 </div>
+<script>
+    $('#side-scroll a').click(function(){
+        $('#side-scroll a').removeClass('active')
+        $(this).addClass('active')  
+    })
+</script>
 {%endblock%}

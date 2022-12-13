@@ -4,9 +4,81 @@
     body{
         background-color: rgba(0, 0, 0, .7);
     }
+    .palette{
+      margin: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .color{
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      margin: 0 5px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .color i{
+      display: none;
+    }
+    .color.active i{
+      display: block;
+    }
+    .color:hover{
+      opacity: 0.75;
+    }
+    .color-black{
+      background: #454545;
+      box-shadow: 0 2px 0 #000000;
+    }
+    .color-blue{
+      background: #2aa9e0;
+    box-shadow: 0 2px 0 #1a7aa4;
+    }
+    .color-orange{
+      background: #eb8046;
+    box-shadow: 0 2px 0 #d3672d;
+    }
+    .color-pink{
+      background: #db4286;
+    box-shadow: 0 2px 0 #bc3671;
+    }
+    .color-red{
+      background: #d94134;
+    box-shadow: 0 2px 0 #ab3329;
+    }
+    .color-yellow{
+      background: #f2d54c;
+    box-shadow: 0 2px 0 #dcb84b;
+    }
 </style>
+
 <h1>123123</h1>
+<div class="palette">
+  <div class="color color-black">
+    <i class="fa-solid fa-check"></i>
+  </div>
+  <div class="color color-blue">
+    <i class="fa-solid fa-check"></i>
+  </div>
+  <div class="color color-orange">
+    <i class="fa-solid fa-check"></i>
+  </div>
+  <div class="color color-pink">
+    <i class="fa-solid fa-check"></i>
+  </div>
+  <div class="color color-red">
+    <i class="fa-solid fa-check"></i>
+  </div>
+  <div class="color color-yellow">
+    <i class="fa-solid fa-check"></i>
+  </div>
+</div>
 <div class="container">
+  
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {%for form in forms%}
         <div class="col">
@@ -22,4 +94,11 @@
         {%endfor%}
       </div>
 </div>
+<script>
+  $('.color').click(function(){
+    $('.color').removeClass('active')
+    $(this).addClass('active')
+  })
+</script>
+
 {%endblock%}
