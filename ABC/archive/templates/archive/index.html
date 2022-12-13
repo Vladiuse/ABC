@@ -91,7 +91,16 @@
     padding: 0 70px ;
     /* text-align: center; */
   }
+
+  .flag-img{
+    display: inline-block;
+    width: 50px;
+    border: 1px solid #e9ecef;
+    border-radius: 2px;
+    margin-left: 10px;
+  }
 </style>
+
 <div class="container site">
   <div class="row">
     <div class="col-8">
@@ -123,11 +132,13 @@
   </div>
   <div class="site-desc">
     <h3 class="site-desc">{{site.name}}</h3>
+    <img class="flag-img " src="/static/flags/4x3/{{site.country}}.svg">
     <a class="btn btn-secondary" href="{%url 'archive:show_site' site.dir_name%}" target="_blank"><i class="fa-solid fa-eye"></i></a>
   </div>
   <p>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quas corporis magnam, architecto ducimus aspernatur asperiores quod eos, nisi est nulla! Eos tempora quas magni ducimus distinctio impedit vero amet.
-  </p>  <img src="{{site.preview}}" width="3px"> <img src="{{site.preview_mob}}" width="3px">
+  </p> 
+   <img src="{{site.preview}}" width="3px"> <img src="{{site.preview_mob}}" width="3px">
 </div>
 {%endfor%}
 <!-- <h1>Archive</h1> -->

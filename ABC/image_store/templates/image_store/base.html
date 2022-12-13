@@ -25,6 +25,13 @@
   <!-- MY -->
   <link rel="stylesheet" href="{% static 'image_store/css/main.css' %}">
   <link rel="stylesheet" href="{% static 'image_store/css/comm_n_tabs.css' %}">
+
+  <!-- FLAGS -->
+  <link rel="stylesheet" href="{% static 'image_store/flag-icons.min.css' %}">
+  <!-- <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
+/> -->
 </head>
 
 <body>
@@ -32,7 +39,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Help</a>
+        <a class="navbar-brand" href="{%url 'index'%}">Help</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -42,9 +49,9 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{%url 'image_store:index'%}">Аватарки</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="#">Генератор имен</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="{%url 'archive:index'%}">Шаблоны</a>
             </li>
@@ -69,13 +76,13 @@
               <a class="nav-link" href="{%url 'image_store:badges'%}" tabindex="-1" aria-disabled="true">Бэйджы и скидки</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Сертификаты</a>
             </li>
           </ul>
           <form class="d-flex">
             <a href="http://127.0.0.1:8000/avatars/download_collection">LOAD</a>
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-success" type="submit">Search</button> 
           </form>
         </div>
       </div>

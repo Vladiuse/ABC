@@ -25,6 +25,8 @@ class Site(models.Model):
     zip_archive = models.FileField(blank=True, upload_to='archive_zips')
     preview = models.URLField(blank=True)
     preview_mob = models.URLField(blank=True)
+    
+    country = models.CharField(max_length=2, verbose_name='iso code', blank=True)
 
     def __str__(self):
         return str(self.dir_name)
