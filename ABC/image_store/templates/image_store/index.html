@@ -2,12 +2,96 @@
 {%load static%}
 {% block content %}
 <style>
+  .form-example-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,125,198,.5);
+    padding: 5px;
+    border-radius: 20px;
+  }
+
+  .form-example-wrapper input{
+    font-size: 14px;
+    width: 100%;
+    padding: 5px;
+    height: 35px;
+    margin: 3px 0;
+    border-radius: 20px;
+    border: none;
+  }
+
+  @keyframes pulse{
+  0%{
+    transform: scale(.85);
+  }
+  25%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(.85);
+  }
+  
+  75%{
+    transform: scale(1);
+  }
+  
+  100%{
+    transform: scale(.85);
+  }
+}
+
+
+  .form-example-wrapper button{
+   
+    animation: pulse 4s infinite;
+
+    visibility: visible;
+
+    background: url(https://amazing-cdn.com/a.insumed-new.com/img/btn.png) no-repeat;
+    width: 238px;
+    height: 41px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border: 0;
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    margin: 5px auto 0;
+    -webkit-box-shadow: 0 0 29px -9px #7a26e2;
+    box-shadow: 0 0 29px -9px #7a26e2;
+    -webkit-transition: all ease .3s;
+    -o-transition: all ease .3s;
+    transition: all ease .3s;
+    border-radius: 20px;
+    text-transform: uppercase;
+
+  }
+
+</style>
+<style>
 .kma-logo{
     width: 100px;
 }
 .kma-logo-wrapper{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    font-weight: 900;
+    font-size: 20px;
 }
 
 
@@ -146,25 +230,71 @@ body{
 </style>
 <div class="kma-logo-wrapper">
     <img src="https://kma.biz/assets/f864b9d1/img/logo_mini.svg" class="kma-logo">
+    <p>KMA Collections</p>
 </div>
 <div class="grid-wrapper container">
     <div class="container-main">
         <div class="elem header avatars">
-            <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
-            <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
-            <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
-            <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
-            <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
-            <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
+            <!-- Аватарки<br> -->
+            <img src="https://avatarfiles.alphacoders.com/170/thumb-170303.jpg">
+            <img src="https://i.imgur.com/sKAXI2k.png">
+            <img src="https://cdna.artstation.com/p/assets/images/images/027/495/108/original/art-eater-5.gif?1591708511">
+            <img src="https://geekhero.ru/wp-content/uploads/2014/10/faa82f3e1d89c5c3fd20061664d886b1.jpg">
+            <img src="https://i.imgur.com/tB2etHU.png">
+            <img src="https://i.imgur.com/eO1LHpz.png">
             <!-- Avatars header -->
+            <img src="https://qph.cf2.quoracdn.net/main-qimg-13640a59053f2a2ff97c656972443fb8.webp">
+            <img src="https://obrazovaka.ru/wp-content/uploads/2014/08/Cherchil-Uinston.jpg">
+            <img src="https://i.scdn.co/image/3a2af250d4060586f9a2e7ac5b6c548118bf1b9c">
             <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
-            <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
-            <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
-            <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
-            <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
+            <img src="https://assets.nick.com/uri/mgid:arc:imageassetref:nick.com:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true">
+
+          
         </div>
-        <div class="elem sidebar">Sites sidebar</div>
-        <div class="elem content-1">Content-1</div>
+        <div class="elem sidebar">
+            <img src="{%static 'forms/images/iphone.png'%}" height="100%">
+        </div>
+        <div class="elem content-1 form-example">
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-4">
+              <!-- HTML FORM -->
+              <div class="form-example-wrapper">
+                <h1>Make order!</h1>
+                <form>
+                <input type="text" name="name" placeholder="Your name">
+                <input type="tel" name="name" placeholder="Your phone">
+                <button class="pulse">Send</button>
+                </form>
+                </div>
+   <!-- HTML FORM -->
+            </div>
+            <div class="col-1"></div>
+            <div class="col-6">
+              <!-- HTML CODE -->
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;padding:.2em .6em; border-radius: 15px; margin: 5px;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+2
+3
+4
+5
+6
+7
+8</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&lt;div</span> <span style="color: #a6e22e">class=</span><span style="color: #e6db74">&quot;form-wrapper&quot;</span><span style="color: #f92672">&gt;</span>
+<span style="color: #f92672">&lt;h1&gt;</span>Make order!<span style="color: #f92672">&lt;/h1&gt;</span>
+<span style="color: #f92672">&lt;form&gt;</span>
+<span style="color: #f92672">&lt;input</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;text&quot;</span> <span style="color: #a6e22e">name=</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">&gt;</span>
+<span style="color: #f92672">&lt;input</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;tel&quot;</span> <span style="color: #a6e22e">name=</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">&gt;</span>
+<span style="color: #f92672">&lt;button&gt;</span>Send<span style="color: #f92672">&lt;/button&gt;</span>
+<span style="color: #f92672">&lt;/form&gt;</span>
+<span style="color: #f92672">&lt;/div&gt;</span>
+</pre></td></tr></table></div>
+
+               <!-- HTML CODE -->
+            </div>
+            <!-- <div class="col-2"></div> -->
+          </div>
+
+        </div>
         <div class="elem content-2">
             <div class="boxes">
                 <div class="grid">
