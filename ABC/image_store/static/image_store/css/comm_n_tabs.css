@@ -133,8 +133,8 @@ NAV TABS */
   
   h2 {
     color: #fff;
-    position: absolute;
-    top: 20px;
+    /* position: absolute;
+    top: 20px; */
   }
   
   .tab-nav-container {
