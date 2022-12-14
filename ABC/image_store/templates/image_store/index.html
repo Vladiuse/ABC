@@ -2,6 +2,31 @@
 {%load static%}
 {% block content %}
 <style>
+  /* TICKER */
+  @keyframes ticker {
+  from {transform: translate3d(0,0,0);}
+  to {transform: translate3d(-100%,0,0);}
+}
+.ticker {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  /* background-color: black; */
+  color: white;
+  /* padding: 0 1em; */
+}
+.ticker img {
+  margin: 8px;
+  width: 80px;
+
+}
+.ticker .line{
+  flex: 0 0 auto;
+  animation: 30s linear 0s infinite ticker;
+}
+ /* TICKER */
+</style>
+<style>
   .form-example-wrapper{
     display: flex;
     flex-direction: column;
@@ -80,11 +105,23 @@
   }
 
 </style>
+<link href="https://fonts.cdnfonts.com/css/future-earth" rel="stylesheet">
 <style>
 .kma-logo{
     width: 100px;
+    margin: 20px 0;
+}
+
+.kma-logo-wrapper p{
+  text-transform: uppercase;
+  font-family: 'Future Earth', sans-serif;
+}
+.kma-logo-wrapper p span{
+  color: #73BC9E;
 }
 .kma-logo-wrapper{
+
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,7 +172,7 @@
 
 .boxes  div > div {
   padding: 10px;
-  background-color: #ccc;
+  /* background-color: #ccc; */
 }
 </style>
 <style>
@@ -305,7 +342,7 @@ body{
 </style>
 <div class="kma-logo-wrapper">
     <img src="https://kma.biz/assets/f864b9d1/img/logo_mini.svg" class="kma-logo">
-    <p>KMA Collections</p>
+    <p><span>KMA</span> Collections</p>
 </div>
 <div class="grid-wrapper container">
     <div class="container-main">
@@ -405,9 +442,58 @@ body{
         <div class="elem content-3 weel">
             <img src="{%static 'forms/images/bigweel.png'%}" class="rotating">
         </div>
-        <div class="elem footer">Badges line</div>
+        <div class="elem footer">
+          <!-- FOOTER BLOCK -->
+          <div class="ticker">
+            <div class="line">
+              <img src="https://cdn.pixabay.com/photo/2013/07/12/19/31/tag-154930_1280.png">
+              <img src="https://cdn.pixabay.com/photo/2013/07/12/19/31/tag-154930_1280.png">
+              <img src="https://cdn.pixabay.com/photo/2013/07/12/19/31/tag-154930_1280.png">
+              <img src="https://cdn.pixabay.com/photo/2013/07/12/19/31/tag-154930_1280.png">
+
+              <img src="https://www.pngmart.com/files/21/30-Off-PNG-Photo.png">
+              <img src="https://www.pngmart.com/files/21/30-Off-PNG-Photo.png">
+              <img src="https://www.pngmart.com/files/21/30-Off-PNG-Photo.png">
+              <img src="https://www.pngmart.com/files/21/30-Off-PNG-Photo.png">
+
+              <img src="https://amazing-cdn.com/variless-new.com/img/reward_02.png" alt="">
+              <img src="https://amazing-cdn.com/variless-new.com/img/reward_02.png" alt="">
+              <img src="https://amazing-cdn.com/variless-new.com/img/reward_02.png" alt="">
+              <img src="https://amazing-cdn.com/variless-new.com/img/reward_02.png" alt="">
+
+              <img src="https://amazing-cdn.com/cap.detonnic-new.com/img/satisfaction.png" alt="">
+              <img src="https://amazing-cdn.com/cap.detonnic-new.com/img/satisfaction.png" alt="">
+              <img src="https://amazing-cdn.com/cap.detonnic-new.com/img/satisfaction.png" alt="">
+              <img src="https://amazing-cdn.com/cap.detonnic-new.com/img/satisfaction.png" alt="">
+            </div>
+            <div class="line">
+              <img src="https://cdn.pixabay.com/photo/2013/07/12/19/31/tag-154930_1280.png">
+              <img src="https://cdn.pixabay.com/photo/2013/07/12/19/31/tag-154930_1280.png">
+              <img src="https://cdn.pixabay.com/photo/2013/07/12/19/31/tag-154930_1280.png">
+              <img src="https://cdn.pixabay.com/photo/2013/07/12/19/31/tag-154930_1280.png">
+
+              <img src="https://www.pngmart.com/files/21/30-Off-PNG-Photo.png">
+              <img src="https://www.pngmart.com/files/21/30-Off-PNG-Photo.png">
+              <img src="https://www.pngmart.com/files/21/30-Off-PNG-Photo.png">
+              <img src="https://www.pngmart.com/files/21/30-Off-PNG-Photo.png">
+
+              <img src="https://amazing-cdn.com/variless-new.com/img/reward_02.png" alt="">
+              <img src="https://amazing-cdn.com/variless-new.com/img/reward_02.png" alt="">
+              <img src="https://amazing-cdn.com/variless-new.com/img/reward_02.png" alt="">
+              <img src="https://amazing-cdn.com/variless-new.com/img/reward_02.png" alt="">
+
+              <img src="https://amazing-cdn.com/cap.detonnic-new.com/img/satisfaction.png" alt="">
+              <img src="https://amazing-cdn.com/cap.detonnic-new.com/img/satisfaction.png" alt="">
+              <img src="https://amazing-cdn.com/cap.detonnic-new.com/img/satisfaction.png" alt="">
+              <img src="https://amazing-cdn.com/cap.detonnic-new.com/img/satisfaction.png" alt="">
+            </div>
+
+          </div>
+         <!-- FOOTER BLOCK -->
+        </div>
       </div>
 </div>
+
 
 
 {%endblock%}
