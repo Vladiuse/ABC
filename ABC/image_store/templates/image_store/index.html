@@ -78,9 +78,11 @@
 }
 
 
+
+
   .form-example-wrapper button{
    
-    animation: pulse 4s infinite;
+    animation: pulse 3s infinite;
 
     visibility: visible;
 
@@ -205,7 +207,11 @@
     }
 .boxes img{
     width: 100%;
-}    
+    
+}   
+.boxes img.pulse{
+  animation: pulse 4s infinite;
+} 
  .boxes .grid {
   display: grid;
   gap: 1px;
@@ -488,7 +494,7 @@ body{
                     <div><img src="/static/forms/images/box.png"></div>
                     <div><img src="/static/forms/images/box.png"></div>
                     <div><img src="/static/forms/images/box.png"></div>
-                    <div><img src="/static/forms/images/box.png"></div>
+                    <div><img src="/static/forms/images/box.png" class="pulse"></div>
                     <div><img src="/static/forms/images/box.png"></div>
                     <div><img src="/static/forms/images/box.png"></div>
                     <div><img src="/static/forms/images/box.png"></div>
@@ -553,5 +559,24 @@ body{
 </div>
 
 
+<script>
+  // function pulseBox(){
+  //   $('.boxes img').addClass('pulse')
+  // }
 
+  function pulseRandomBox(){
+    let num = Math.floor((Math.random() * 9) + 1) - 1;
+    console.log(num)
+    let boxes = $('.boxes img')
+    let boxActive = $('.boxes img.pulse')
+    boxActive.removeClass('pulse')
+    let box = $(boxes[num])
+    box.addClass('pulse')
+
+  }
+  var intervalId = setInterval(function() {
+  console.log('start');
+  pulseRandomBox()
+}, 4000);
+</script>
 {%endblock%}
