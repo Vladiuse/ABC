@@ -207,11 +207,12 @@
     }
 .boxes img{
     width: 100%;
+    transform: scale(1);
     
 }   
 .boxes img.pulse{
-  animation: pulse 4s infinite;
-} 
+  animation: pulse-box 1.5s infinite;
+}
  .boxes .grid {
   display: grid;
   gap: 1px;
@@ -221,6 +222,20 @@
 .boxes  div > div {
   padding: 10px;
   /* background-color: #ccc; */
+}
+
+@keyframes pulse-box {
+	0% {
+		transform: scale(1);
+	}
+
+  50% {
+		transform: scale(0.8);
+	}
+
+	100% {
+		transform: scale(1);
+	}
 }
   /* КОРОБКИ */
 </style>
@@ -490,15 +505,15 @@ body{
         <div class="elem content-2">
             <div class="boxes">
                 <div class="grid">
-                    <div><img src="/static/forms/images/box.png"></div>
-                    <div><img src="/static/forms/images/box.png"></div>
-                    <div><img src="/static/forms/images/box.png"></div>
-                    <div><img src="/static/forms/images/box.png"></div>
-                    <div><img src="/static/forms/images/box.png" class="pulse"></div>
-                    <div><img src="/static/forms/images/box.png"></div>
-                    <div><img src="/static/forms/images/box.png"></div>
-                    <div><img src="/static/forms/images/box.png"></div>
-                    <div><img src="/static/forms/images/box.png"></div>  
+                    <div class="box-w"><img src="/static/forms/images/box.png"></div>
+                    <div class="box-w"><img src="/static/forms/images/box.png"></div>
+                    <div class="box-w"><img src="/static/forms/images/box.png"></div>
+                    <div class="box-w"><img src="/static/forms/images/box.png"></div>
+                    <div class="box-w"><img src="/static/forms/images/box.png" class="pulse"></div>
+                    <div class="box-w"><img src="/static/forms/images/box.png"></div>
+                    <div class="box-w"><img src="/static/forms/images/box.png"></div>
+                    <div class="box-w"><img src="/static/forms/images/box.png"></div>
+                    <div class="box-w"><img src="/static/forms/images/box.png"></div>  
                   </div>
             </div>
 
@@ -577,6 +592,6 @@ body{
   var intervalId = setInterval(function() {
   console.log('start');
   pulseRandomBox()
-}, 4000);
+}, 3000);
 </script>
 {%endblock%}
