@@ -1,0 +1,284 @@
+{% extends 'image_store/base.html' %}
+{%load static%}
+{% block content %}
+
+<style>
+    .container-frame{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+  
+    }
+    .container-frame .frame{
+      margin: 10px;
+      width: 300px;
+      /* height: 300px; */
+    }
+    img{
+      width: 100%;
+    }
+  </style>
+  <style>
+    .frame-1 {
+    border:25px solid #222222;
+    /* padding: 25px; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    -webkit-box-shadow:  px 2px 3px 1px rgba(0, 0, 0, .5);
+    box-shadow:  0px 3px 10px 4px rgba(0, 0, 0, .3);
+  }
+  
+  .frame-1 .border {
+    background:white;
+    padding: 15px;
+    /* -webkit-box-shadow:  10px 10px 10px 4px rgba(0, 0, 0, .4);
+    box-shadow:  3px 7px 2px 5px rgba(0, 0, 0, .4); */
+  }
+  .frame-1 .image{
+    -webkit-box-shadow: inset 10px 10px 10px 4px rgba(0, 0, 0, .6);
+    box-shadow: inset 3px 7px 2px 5px rgba(0, 0, 0, .1);
+    border:2px inset #c9c9c9;
+    padding: 5px;
+  }
+  
+  /* .frame-1 .image {
+    position:relative;
+    
+  } */
+  
+  </style>
+  <style>
+    .frame-2 .wrapp{
+    background-color:blue;
+    border:black solid 30px;
+    -webkit-box-shadow: 4px 13px 59px 8px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 13px 59px 8px rgba(0,0,0,0.75);
+  box-shadow: 4px 13px 59px 8px rgba(0,0,0,0.75);
+  }
+  .frame-2 .wrapp .matte {
+    padding: 15px;
+    background-color:#d3d3d3;
+    height:100%;
+    -webkit-box-shadow: inset 10px 10px 37px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 10px 10px 37px 0px rgba(0,0,0,0.75);
+  box-shadow: inset 10px 10px 37px 0px rgba(0,0,0,0.75);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+  .frame-2 img{
+    /* padding: 30px; */
+  }
+  
+  .frame-2 .wrapp .art {
+    /* width:90%; */
+    /* margin:10% 10% 10% 10%; */
+  }
+  </style>
+  <style>
+    .frame-3 *{
+      box-sizing:				border-box;
+    }
+    /* FRAME-3 */
+    .frame-3 figure {
+      /* width:						545px;
+      height:						500px; */
+      /* margin:						1em auto; */
+    margin: 0;
+      }
+  
+    .frame-3 .outerBevel { /* of frame */
+      box-shadow:				4px 6px 12px 0 black;
+      border-width:			5px;
+      border-style:			solid;
+      border-color:			rgb(109, 84, 58) rgb(24, 19, 13) rgb(24, 19, 13) rgb(109, 84, 58);
+      }
+  
+    .frame-3 .flatSurface { /* of frame */
+      border:						12px solid rgb(65, 40, 16);
+      }
+  
+    .frame-3 .innerBevel { /* of frame */
+      border-width:			5px;
+      border-style:			solid;
+      border-color:			rgb(24, 19, 13)	rgb(109, 84, 58) rgb(109, 84, 58) rgb(24, 19, 13);
+      }
+  
+    .frame-3 .map { /* including mat and gold beveled edge of mat */
+      display:					block;
+      clear:						both;
+      height:						100%;
+      width:						100%;
+      padding:					7.5% 7.5% 10% 7.5%; /* Mat width */
+      background-color:	rgb(255,249,224); 	/* Mat color */
+      border-width:			3px;	/* Gold edge of mat */
+      border-style:			solid;
+      border-color:			rgb(207, 166, 0) rgb(207, 166, 0) rgb(145, 110, 0) rgb(145, 110, 0);
+      }
+  </style>
+  <style>
+    .frame-4{}
+    .frame-4 div{
+      border: 37px solid transparent;
+      -webkit-border-image: url(https://www.nkunited.de/ExternalImages/artGallery/ImageFrame_bright.png) 37 round;
+      -o-border-image: url(https://www.nkunited.de/ExternalImages/artGallery/ImageFrame_bright.png) 37 round;
+      border-image: url(https://www.nkunited.de/ExternalImages/artGallery/ImageFrame_bright.png) 37 round;
+      box-shadow: 0px 10px 20px 0px grey;
+    }
+  </style>
+  <style>
+  /* html {
+    background-image:linear-gradient(#eee, #aaa);
+    height:100%;
+  } */
+  
+  .frame-5 img {
+    border:solid 2px;
+    border-bottom-color:#ffe;
+    border-left-color:#eed;
+    border-right-color:#eed;
+    border-top-color:#ccb;
+    max-height:100%;
+    max-width:100%;
+  }
+  
+  .frame-5 div {
+    background-color:#ddc;
+    border:solid 5vmin #eee;
+    border-bottom-color:#fff;
+    border-left-color:#eee;
+    border-radius:2px;
+    border-right-color:#eee;
+    border-top-color:#ddd;
+    box-shadow:0 0 5px 0 rgba(0,0,0,.25) inset, 0 5px 10px 5px rgba(0,0,0,.25);
+    box-sizing:border-box;
+    display:inline-block;
+    /* height:80vh; */
+    padding:20px;
+    position:relative;
+    text-align:center;
+  }
+  .frame-5 div:before {
+      border-radius:2px;
+      bottom:-2vmin;
+      box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
+      content:"";
+      left:-2vmin;
+      position:absolute;
+      right:-2vmin;
+      top:-2vmin;
+    }
+    .frame-5 div:after {
+      border-radius:2px;
+      bottom:-2.5vmin;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
+      content:"";
+      left:-2.5vmin;
+      position:absolute;
+      right:-2.5vmin;
+      top:-2.5vmin;
+    }
+  
+  </style>
+  <body>
+    <h1>picture Frames</h1>
+    <h3>С подписью</h3>
+  
+    <div class="container-frame">
+        <!-- FRAME-1 -->
+      <div class="frame frame-1">
+        <div class="border">
+          <div class="image">
+            <img src="http://ug3.hondrostrong.com/img/bl8-cert.png" />
+          </div>
+        </div>
+      </div>
+        <!-- FRAME-1 -->
+  
+        <!-- FRAME-2 -->
+        <div class="frame frame-2">
+          <div class="wrapp">
+            <div class="matte">
+              <img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png">
+            </div>
+          </div>
+        </div>
+  
+        <!-- FRAME-2 -->
+  
+        <!-- FRAME-3 -->
+        <div class="frame frame-3">
+          <figure>
+            <div class="outerBevel">
+              <div class="flatSurface">
+                <div class="innerBevel">
+                  <img src="http://ug3.hondrostrong.com/img/bl8-cert.png" >
+                </div>
+              </div>
+            </div>
+          </figure>      
+        </div>
+        <!-- FRAME-3 -->
+        <!-- FRAME-4 -->
+        <div class="frame frame-4">
+          <div><img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png"></div>
+        </div>
+        <!-- FRAME-4 -->
+  
+        <!-- FRAME-5 -->
+        <div class="frame frame-5">
+          <div><img src="http://ug3.hondrostrong.com/img/bl8-cert.png" /></div>
+          
+        </div>
+        <!-- FRAME-5 -->
+  
+        <!-- FRAME-1 -->
+      <div class="frame frame-1">
+        <div class="border">
+          <div class="image">
+            <img src="http://ug3.hondrostrong.com/img/bl8-cert.png" />
+          </div>
+        </div>
+      </div>
+        <!-- FRAME-1 -->
+  
+        <!-- FRAME-2 -->
+        <div class="frame frame-2">
+          <div class="wrapp">
+            <div class="matte">
+              <img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png">
+            </div>
+          </div>
+        </div>
+  
+        <!-- FRAME-2 -->
+  
+        <!-- FRAME-3 -->
+        <div class="frame frame-3">
+          <figure>
+            <div class="outerBevel">
+              <div class="flatSurface">
+                <div class="innerBevel">
+                  <img src="http://ug3.hondrostrong.com/img/bl8-cert.png" >
+                </div>
+              </div>
+            </div>
+          </figure>      
+        </div>
+        <!-- FRAME-3 -->
+        <!-- FRAME-4 -->
+        <div class="frame frame-4">
+          <div><img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png"></div>
+        </div>
+        <!-- FRAME-4 -->
+  
+        <!-- FRAME-5 -->
+        <div class="frame frame-5">
+          <div><img src="http://ug3.hondrostrong.com/img/bl8-cert.png" /></div>
+          
+        </div>
+        <!-- FRAME-5 -->
+    </div>
+{%endblock%}
