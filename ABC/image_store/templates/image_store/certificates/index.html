@@ -3,6 +3,9 @@
 {% block content %}
 
 <style>
+    body{
+      /* background-image: url(https://media.istockphoto.com/id/1262249474/vector/realistic-vector-brick-wall-pattern-horizontal-background-flat-wall-texture-white-textured.jpg?s=612x612&w=0&k=20&c=A4rEjKCR6apitQBrTG3mDUv0jpPySZeBYflfz4Sf0fI=); */
+    }
     .container-frame{
       display: flex;
       flex-wrap: wrap;
@@ -17,6 +20,48 @@
     img{
       width: 100%;
     }
+  
+  
+    .top {
+      width: 150px;
+      margin: 0 auto;
+      height: 35px;
+      border-radius: 20px;
+  }
+  .top .pin {
+      background-color: #C0A079;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      position: relative;
+      margin: 0 auto;
+      box-shadow: 0 4px 4px -2px rgb(193 163 123 / 80%);
+  }
+  .top .pin .rope {
+      width: 2px;
+      height: 50px;
+      z-index: -1;
+      background-color: #966E3A;
+      /* top: 50%; */
+      top: 5px;
+      position: absolute;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      box-shadow: 0 0 1px rgb(193 163 123 / 20%);
+      /* transition: 1s all; */
+  }
+  .top .pin .rope.left {
+      left: -18px;
+      transform: rotate(42deg);
+      border-left: 1px solid #C0A27A;
+      border-right: 1px solid #C0A27A;
+  }
+  .top .pin .rope.right {
+      right: -18px;
+      transform: rotate(-42deg);
+      border-right: 1px solid #C0A27A;
+      border-left: 1px solid #C0A27A;
+  }
   </style>
   <style>
     .frame-1 {
@@ -42,19 +87,14 @@
     padding: 5px;
   }
   
-  /* .frame-1 .image {
-    position:relative;
-    
-  } */
-  
   </style>
   <style>
     .frame-2 .wrapp{
     background-color:blue;
     border:black solid 30px;
-    -webkit-box-shadow: 4px 13px 59px 8px rgba(0,0,0,0.75);
+    /* -webkit-box-shadow: 4px 13px 59px 8px rgba(0,0,0,0.75);
   -moz-box-shadow: 4px 13px 59px 8px rgba(0,0,0,0.75);
-  box-shadow: 4px 13px 59px 8px rgba(0,0,0,0.75);
+  box-shadow: 4px 13px 59px 8px rgba(0,0,0,0.75); */
   }
   .frame-2 .wrapp .matte {
     padding: 15px;
@@ -68,14 +108,7 @@
   align-items: center;
   justify-content: center;
   }
-  .frame-2 img{
-    /* padding: 30px; */
-  }
   
-  .frame-2 .wrapp .art {
-    /* width:90%; */
-    /* margin:10% 10% 10% 10%; */
-  }
   </style>
   <style>
     .frame-3 *{
@@ -83,10 +116,6 @@
     }
     /* FRAME-3 */
     .frame-3 figure {
-      /* width:						545px;
-      height:						500px; */
-      /* margin:						1em auto; */
-    margin: 0;
       }
   
     .frame-3 .outerBevel { /* of frame */
@@ -129,10 +158,6 @@
     }
   </style>
   <style>
-  /* html {
-    background-image:linear-gradient(#eee, #aaa);
-    height:100%;
-  } */
   
   .frame-5 img {
     border:solid 2px;
@@ -155,7 +180,6 @@
     box-shadow:0 0 5px 0 rgba(0,0,0,.25) inset, 0 5px 10px 5px rgba(0,0,0,.25);
     box-sizing:border-box;
     display:inline-block;
-    /* height:80vh; */
     padding:20px;
     position:relative;
     text-align:center;
@@ -188,20 +212,36 @@
   
     <div class="container-frame">
         <!-- FRAME-1 -->
-      <div class="frame frame-1">
-        <div class="border">
-          <div class="image">
-            <img src="http://ug3.hondrostrong.com/img/bl8-cert.png" />
+      <div class="frame">
+        <div class="top">
+          <div class="pin">
+            <div class="rope left"></div>
+            <div class="rope right"></div>
+          </div>
+        </div>
+        <div class="frame-1">
+          <div class="border">
+            <div class="image">
+              <img src="http://ug3.hondrostrong.com/img/bl8-cert.png" />
+            </div>
           </div>
         </div>
       </div>
         <!-- FRAME-1 -->
   
         <!-- FRAME-2 -->
-        <div class="frame frame-2">
-          <div class="wrapp">
-            <div class="matte">
-              <img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png">
+        <div class="frame">
+          <div class="top">
+            <div class="pin">
+              <div class="rope left"></div>
+              <div class="rope right"></div>
+            </div>
+          </div>
+          <div class="frame-2">
+            <div class="wrapp">
+              <div class="matte">
+                <img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png">
+              </div>
             </div>
           </div>
         </div>
@@ -209,7 +249,14 @@
         <!-- FRAME-2 -->
   
         <!-- FRAME-3 -->
-        <div class="frame frame-3">
+       <div class="frame">
+        <div class="top">
+          <div class="pin">
+            <div class="rope left"></div>
+            <div class="rope right"></div>
+          </div>
+        </div>
+        <div class="frame-3">
           <figure>
             <div class="outerBevel">
               <div class="flatSurface">
@@ -220,64 +267,34 @@
             </div>
           </figure>      
         </div>
+       </div>
         <!-- FRAME-3 -->
         <!-- FRAME-4 -->
-        <div class="frame frame-4">
-          <div><img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png"></div>
-        </div>
-        <!-- FRAME-4 -->
-  
-        <!-- FRAME-5 -->
-        <div class="frame frame-5">
-          <div><img src="http://ug3.hondrostrong.com/img/bl8-cert.png" /></div>
-          
-        </div>
-        <!-- FRAME-5 -->
-  
-        <!-- FRAME-1 -->
-      <div class="frame frame-1">
-        <div class="border">
-          <div class="image">
-            <img src="http://ug3.hondrostrong.com/img/bl8-cert.png" />
-          </div>
-        </div>
-      </div>
-        <!-- FRAME-1 -->
-  
-        <!-- FRAME-2 -->
-        <div class="frame frame-2">
-          <div class="wrapp">
-            <div class="matte">
-              <img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png">
+        <div class="frame">
+          <div class="top">
+            <div class="pin">
+              <div class="rope left"></div>
+              <div class="rope right"></div>
             </div>
           </div>
-        </div>
-  
-        <!-- FRAME-2 -->
-  
-        <!-- FRAME-3 -->
-        <div class="frame frame-3">
-          <figure>
-            <div class="outerBevel">
-              <div class="flatSurface">
-                <div class="innerBevel">
-                  <img src="http://ug3.hondrostrong.com/img/bl8-cert.png" >
-                </div>
-              </div>
-            </div>
-          </figure>      
-        </div>
-        <!-- FRAME-3 -->
-        <!-- FRAME-4 -->
-        <div class="frame frame-4">
-          <div><img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png"></div>
+          <div class="frame-4">
+            <div><img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png"></div>
+          </div>
         </div>
         <!-- FRAME-4 -->
   
         <!-- FRAME-5 -->
-        <div class="frame frame-5">
-          <div><img src="http://ug3.hondrostrong.com/img/bl8-cert.png" /></div>
-          
+        <div class="frame">
+          <div class="top">
+            <div class="pin">
+              <div class="rope left"></div>
+              <div class="rope right"></div>
+            </div>
+          </div>
+          <div class="frame-5">
+            <div><img src="http://ug3.hondrostrong.com/img/bl8-cert.png" /></div>
+            
+          </div>
         </div>
         <!-- FRAME-5 -->
     </div>
