@@ -18,7 +18,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic import TemplateView
 from . import views
+from image_store import views as image_store_views
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -26,6 +28,8 @@ urlpatterns = [
     path('avatars/', include('image_store.urls')),
     path('forms/', include('forms.urls')),
     path('archive/', include('archive.urls')),
+    # path('certificates/', TemplateView.as_view(template_name='image_store/certificates/index.html')),
+    path('certificates/', image_store_views.certificates, name='certificates'),
 ]
 # Serving the media files in development mode
 if settings.DEBUG:

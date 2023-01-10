@@ -4,7 +4,7 @@
 
 <style>
     body{
-      /* background-image: url(https://media.istockphoto.com/id/1262249474/vector/realistic-vector-brick-wall-pattern-horizontal-background-flat-wall-texture-white-textured.jpg?s=612x612&w=0&k=20&c=A4rEjKCR6apitQBrTG3mDUv0jpPySZeBYflfz4Sf0fI=); */
+      background-image: url(https://media.istockphoto.com/id/1262249474/vector/realistic-vector-brick-wall-pattern-horizontal-background-flat-wall-texture-white-textured.jpg?s=612x612&w=0&k=20&c=A4rEjKCR6apitQBrTG3mDUv0jpPySZeBYflfz4Sf0fI=) !important;
     }
     .container-frame{
       display: flex;
@@ -41,26 +41,32 @@
       width: 2px;
       height: 50px;
       z-index: -1;
-      background-color: #966E3A;
+      /* background-color: #966E3A; */
+      background-color: #bb4848;
       /* top: 50%; */
       top: 5px;
       position: absolute;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
-      box-shadow: 0 0 1px rgb(193 163 123 / 20%);
+      /* box-shadow: 0 0 1px rgb(193 163 123 / 20%); */
+      box-shadow: 0 0 1px rgba(193, 123, 123, 0.2);
       /* transition: 1s all; */
   }
   .top .pin .rope.left {
       left: -18px;
       transform: rotate(42deg);
-      border-left: 1px solid #C0A27A;
-      border-right: 1px solid #C0A27A;
+      /* border-left: 1px solid #C0A27A;
+      border-right: 1px solid #C0A27A; */
+      border-left: 1px solid #665b4c;
+      border-right: 1px solid #665b4c;
   }
   .top .pin .rope.right {
       right: -18px;
       transform: rotate(-42deg);
-      border-right: 1px solid #C0A27A;
-      border-left: 1px solid #C0A27A;
+      border-right: 1px solid #665b4c;
+      border-left: 1px solid #665b4c;
+      /* border-right: 1px solid #C0A27A;
+      border-left: 1px solid #C0A27A; */
   }
   </style>
   <style>
@@ -206,11 +212,11 @@
     }
   
   </style>
-  <body>
-    <h1>picture Frames</h1>
-    <h3>С подписью</h3>
-  
+  <body>  
     <div class="container-frame">
+        {%for cert in certs%}
+        {%if cert.frame_num == 1%}
+        
         <!-- FRAME-1 -->
       <div class="frame">
         <div class="top">
@@ -222,13 +228,16 @@
         <div class="frame-1">
           <div class="border">
             <div class="image">
-              <img src="http://ug3.hondrostrong.com/img/bl8-cert.png" />
+              <img src="{{cert.image.url}}" />
             </div>
           </div>
         </div>
       </div>
         <!-- FRAME-1 -->
+        {%endif%}
   
+        {%if cert.frame_num == 2%}
+        
         <!-- FRAME-2 -->
         <div class="frame">
           <div class="top">
@@ -240,14 +249,16 @@
           <div class="frame-2">
             <div class="wrapp">
               <div class="matte">
-                <img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png">
+                <img class="art" src="{{cert.image.url}}">
               </div>
             </div>
           </div>
         </div>
-  
         <!-- FRAME-2 -->
+        {%endif%}
   
+        {%if cert.frame_num == 3%}
+        
         <!-- FRAME-3 -->
        <div class="frame">
         <div class="top">
@@ -261,7 +272,7 @@
             <div class="outerBevel">
               <div class="flatSurface">
                 <div class="innerBevel">
-                  <img src="http://ug3.hondrostrong.com/img/bl8-cert.png" >
+                  <img src="{{cert.image.url}}" >
                 </div>
               </div>
             </div>
@@ -269,6 +280,10 @@
         </div>
        </div>
         <!-- FRAME-3 -->
+        {%endif%}
+
+        {%if cert.frame_num == 4%}
+        
         <!-- FRAME-4 -->
         <div class="frame">
           <div class="top">
@@ -278,11 +293,14 @@
             </div>
           </div>
           <div class="frame-4">
-            <div><img class="art" src="http://ug3.hondrostrong.com/img/bl8-cert.png"></div>
+            <div><img class="art" src="{{cert.image.url}}"></div>
           </div>
         </div>
         <!-- FRAME-4 -->
+        {%endif%}
   
+        {%if cert.frame_num == 5%}
+        
         <!-- FRAME-5 -->
         <div class="frame">
           <div class="top">
@@ -292,10 +310,12 @@
             </div>
           </div>
           <div class="frame-5">
-            <div><img src="http://ug3.hondrostrong.com/img/bl8-cert.png" /></div>
+            <div><img src="{{cert.image.url}}" /></div>
             
           </div>
         </div>
         <!-- FRAME-5 -->
+        {%endif%}
+        {%endfor%}
     </div>
 {%endblock%}

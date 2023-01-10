@@ -1,10 +1,12 @@
 from django.db import models
+import io
 import os
 import uuid
 import zipfile
 import random as r
+import requests as req
 from PIL import Image
-from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.files.images import ImageFile
 
 def get_random_archive_name():
     symbols = 'qwertyuiopasdfghjklzxcvbnm'
@@ -103,6 +105,27 @@ class Avatar(models.Model):
         self.image.name = str(uuid.uuid4()) + ext
         super().save()
 
-# from image_store.models import Avatar
-# a = Avatar.objects.get(pk=621)
-# a.add_thumbnails()
+class Certificate(models.Model):
+    image = models.ImageField(upload_to='certificates')
+
+    @staticmethod
+    def load_from_url(image_url):
+        file_ext = os.path.splitext(image_url)[-1]
+        IMAGE_NAME = str(uuid.uuid4()) + file_ext
+        res = req.get(image_url)
+        image_bytes = res.content
+        certificate = Certificate()
+        certificate.image = ImageFile(io.BytesIO(image_bytes), name=IMAGE_NAME)
+        certificate.save()
+
+# import requests as req
+# import os
+# import uuid
+#
+# image_url = 'http://ug3.hondrostrong.com/img/header-creme.png'
+# res = req.get(image_url)
+# file_ext = os.path.splitext(image_url)[-1]
+# IMAGE_NAME = str(uuid.uuid4()) + file_ext
+# with open(IMAGE_NAME, 'wb') as file:
+#     for chunk in res:
+#         file.write(chunk)

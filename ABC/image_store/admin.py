@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Avatar, GeoGroup
+from .models import Avatar, GeoGroup, Certificate
 
 # Register your models here.
 
@@ -10,3 +10,4 @@ class AvatarAdmin(admin.ModelAdmin):
 
 admin.site.register(Avatar, AvatarAdmin)
 admin.site.register(GeoGroup)
+admin.site.register(Certificate)
