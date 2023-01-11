@@ -28,7 +28,7 @@ class Site(models.Model):
 
     dir_name = models.CharField(max_length=255, verbose_name='Пусть к папке сайта', unique=True)
     name = models.CharField(max_length=255, verbose_name='Название', blank=True)
-    description = models.CharField(max_length=255, verbose_name='Описание', blank=True)
+    description = models.TextField(verbose_name='Описание', blank=True)
     zip_archive = models.FileField(blank=True, upload_to=ARCHIVE_ZIPS_DIR_NAME)
     preview = models.URLField(blank=True)
     preview_mob = models.URLField(blank=True)
@@ -36,6 +36,7 @@ class Site(models.Model):
     desktop_screenshot = models.ImageField(upload_to=SCREENSHOTS_DIR, blank=True, null=True)
     
     country = models.CharField(max_length=2, verbose_name='iso code', blank=True, )
+    original_url = models.URLField(blank=True, verbose_name='ссылка на оригинальный сайт')
 
     def __str__(self):
         return str(self.dir_name)
@@ -53,8 +54,8 @@ class Site(models.Model):
         super().delete()
 
     def create_screenshots(self):
-        phone_screen_name = f'phone_{self.dir_name}_{uuid4()}.png'
-        desktop_screen_name = f'desktop_{self.dir_name}_{uuid4()}.png'
+        phone_screen_name = f'{self.dir_name}_ph_{uuid4()}.png'
+        desktop_screen_name = f'{self.dir_name}_desk_{uuid4()}.png'
         path_to_save = FileSystemStorage().path(Site.SCREENSHOTS_DIR)
         driver = ScreenMaker()
         driver.get(self.get_local_url)
@@ -70,7 +71,6 @@ class Site(models.Model):
         self.phone_screenshot = os.path.join(self.SCREENSHOTS_DIR, phone_screen_name)
         self.desktop_screenshot = os.path.join(self.SCREENSHOTS_DIR, desktop_screen_name)
         self.save()
-        print('CREATE SCREENSHOTS', self)
 
 
     @property
@@ -134,5 +134,3 @@ class Site(models.Model):
                 zip_file.write(file_path, path_in_zip)
         zip_file.close()
 
-# from archive.models import Site
-# s = Site.objects.get(pk=1)
