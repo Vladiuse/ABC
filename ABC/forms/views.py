@@ -5,7 +5,7 @@ from .models import FormExample
 
 
 def examples(requests):
-    forms = FormExample.objects.all()
+    forms = FormExample.objects.only('id','image_url', 'url').all()
     content = {
         'forms': forms
     }

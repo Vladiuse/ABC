@@ -39,7 +39,7 @@
   }
   .top .pin .rope {
       width: 2px;
-      height: 50px;
+      height: 60px;
       z-index: -1;
       /* background-color: #966E3A; */
       background-color: #bb4848;
@@ -54,7 +54,7 @@
   }
   .top .pin .rope.left {
       left: -18px;
-      transform: rotate(42deg);
+      transform: rotate(40deg);
       /* border-left: 1px solid #C0A27A;
       border-right: 1px solid #C0A27A; */
       border-left: 1px solid #665b4c;
@@ -62,7 +62,7 @@
   }
   .top .pin .rope.right {
       right: -18px;
-      transform: rotate(-42deg);
+      transform: rotate(-40deg);
       border-right: 1px solid #665b4c;
       border-left: 1px solid #665b4c;
       /* border-right: 1px solid #C0A27A;
@@ -97,11 +97,17 @@
   <style>
     .frame-2 .wrapp{
     background-color:blue;
-    border:black solid 30px;
+    border:#343434 solid 20px;
     /* -webkit-box-shadow: 4px 13px 59px 8px rgba(0,0,0,0.75);
   -moz-box-shadow: 4px 13px 59px 8px rgba(0,0,0,0.75);
   box-shadow: 4px 13px 59px 8px rgba(0,0,0,0.75); */
   }
+  .frame-2 .outer{
+  box-shadow: 2px 3px 6px 0 black;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgb(110, 110, 110) rgb(40, 40, 40) rgb(40, 40, 40) rgb(110, 110, 110);
+}
   .frame-2 .wrapp .matte {
     padding: 15px;
     background-color:#d3d3d3;
@@ -247,9 +253,11 @@
             </div>
           </div>
           <div class="frame-2">
-            <div class="wrapp">
-              <div class="matte">
-                <img class="art" src="{{cert.image.url}}">
+            <div class="outer">
+              <div class="wrapp">
+                <div class="matte">
+                  <img class="art" src="{{cert.image.url}}">
+                </div>
               </div>
             </div>
           </div>
