@@ -2,163 +2,172 @@
 {%block content%}
 
 <style>
-    /* body{
-      background-color: rgba(0, 0, 0, .7);
-  } */
-  .card .card-title{
-    text-align: center;
-    font-weight: 700;
+  :root{
+      --color-one: rgb(29, 29, 29); 
+      --color-two: rgb(65, 65, 65);
+      color: #051d27;
+      color:  #00435e;
   }
-</style>
-<style>
-  .ipad {
-    margin-left: 2em;
-    height: 600px;
-    width: 800px;
-    line-height: 45.8vmin;
-    border-width: 30px !important;
-    border-radius: 4.2857142857vmin;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), #111), url(https://www.apple.com/v/ipad-pro/s/images/overview/retina_screen_1__csuokryyjb42_large.jpg);
-    z-index: 100;
-}
-.iphone, .ipad {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-
-    color: #fff;
-    text-align: center;
-    font-family: "SF Pro Display", Helvetica Neue, Arial, sans-serif;
-    letter-spacing: -0.022em;
-    font-size: 2.5vmin;
-    text-shadow: 0 0 0.5em #000;
-    background-color: #000;
-    background-size: auto 200%, cover;
-    background-repeat: no-repeat, no-repeat;
-    border: solid #111;
-    /* margin-bottom: 2em; */
-    position: relative;
-    box-shadow: 0 0.5em 2em 0.2em rgb(0 0 0 / 33%), 0 0 0 0.5px #000 inset;
-    transition: all 0.1s linear, line-height 0s linear;
-    /* background-position: 50% 100%, center; */
-    background-position: 50% -100%, center center;
-    transform-origin: bottom center;
-}
-.iphone {
-    width: 300px;
-    height: 600px;
-    line-height: 51.4455445545vmin;
-    border-width: 1.5207920792vmin;
-    border-radius: 4.0550130098vmin;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), #111), url(https://www.apple.com/v/iphone-xs/d/images/overview/screen_display_wallpaper_iphonexs_large.jpg);
-    z-index: 200;
-}
-.iphone:hover, .ipad:hover {
-  background-position: 50% 100%, center;
-
-
-    /* color: transparent; */
-    text-shadow: 0 0 0em transparent;
-    /* background-position: 50% -100%, center center; */
-    transition: all 0.15s linear, line-height 5s linear;
-    line-height: 0vmin;
-}
-.iphone span, .ipad span{
-  opacity: 0;
-}
-.iphone:hover, .ipad:hover {
-  opacity: 1;
-}
-</style>
-<style>
-  .site {
-    padding: 20px 0 60px 0;
-  }
-   .site-desc{
-    padding-left: 40px;
-    display: flex;
-    justify-content: start;
-   }
-  .site-desc h3{
+  .flag-img {
     display: inline-block;
-  }
-  .site-desc a{
-    width: 100px;
-    margin-left: 30px;
-  }
-  .site p{
-    padding: 0 70px ;
-    /* text-align: center; */
-  }
-
-  .flag-img{
-    display: inline-block;
-    width: 50px;
+    width: 35px;
+    height: 100%;
     border: 1px solid #e9ecef;
     border-radius: 2px;
-    margin-left: 10px;
-  }
-</style>
-
-<div class="container site">
-  <div class="row">
-    <div class="col-8">
-      <figure class='ipad'><span>Desctop</span></figure>
-    </div>
-    <div class="col-4">
-      <figure class='iphone'><span>Phone</span></figure>
-    </div>
-  </div>
-  <div class="site-desc">
-    <h3 class="site-desc">Some descripton</h3>
-    <button class="btn btn-secondary"><i class="fa-solid fa-eye"></i></button>
-  </div>
-</div>
-{%for site in sites%}
-<div class="container site">
-  <div class="row">
-    <div class="col-8">
+    margin-left: 5px;
+}
+  
+  
+  .container {
+      margin-top: 20px;
+      margin-bottom: 40px;
+  
+      /* margin: 2em auto; */
+      /* max-width: 40em; */
+    }
+    .device-wrapper{
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .device-desc{
+      margin: 0 10%;
+      margin-top: 20px;
+      text-align: left;
+    }
+    .device-desc .title{
+      align-items: center;
+    }
+    .device-desc .text{
+      align-items: center;
+    }
+    .device-desc i{
+      margin-right: 8px;
+    }
+    .device-desc a.btn-dark{
+      transition: 0.3s;
+      color: #fff;
+    }
+    .device-desc a.btn-dark:hover{
+      color:#212529;
+      background-color: #fff;
+    }
     
-      <figure class='ipad' style="
-          background-image: linear-gradient(rgba(0, 0, 0, 0), #111), url({{site.preview}});      
-      ">Desctop</figure>
-    </div>
-    <div class="col-4">
-      <figure class='iphone' style="
-          background-image: linear-gradient(rgba(0, 0, 0, 0), #111), url({{site.preview_mob}});
-      ">Phone</figure>
-    </div>
-  </div>
-  <div class="site-desc">
-    <h3 class="site-desc">{{site.name}}</h3>
-    <img class="flag-img " src="/static/flags/4x3/{{site.country}}.svg">
-    <a class="btn btn-secondary" href="{%url 'archive:show_site' site.dir_name%}" target="_blank"><i class="fa-solid fa-eye"></i></a>
-  </div>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quas corporis magnam, architecto ducimus aspernatur asperiores quod eos, nisi est nulla! Eos tempora quas magni ducimus distinctio impedit vero amet.
-  </p> 
-   <img src="{{site.preview}}" width="3px"> <img src="{{site.preview_mob}}" width="3px">
-</div>
-{%endfor%}
-<!-- <h1>Archive</h1> -->
-<!-- <div class="container">
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-        {%for site in sites%}
-        <div class="col">
-          <div class="card h-100">
-            <img src="{{site.preview}}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{site.name}}</h5>
-              <p class="card-text">{{site.description}}</p>
-              <a href="{%url 'archive:show_site' site.id %}" class="btn btn-primary" target="_blank" >
+    /* Tablet device */
+    .phone {
+        /* background: radial-gradient(100% 100% at 50% 50%, rgba(0, 0, 0, 0.4) 49%, transparent 50%) -26px 50%/20px 20px, linear-gradient(0deg, rgba(0, 0, 0, 0.4) 100%, transparent 0) calc(100% + 15px) 50%/6px 80px; */
+        background-repeat: no-repeat;
+        border: 24px solid rgba(0, 0, 0, 0.5);
+        border-left-width: 32px;
+        border-radius: 15px;
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.5);
+        transition: background .5s ease-in-out;
+        background: radial-gradient(100% 100% at 50% 50%, rgba(0, 0, 0, 0.4) 49%, transparent 50%) 50% calc(100% + 36px)/30px 30px, linear-gradient(90deg, rgba(0, 0, 0, 0.4) 100%, transparent 0) 50% -20px/80px 6px;
+          background-repeat: no-repeat;
+          border-width: 45px 10px;
+          min-height: 480px;
+          max-height: 90vh;
+          object-fit: cover;
+          object-position: top left;
+    }
+  
+    .desctop {
+        background: radial-gradient(100% 100% at 50% 50%, rgba(0, 0, 0, 0.4) 49%, transparent 50%) -26px 50%/20px 20px, linear-gradient(0deg, rgba(0, 0, 0, 0.4) 100%, transparent 0) calc(100% + 15px) 50%/6px 80px;
+        background-repeat: no-repeat;
+        border: 24px solid rgba(0, 0, 0, 0.5);
+        border-left-width: 32px;
+        border-radius: 15px;
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.5);
+        transition: background .5s ease-in-out;
+        background: radial-gradient(100% 100% at 50% 50%, rgba(0, 0, 0, 0.4) 49%, transparent 50%) 50% -14px/10px 10px;
+          background-repeat: no-repeat;
+          border-width: 15px 10px 30px;
+    }
+    
+      .desctop-base {
+        background-color: var(--color-one);
+        border-radius: 0 0 15px 15px;
+        display: block;
+        height: 24px;
+        margin-left: -5%;
+        margin-top: -20px;
+        position: relative;
+        width: 110%;
+      }
+      .desctop-base:after {
+          content: "";
+          background-color: var(--color-two);
+          border-radius: 0 0 5px 5px;
+          display: block;
+          height: 5px;
+          margin: 0 auto;
+          width: 85px;
+      }
+    
+    
+    
+    picture{
+      margin: 0 40px;
+      background-color: var(--color-two);
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    * { box-sizing: border-box; }
+    body {
+      /* background-color: #00435e; */
+      /* color: white; */
+      font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, Sans-Serif;
+      margin:0;
+      text-align:center;
+    }
+    img { height: 600px; }
+    @media screen and (max-width: 1300px) {
+      img { height: 550px; }
+    }
+    @media screen and (max-width: 1200px) {
+      img { height: 500px; }
+    }
+    @media screen and (max-width: 1100px) {
+      img { height: 450px; }
+    }
+    @media screen and (max-width: 1000px) {
+      img { height: 400px; }
+    }
+    @media screen and (max-width: 900px) {
+      img { height: 350px; }
+    }
+  </style>
+  <h1>Шаблоны новостных сайтов</h1>
+  {%for site in sites%}
+      <div class="container"> 
+          <div class="device-wrapper">
+              <picture>
+                  <img class="desctop" src="{{site.desktop_screenshot.url}}" />
+                  <i class="desctop-base"></i>
+                </picture>
+              <picture>
+                <img class="phone" src="{{site.phone_screenshot.url}}" />
+                <i class="phone-base"></i>
+              </picture>
+          </div>
+          <div class="device-desc">
+              <h3 class="title">{{site.name}}</h3>
+              {%if site.description%}
+              <p class="text">{{site.description}}</p>
+              {%else%}
+              <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id molestias non veritatis odit aperiam nihil consequuntur quod. Reprehenderit consequuntur, a eaque fuga, magni fugit incidunt accusantium harum vel veniam consequatur.</p>
+              {%endif%}
+              <p><i>Читают в странах:</i><img class="flag-img " src="/static/flags/4x3/{{site.country}}.svg"></p>
+              <a class="btn btn-dark" href="{{site.get_url}}" target="_blank">
                 <i class="fa-solid fa-eye"></i>
                 Посмотреть</a>
-                <a href="{{site.get_url}}">index</a>
-            </div>
+              <a class="btn btn-dark">
+                <i class="fa-solid fa-download"></i>
+                Скачать</a>
+              <a class="btn btn-dark" href="{{site.original_url}}" target="_blank">
+                <i class="fa-solid fa-earth-americas"></i>
+                Посмотреть оригинал сайта</a>
           </div>
-        </div>
-        {%endfor%}
-</div>
-</div> -->
+      </div> 
+    {%endfor%}  
 {%endblock%}

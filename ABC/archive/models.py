@@ -1,4 +1,5 @@
 from django.db import models
+from uuid import uuid4
 from django.conf import settings
 import os
 from zipfile import ZipFile
@@ -6,6 +7,10 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.template import Template
 from django.template import Context
 from forms.models import FormExample
+from django.core.files.storage import FileSystemStorage
+import shutil
+from archive.sreen_maker import ScreenMaker
+
 
 # Create your models here.
 from django.conf import settings
@@ -15,6 +20,8 @@ import os
 class Site(models.Model):
     ARCHIVE_DIR_NAME = 'archive'
     ARCHIVE_ZIPS_DIR_NAME = 'archive_zips'
+    THRASH = 'archive_removed'
+    SCREENSHOTS_DIR = 'archive_screenshots'
 
     ARCHIVE_DIR_PATH = os.path.join(settings.MEDIA_ROOT, ARCHIVE_DIR_NAME)
     ZIPS_PATH = os.path.join(settings.MEDIA_ROOT, ARCHIVE_ZIPS_DIR_NAME)
@@ -22,18 +29,62 @@ class Site(models.Model):
     dir_name = models.CharField(max_length=255, verbose_name='Пусть к папке сайта', unique=True)
     name = models.CharField(max_length=255, verbose_name='Название', blank=True)
     description = models.CharField(max_length=255, verbose_name='Описание', blank=True)
-    zip_archive = models.FileField(blank=True, upload_to='archive_zips')
+    zip_archive = models.FileField(blank=True, upload_to=ARCHIVE_ZIPS_DIR_NAME)
     preview = models.URLField(blank=True)
     preview_mob = models.URLField(blank=True)
+    phone_screenshot = models.ImageField(upload_to=SCREENSHOTS_DIR, blank=True, null=True)
+    desktop_screenshot = models.ImageField(upload_to=SCREENSHOTS_DIR, blank=True, null=True)
     
-    country = models.CharField(max_length=2, verbose_name='iso code', blank=True)
+    country = models.CharField(max_length=2, verbose_name='iso code', blank=True, )
 
     def __str__(self):
         return str(self.dir_name)
 
-    def get_url(self):
+    @property
+    def thrash_dir_path(self):
+        return FileSystemStorage().path(Site.THRASH)
+
+    def delete(self):
+        if FileSystemStorage().exists(self.dir_path):
+            dir_local_path = FileSystemStorage().path(self.dir_path)
+            new_name = f'{self.name}.{self.dir_name}.{uuid4()}'
+            path_to_remove = os.path.join(self.thrash_dir_path,new_name)
+            os.rename(dir_local_path, path_to_remove)
+        super().delete()
+
+    def create_screenshots(self):
+        phone_screen_name = f'phone_{self.dir_name}_{uuid4()}.png'
+        desktop_screen_name = f'desktop_{self.dir_name}_{uuid4()}.png'
+        path_to_save = FileSystemStorage().path(Site.SCREENSHOTS_DIR)
+        driver = ScreenMaker()
+        driver.get(self.get_local_url)
+        driver.make_screenshot(
+            screen_size=driver.PHONE,
+            path_to_save=os.path.join(path_to_save, phone_screen_name),
+        )
+        driver.make_screenshot(
+            screen_size=driver.DESKTOP,
+            path_to_save=os.path.join(path_to_save, desktop_screen_name),
+        )
+        driver.quit()
+        self.phone_screenshot = os.path.join(self.SCREENSHOTS_DIR, phone_screen_name)
+        self.desktop_screenshot = os.path.join(self.SCREENSHOTS_DIR, desktop_screen_name)
+        self.save()
+        print('CREATE SCREENSHOTS', self)
+
+
+    @property
+    def dir_path(self):
+        return os.path.join(Site.ARCHIVE_DIR_PATH, str(self.dir_name))
+
+    @property
+    def get_url(self) -> str:
         """получить ссылку на index.html сайта"""
         return f'/media/{self.ARCHIVE_DIR_NAME}/{self.dir_name}/index.html'
+
+    @property
+    def get_local_url(self):
+        return 'http://127.0.0.1:8000' + self.get_url
 
     @property
     def base_tag_url(self):
