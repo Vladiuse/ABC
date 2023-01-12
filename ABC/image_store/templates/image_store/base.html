@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>ABC</title>
   <!-- BOOTSTRAP -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -33,11 +33,141 @@
   href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
 /> -->
 </head>
-
+<style>
+  #center{
+      margin: 0 40px;
+  }
+  .nav-cont{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #212529;
+  }
+  .nav-left, .nav-right{
+    display: flex;
+    width: 50%;
+  }
+  .nav-left{
+    justify-content: right;
+    padding-right: 40px;
+  }
+  .nav-right{
+    justify-content: left;
+    padding-left: 40px;
+  }
+  {%if request.path == "/" %}
+  .circle{
+    display: none !important;
+  }
+  #center{
+    display: none !important;
+  }
+  .nav-left{
+    padding-right: 0px;
+  }
+  .nav-right{
+    padding-left: 0px;
+  }
+  .nav-left, .nav-right{
+    width: none;
+  }
+  {%endif%}
+  .nav-item{
+      margin: 0 5px;
+  }
+  .nav-link{
+    color: aliceblue;
+  }
+  .nav-link:hover{
+      color: #73BC9E;
+  }
+  .nav-logo-space{
+      height: 80px;
+  }
+  .circle{
+    z-index: 2;
+      margin-top: 10px;
+      background-color: #212529;
+      border-radius: 50%;
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .logo{
+      width: 60px;
+      height: 60px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: 0.3s;
+      cursor: pointer;
+      transition-property: transform;
+      transition-duration: 250ms;
+  }
+  .logo:hover{
+      width: 100%;
+      transform: scale3d(1.1, 1.1, 1);
+  }
+  .pulse-logo {
+      position: absolute;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      transform: scale3d(1, 1, 1);
+      transition-property: all;
+      transition-duration: 350ms;
+      transition-timing-function: cubic-bezier(0.53, -0.67, 0.73, 0.74);
+  }
+  .circle:hover .pulse-logo {
+      background-color: #212529;
+      transform: scale3d(1.4, 1.4, 1);
+      transition-timing-function: cubic-bezier(0.37, 0.74, 0.15, 1.65);
+      border: 2px solid #73BC9E;
+  }
+  .logo img{
+      width: 80%;
+      
+  }
+</style>
 <body>
 
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="nav-cont fixed-top">
+      <div class="nav-left">
+      <div class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{%url 'image_store:index'%}">Аватарки</a>
+      </div>
+      <div class="nav-item"><a class="nav-link" href="{%url 'archive:index'%}">Шаблоны</a></div>
+      <div class="nav-item">
+        <a class="nav-link" href="{%url 'forms:examples'%}">Формы</a>
+      </div>
+      </div>
+      <div class="" id="center"></div>
+      <div class="circle">
+          <div class="pulse-logo"></div>
+          <div class="logo">
+              <img src="https://kma.biz/assets/f864b9d1/img/logo_mini.svg">
+          </div>
+      </div>
+      <div class="nav-right">
+        <div class="nav-item">
+          <a class="nav-link" href="{%url 'forms:casino'%}">Розыгрышы</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="{%url 'image_store:badges'%}" tabindex="-1" aria-disabled="true">Бэйджы и скидки</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="{%url 'certificates' %}" tabindex="-1" aria-disabled="true">Сертификаты</a>
+        </div>
+      </div>
+  </div>
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="{%url 'index'%}">Help</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -68,7 +198,7 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
   </header>
 
 {%block content%}
@@ -115,6 +245,10 @@
 });
 $('#page-up').click(function(){
   window.scrollTo(0, 0);
+})
+
+$('.circle').click(function(){
+  window.location.href = '/';
 })
 </script>
 </body>
