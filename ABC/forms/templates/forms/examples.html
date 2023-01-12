@@ -4,6 +4,10 @@
     body{
         background-color: rgba(0, 0, 0, .7);
     }
+    .btn-block{
+      width: 100%;
+    }
+
     .palette{
       margin: 30px;
       display: flex;
@@ -56,7 +60,6 @@
     }
 </style>
 
-<h1>123123</h1>
 <div class="palette">
   <div class="color color-black">
     <i class="fa-solid fa-check"></i>
@@ -77,17 +80,16 @@
     <i class="fa-solid fa-check"></i>
   </div>
 </div>
+
 <div class="container">
   
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {%for form in forms%}
         <div class="col">
-          <div class="card h-100">
+          <div class="card">
             <img src="{{form.image_url}}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">ID: {{form.id}}</h5>
-              <a href="{{form.url}}" class="btn btn-primary" target="_blank">site Link</a>
-              <a href="{% url 'forms:show_form' form.id %}" class="btn btn-primary" target="_blank">Show form</a>
+            <div class="card-body ">
+              <a href="{% url 'forms:show_form' form.id %}" class="btn btn-dark btn-block" target="_blank">Show form</a>
             </div>
           </div>
         </div>
