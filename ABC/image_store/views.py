@@ -7,7 +7,10 @@ from django.conf import settings
 from .models import Avatar, SexCounter, get_random_archive_name, Certificate, Badge
 # Create your views here.
 import random as r
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def index(requests):
     avatars = Avatar.objects.all()
     content = {
@@ -15,6 +18,7 @@ def index(requests):
     }
     return render(requests, 'image_store/main.html', content)
 
+@login_required
 def chosen_avatars(requests):
     """просмотр выбраных пользователем аватарок"""
     avatars_ids_str = requests.GET['avatars_ids']
@@ -27,6 +31,7 @@ def chosen_avatars(requests):
     return render(requests, 'image_store/chosen_avatars.html', content)
 
 
+@login_required
 def download_full_collection(requests, geo_group):
     """Скачать все аватарки конкретной группы стран"""
     zip_path = f'avatars_zip/{geo_group}.zip'
@@ -34,6 +39,7 @@ def download_full_collection(requests, geo_group):
     response = FileResponse(open(file_path, 'rb'))
     return response
 
+@login_required
 def download_chosen_avatars(requests):
     """Возвращает архив по выбраным айди аватарок"""
     avatars_ids_str = requests.GET['avatars_ids']
@@ -51,6 +57,7 @@ def download_chosen_avatars(requests):
     return response
 
 
+@login_required
 def badges(requests):
     badges = Badge.objects.all()
     content = {
@@ -58,6 +65,7 @@ def badges(requests):
     }
     return render(requests, 'image_store/badges.html', content)
 
+@login_required
 def certificates(request):
     certs = Certificate.objects.all()
     for cert in certs:
