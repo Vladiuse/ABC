@@ -19,6 +19,16 @@ def get_random_archive_name():
     return res
 
 
+def load_img_like_bytes(img_url, img_name=str(uuid.uuid4())):
+    file_ext = os.path.splitext(img_url)[-1]
+    IMAGE_NAME = img_name + file_ext
+    res = req.get(img_url)
+    if res.status_code != 200:
+        print('Eror')
+    image_bytes = res.content
+    return ImageFile(io.BytesIO(image_bytes), name=IMAGE_NAME)
+
+
 
 class SexCounter:
     """
@@ -117,6 +127,16 @@ class Certificate(models.Model):
         certificate = Certificate()
         certificate.image = ImageFile(io.BytesIO(image_bytes), name=IMAGE_NAME)
         certificate.save()
+
+class Badge(models.Model):
+    BADGES_DIR = 'badges'
+    image = models.ImageField(upload_to=BADGES_DIR)
+
+    @staticmethod
+    def load_from_url(url):
+        b = Badge()
+        b.image = load_img_like_bytes(url)
+        b.save()
 
 # import requests as req
 # import os

@@ -86,7 +86,16 @@ hr {
     </a>
 </div>
 <h1>Badges Collections</h1>
+
+
+
 <div class="container">
+    <h2>Loaded</h2>
+    <div class="badges-wrapper">
+        {%for badge in badges%}
+        <img src="{{badge.image.url}}">
+        {%endfor%}
+    </div>
 
 <h2>Discounts</h2>
 

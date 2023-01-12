@@ -4,7 +4,7 @@ from io import BytesIO
 from django.shortcuts import render
 from django.http import FileResponse, HttpResponse
 from django.conf import settings
-from .models import Avatar, SexCounter, get_random_archive_name, Certificate
+from .models import Avatar, SexCounter, get_random_archive_name, Certificate, Badge
 # Create your views here.
 import random as r
 
@@ -52,7 +52,11 @@ def download_chosen_avatars(requests):
 
 
 def badges(requests):
-    return render(requests, 'image_store/badges.html')
+    badges = Badge.objects.all()
+    content = {
+        'badges': badges,
+    }
+    return render(requests, 'image_store/badges.html', content)
 
 def certificates(request):
     certs = Certificate.objects.all()
