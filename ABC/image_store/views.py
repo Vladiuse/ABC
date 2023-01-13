@@ -67,9 +67,10 @@ def badges(requests):
 
 @login_required
 def certificates(request):
+    FRAME_TYPES_COUNT = 6
     certs = Certificate.objects.all()
     for cert in certs:
-        cert.frame_num = r.randint(1,5)
+        cert.frame_num = r.randint(1,FRAME_TYPES_COUNT)
     content = {
         'certs': certs,
     }

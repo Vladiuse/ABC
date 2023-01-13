@@ -176,7 +176,8 @@
   </style>
   <style>
   
-  .frame-5 img {
+  .frame-5 img,
+  .frame-6 img {
     border:solid 2px;
     border-bottom-color:#ffe;
     border-left-color:#eed;
@@ -186,7 +187,8 @@
     max-width:100%;
   }
   
-  .frame-5 div {
+  .frame-5 div,
+  .frame-6 div {
     background-color:#ddc;
     border:solid 5vmin #eee;
     border-bottom-color:#fff;
@@ -200,6 +202,15 @@
     padding:20px;
     position:relative;
     text-align:center;
+  }
+  .frame-6 div{ 
+    background-color:#e9ecef;
+    border:solid 3vmin #eee; 
+    border-bottom-color: #fff;
+    border-left-color: #eee;
+    border-radius: 2px;
+    border-right-color: #eee;
+    border-top-color: #ddd;
   }
   .frame-5 div:before {
     pointer-events: none;
@@ -225,6 +236,7 @@
     }
   
   </style>
+  
   <body>  
     <div class="container-frame">
         {%for cert in certs%}
@@ -315,7 +327,6 @@
         {%endif%}
   
         {%if cert.frame_num == 5%}
-        
         <!-- FRAME-5 -->
         <div class="frame">
           <div class="top">
@@ -331,11 +342,29 @@
         </div>
         <!-- FRAME-5 -->
         {%endif%}
+
+        {%if cert.frame_num == 6%}
+        <!-- FRAME-6 -->
+        <div class="frame">
+          <div class="top">
+            <div class="pin">
+              <div class="rope left"></div>
+              <div class="rope right"></div>
+            </div>
+          </div>
+          <div class="frame-6">
+            <div><img src="{{cert.image.url}}" /></div>
+            
+          </div>
+        </div>
+        <!-- FRAME-5 -->
+        {%endif%}
+
         {%endfor%}
     </div>
       <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
