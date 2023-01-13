@@ -23,10 +23,10 @@ def load_img_like_bytes(img_url, img_name=str(uuid.uuid4())):
     file_ext = os.path.splitext(img_url)[-1]
     IMAGE_NAME = img_name + file_ext
     res = req.get(img_url)
-    if res.status_code != 200:
-        print('Eror')
-    image_bytes = res.content
-    return ImageFile(io.BytesIO(image_bytes), name=IMAGE_NAME)
+    if res.status_code == 200:
+        print('Eror', img_url)
+        image_bytes = res.content
+        return ImageFile(io.BytesIO(image_bytes), name=IMAGE_NAME)
 
 
 
@@ -135,8 +135,10 @@ class Badge(models.Model):
     @staticmethod
     def load_from_url(url):
         b = Badge()
-        b.image = load_img_like_bytes(url)
-        b.save()
+        image = load_img_like_bytes(url)
+        if image:
+            b.image = image
+            b.save()
 
 # import requests as req
 # import os

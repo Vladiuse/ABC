@@ -1,13 +1,14 @@
 import os
 import zipfile
-from io import BytesIO
 from django.shortcuts import render
-from django.http import FileResponse, HttpResponse
+from django.http import FileResponse
 from django.conf import settings
 from .models import Avatar, SexCounter, get_random_archive_name, Certificate, Badge
 # Create your views here.
 import random as r
 from django.contrib.auth.decorators import login_required
+from .iframe_viewer import Land
+import requests as req
 
 
 @login_required
@@ -75,4 +76,25 @@ def certificates(request):
         'certs': certs,
     }
     return render(request, 'image_store/certificates/index.html', content)
+
+def iframe(request):
+    css_f  = open('image_store/iframe_viewer/styles.css')
+    js_f = open('image_store/iframe_viewer/script.js')
+    css_code = css_f.read()
+    js_code = js_f.read()
+    css_f.close()
+    js_f.close()
+    url = 'http://free2.inflax-new.com/'
+    res = req.get(url)
+    land = Land(res.text, url, parser='lxml')
+    land.add_base_tag()
+    land.add_script_tag(js_code)
+    land.add_style_tag(css_code)
+    html_code = str(land)
+    html_code = land.escape_html_for_iframe(html_code)
+    content = {
+        'html_code': html_code,
+        'original_url': Land.get_url_for_base_tag(url)
+    }
+    return render(request, 'image_store/iframe.html', content)
 
