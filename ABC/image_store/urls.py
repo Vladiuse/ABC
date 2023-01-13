@@ -12,4 +12,5 @@ urlpatterns = [
     path('badges', views.badges, name='badges'),
 
     path('iframe', views.iframe, name='iframe'),
+    path('load_images_by_urls', views.load_images_by_urls, name='load_images_by_urls'),
 ]

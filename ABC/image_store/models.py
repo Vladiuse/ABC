@@ -24,9 +24,10 @@ def load_img_like_bytes(img_url, img_name=str(uuid.uuid4())):
     IMAGE_NAME = img_name + file_ext
     res = req.get(img_url)
     if res.status_code == 200:
-        print('Eror', img_url)
         image_bytes = res.content
         return ImageFile(io.BytesIO(image_bytes), name=IMAGE_NAME)
+    else:
+        print('Error', res.status_code, img_url)
 
 
 
@@ -115,6 +116,24 @@ class Avatar(models.Model):
         self.image.name = str(uuid.uuid4()) + ext
         super().save()
 
+    @staticmethod
+    def load_from_url(url, sex='', category=None):
+        img = load_img_like_bytes(url)
+        geo = GeoGroup.objects.get(eng_name=category)
+        if img:
+            avatar = Avatar(
+                image=img,
+                sex=sex,
+                category=geo
+            )
+            avatar.save()
+            print(avatar, url)
+            return avatar
+        else:
+            print('NO save', url)
+            return False
+
+
 class Certificate(models.Model):
     image = models.ImageField(upload_to='certificates')
 
@@ -134,11 +153,17 @@ class Badge(models.Model):
 
     @staticmethod
     def load_from_url(url):
-        b = Badge()
-        image = load_img_like_bytes(url)
-        if image:
-            b.image = image
-            b.save()
+        img = load_img_like_bytes(url)
+        if img:
+            badge = Badge()
+            badge.image = img
+            badge.save()
+            return badge
+        else:
+            return False
+
+    class Meta:
+        ordering = ['-id']
 
 # import requests as req
 # import os

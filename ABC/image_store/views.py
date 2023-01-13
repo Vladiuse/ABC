@@ -1,14 +1,16 @@
 import os
 import zipfile
 from django.shortcuts import render
-from django.http import FileResponse
+from django.http import FileResponse, HttpResponse
 from django.conf import settings
 from .models import Avatar, SexCounter, get_random_archive_name, Certificate, Badge
 # Create your views here.
 import random as r
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from .iframe_viewer import Land
 import requests as req
+from .forms import AvatarsAddForm
 
 
 @login_required
@@ -77,24 +79,57 @@ def certificates(request):
     }
     return render(request, 'image_store/certificates/index.html', content)
 
+@csrf_exempt
 def iframe(request):
-    css_f  = open('image_store/iframe_viewer/styles.css')
-    js_f = open('image_store/iframe_viewer/script.js')
-    css_code = css_f.read()
-    js_code = js_f.read()
-    css_f.close()
-    js_f.close()
-    url = 'http://free2.inflax-new.com/'
-    res = req.get(url)
-    land = Land(res.text, url, parser='lxml')
-    land.add_base_tag()
-    land.add_script_tag(js_code)
-    land.add_style_tag(css_code)
-    html_code = str(land)
-    html_code = land.escape_html_for_iframe(html_code)
+    if request.method == 'POST':
+        css_f  = open('image_store/iframe_viewer/styles.css')
+        js_f = open('image_store/iframe_viewer/script.js')
+        css_code = css_f.read()
+        js_code = js_f.read()
+        css_f.close()
+        js_f.close()
+        # url = 'http://free2.inflax-new.com/'
+        url = request.POST['url']
+        res = req.get(url)
+        land = Land(res.text, url, parser='lxml')
+        land.add_base_tag()
+        land.add_script_tag(js_code)
+        land.add_style_tag(css_code)
+        html_code = str(land)
+        html_code = land.escape_html_for_iframe(html_code)
+        content = {
+            'html_code': html_code,
+            'original_url': Land.get_url_for_base_tag(url),
+            'avatar_form': AvatarsAddForm(),
+        }
+        return render(request, 'image_store/iframe.html', content)
+    else:
+        html = """
+        <form method="POST">
+        <input name="url" value="http://free2.inflax-new.com/"><br>
+        <button type="submit">OPEN</button>
+        </form>
+        """
+        return HttpResponse(html)
+
+def load_images_by_urls(request):
+    load_result = []
+    urls = request.POST['urls'].split(',')
+
+    if request.POST['model'] == 'avatar':
+        sex = request.POST['sex']
+        category = request.POST['category']
+        for url in urls:
+            res = Avatar.load_from_url(url, sex=sex, category=category)
+            load_result.append({'url': url, 'res': res})
+
+    if request.POST['model'] == 'badge':
+        for url in urls:
+            res = Badge.load_from_url(url)
+            load_result.append({'url': url, 'res': res})
     content = {
-        'html_code': html_code,
-        'original_url': Land.get_url_for_base_tag(url)
+        'load_result': load_result,
     }
-    return render(request, 'image_store/iframe.html', content)
+    return render(request, 'image_store/iframe_load_res.html', content)
+
 
