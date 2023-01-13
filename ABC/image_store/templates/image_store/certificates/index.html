@@ -17,8 +17,9 @@
       width: 300px;
       /* height: 300px; */
     }
-    img{
+    .frame img{
       width: 100%;
+      cursor: pointer;
     }
   
   
@@ -67,6 +68,10 @@
       border-left: 1px solid #665b4c;
       /* border-right: 1px solid #C0A27A;
       border-left: 1px solid #C0A27A; */
+  }
+
+  #myModal img{
+    width: 100%;
   }
   </style>
   <style>
@@ -197,6 +202,7 @@
     text-align:center;
   }
   .frame-5 div:before {
+    pointer-events: none;
       border-radius:2px;
       bottom:-2vmin;
       box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
@@ -207,6 +213,7 @@
       top:-2vmin;
     }
     .frame-5 div:after {
+      pointer-events: none;
       border-radius:2px;
       bottom:-2.5vmin;
       box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
@@ -326,4 +333,32 @@
         {%endif%}
         {%endfor%}
     </div>
+      <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="" id="show-img">
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+    <!-- Modal -->
+    <script>
+      $('img').click(function(){
+          console.log($(this).attr('src'), 'current')
+          let modal = $('#myModal')
+          let img=$('#show-img')
+          img.attr('src', $(this).attr('src'))
+          modal.modal('show')
+      })
+   </script>
 {%endblock%}
