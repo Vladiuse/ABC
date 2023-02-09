@@ -239,6 +239,7 @@
   
   <body>  
     <div class="container-frame">
+{%spaceless%}
         {%for cert in certs%}
         {%if cert.frame_num == 1%}
         
@@ -356,6 +357,7 @@
         {%endif%}
 
         {%endfor%}
+      {%endspaceless%}
     </div>
       <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

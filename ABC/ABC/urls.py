@@ -28,7 +28,7 @@ urlpatterns = [
     path('', login_required(views.index), name='index'),
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
-    path('accounts/login/', LoginView.as_view(), name='login'),
+    # path('accounts/login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
 
     path('avatars/', include('image_store.urls')),
