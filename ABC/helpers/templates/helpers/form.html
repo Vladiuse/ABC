@@ -1,0 +1,8 @@
+<form method="POST">
+    {%csrf_token%}
+    {{ formset.management_form }}
+    {%for form in formset%}
+    <div>{{form}}<a href="{{form.site.value}}" target="_blank"> {{form.site.value}}</a></div>
+    {%endfor%}
+    <button type="submit">SEND</button>
+</form>

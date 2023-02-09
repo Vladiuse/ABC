@@ -32,6 +32,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
 
     path('avatars/', include('image_store.urls')),
+    path('helpers/', include('helpers.urls')),
     path('forms/', include('forms.urls')),
     path('archive/', include('archive.urls')),
     # path('certificates/', TemplateView.as_view(template_name='image_store/certificates/index.html')),
