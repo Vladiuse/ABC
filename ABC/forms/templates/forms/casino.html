@@ -17,14 +17,17 @@
   width: 100%;
   height: 100%;
 }
-
+.btn-block{
+      width: 100%;
+    }
 
 .buttons {
-
+  display: flex;
+  justify-content: center;
+  width: 100%;
   white-space: nowrap;
   min-height: 33px;
   position: relative;
-  width: 205px;
   margin: 0 auto;
   transform: scale(3);
   margin-top: 150px;
@@ -34,7 +37,7 @@
   animation: bounceInDown 900ms 200ms ease-in-out both;
   width: 50px;
   height: 40px;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   text-decoration: none;
   outline-width: 0px;
@@ -206,17 +209,16 @@ p > a {
 
 body,
 html {
-background-size: none;
+/* background-size: none;
   padding: 0;
-  height: 100%;
-  overflow: hidden;
+  height: 100%; */
+  /* overflow: hidden; */
   background-image: linear-gradient(#862077, #140027);
 }
 </style>
 <div class='buttons'>
     <a href='#' title='Title 1'>
         <img src="{%static 'forms/images/casino.png'%}">
-      <!-- <i data-feather="coffee"></i> -->
     </a>
     <a class='active' href='#' title='Title 2'>
         
@@ -225,15 +227,26 @@ background-size: none;
     </a>
     <a href='#' title='Title 3'>
         <img src="{%static 'forms/images/matr.png'%}">
-      <!-- <i data-feather="heart"></i> -->
     </a>
-    <!-- <a href='#' title='Title 4'>
-      <img src="{% static 'image_store/css/main.css' %}">
-    </a> -->
   </div>
   <br><br>
   <br><br>
   <h2 style="text-align:center">Тут карточки с колесами и рулетками<br>карточки аналогично как у форм</h2>
+  <div class="container">
+  
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {%for form in forms%}
+        <div class="col">
+          <div class="card">
+            <img src="{{form.image_url}}" class="card-img-top" alt="...">
+            <div class="card-body ">
+              <a href="{% url 'forms:show_form' form.id %}" class="btn btn-dark btn-block" target="_blank">Show form</a>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+</div>
   <script>
     $('.buttons a').click(function(){
         $('.buttons a').removeClass('active')

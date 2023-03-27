@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def examples(requests):
-    forms = FormExample.objects.only('id','image_url', 'url').all()
+    forms = FormExample.forms.only('id','image_url', 'url').all()
     content = {
         'forms': forms
     }
@@ -19,6 +19,11 @@ def show_form(requests, form_id):
         'form': form,
     }
     return render(requests, 'forms/show_form.html', content)
+
 @login_required
 def casino(requests):
-    return render(requests, 'forms/casino.html')
+    forms = FormExample.casino.only('id','image_url', 'url').all()
+    content = {
+        'forms': forms,
+    }
+    return render(requests, 'forms/casino.html', content)

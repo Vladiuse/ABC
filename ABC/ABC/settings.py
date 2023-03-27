@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['abc.vim-store.ru', '127.0.0.1']
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = '/login/'
 
 
 # Application definition
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'image_store.apps.ImageStoreConfig',
     'forms.apps.FormsConfig',
     'archive.apps.ArchiveConfig',
+    'helpers.apps.HelpersConfig',
 
     #extensions
     'django_extensions',
