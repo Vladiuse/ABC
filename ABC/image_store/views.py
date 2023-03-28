@@ -63,8 +63,10 @@ def download_chosen_avatars(requests):
 @login_required
 def badges(requests):
     badges = Badge.objects.all()
+    range_16 = range(16)
     content = {
         'badges': badges,
+        'range_16': range_16,
     }
     return render(requests, 'image_store/badges.html', content)
 
