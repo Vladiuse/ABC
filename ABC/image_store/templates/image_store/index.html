@@ -53,7 +53,7 @@
     padding: 5px;
     height: 35px;
     margin: 3px 0;
-    border-radius: 20px;
+    border-radius: 10px;
     border: none;
   }
 
@@ -170,21 +170,31 @@
     width: 100px;
     border-radius: 12px;
     margin: 0 5px;
+    transition: all ease .3s;
+    cursor: pointer;
+}
+.header .avatars img.active{
+  border: 2px solid #fff;
 }
 .comm-wrapper{
   margin-top: 15px;
+  width: 400px;
 }
 .comm-wrapper .comment{
   display: flex;
   justify-content: start;
   align-items: flex-start;
+  min-height: 100px;
 }
 
 .comm-wrapper .comment img{
   width: 100px;
-    border-radius: 12px;
-  border: 1px solid #fff;
+  border-radius: 12px;
   margin: 0 20px;
+  -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 .comm-wrapper .comment .comment-name{
   font-size: 18px;
@@ -366,7 +376,6 @@ body{
 
 }
 </style>
-
 <div class="kma-logo-wrapper">
     <img src="https://kma.biz/assets/f864b9d1/img/logo_mini.svg" class="kma-logo">
     <p><span>KMA</span> Collections</p>
@@ -376,25 +385,25 @@ body{
         <div class="elem header">
           <h2 class="title">Аваратки для коментариев</h2>
           <div class="avatars">
-            <img src="https://avatarfiles.alphacoders.com/170/thumb-170303.jpg">
-            <img src="https://i.imgur.com/sKAXI2k.png">
-            <img src="https://cdna.artstation.com/p/assets/images/images/027/495/108/original/art-eater-5.gif?1591708511">
-            <img src="https://geekhero.ru/wp-content/uploads/2014/10/faa82f3e1d89c5c3fd20061664d886b1.jpg">
-            <img src="https://i.imgur.com/tB2etHU.png">
-            <img src="https://i.imgur.com/eO1LHpz.png">
-            <img src="https://qph.cf2.quoracdn.net/main-qimg-13640a59053f2a2ff97c656972443fb8.webp">
-            <img src="https://obrazovaka.ru/wp-content/uploads/2014/08/Cherchil-Uinston.jpg">
-            <img src="https://i.scdn.co/image/3a2af250d4060586f9a2e7ac5b6c548118bf1b9c">
-            <img src="/media/avatars/europe-north/ce494813-2ffd-40d2-aa67-2837c8d2a27b.jpg">
-            <img src="https://assets.nick.com/uri/mgid:arc:imageassetref:nick.com:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true">
+            <img data-key="vader" src="https://avatarfiles.alphacoders.com/170/thumb-170303.jpg" class="active" >
+            <img data-key="einstein" src="https://i.imgur.com/sKAXI2k.png" >
+            <img data-key="cartman" src="https://cdna.artstation.com/p/assets/images/images/027/495/108/original/art-eater-5.gif?1591708511">
+            <img data-key="stark" src="https://i.imgur.com/Jur2qLs.png">
+            <img data-key="mask" src="https://i.imgur.com/tB2etHU.png">
+            <img data-key="trump" src="https://i.imgur.com/eO1LHpz.png">
+            <img data-key="mercury" src="https://ucarecdn.com/2ffd0337-37d0-429d-a1a5-485165bb3006/-/crop/333x333/107,32/-/preview/-/progressive/yes/-/format/auto/">
+            <img data-key="cherchil" src="https://obrazovaka.ru/wp-content/uploads/2014/08/Cherchil-Uinston.jpg">
+            <img data-key="gandalf" src="https://i.imgur.com/VUsUIyg.png">
+            <img data-key="cesar" src="https://i.imgur.com/g7vyt8Q.png">
+            <img data-key="sponge" src="https://assets.nick.com/uri/mgid:arc:imageassetref:nick.com:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true">
           </div>
             <!-- Аватарки<br> -->
           <div class="comm-wrapper">
             <div class="comment">
-              <img src="https://i.imgur.com/eO1LHpz.png">
+              <img src="https://avatarfiles.alphacoders.com/170/thumb-170303.jpg">
              <div class="comment-body">
-              <h3 class="comment-name">Donald J. Trump</h3>
-              <p class="comment-text"> - Make America great again!</p>
+              <h3 class="comment-name">Darth Vader</h3>
+              <p class="comment-text"> - You don't know the power of the dark side!</p>
              </div>
             </div>
           </div>
@@ -532,7 +541,6 @@ body{
 
   function pulseRandomBox(){
     let num = Math.floor((Math.random() * 9) + 1) - 1;
-    console.log(num)
     let boxes = $('.boxes img')
     let boxActive = $('.boxes img.pulse')
     boxActive.removeClass('pulse')
@@ -541,7 +549,6 @@ body{
 
   }
   var intervalId = setInterval(function() {
-  console.log('start');
   pulseRandomBox()
 }, 3000);
 </script>
@@ -577,5 +584,74 @@ setInterval(function () {
 });    
 
   // SLIDER
+</script>
+<script>
+  let avatarSliderData = {
+    'vader': {
+      'name': 'Darth Vader',
+      'text': "- You don't know the power of the dark side!"
+    },
+    'einstein': {
+      'name': 'Albert Einstein',
+      'text': "- E = mc2"
+    },
+    'cartman': {
+      'name': 'Eric Cartman',
+      'text': "- Screw You Guys I'm Going Home"
+    },
+    'stark': {
+      'name': 'Ned Stark',
+      'text': "- Winter is coming"
+    },
+    'mask': {
+      'name': 'Elon Musk',
+      'text': "- Tesla!"
+    },
+    'trump': {
+      'name': 'Donald J. Trump',
+      'text': "- Make America great again!"
+    },
+    'mercury': {
+      'name': 'Freddie Mercury',
+      'text': "- We will, we will rock you!"
+    },
+    'cherchil': {
+      'name': 'Sir Winston Churchil',
+      'text': "- Victoria!"
+    },
+    'cesar': {
+      'name': 'Julius Caesar',
+      'text': "- Veni Vidi Vici"
+    },
+    'sponge': {
+      'name': 'Sponge Bob',
+      'text': "- Who lives in a pineapple under the sea?"
+    },
+    'gandalf': {
+      'name': 'Gandalf the Gray',
+      'text': "- You shall not pass!"
+    },
+  }
+  let commentImg = $('.comment img')
+  function addComment(){
+    let avatar = $('.avatars img.active')
+    let src = avatar.attr('src')
+    let key = avatar.attr('data-key')
+    console.log(key)
+    commentImg.attr('src',src)
+    $('.comment .comment-name').text(avatarSliderData[key]['name'])
+    $('.comment .comment-text').text(avatarSliderData[key]['text'])
+  }
+
+  $('.avatars img').click(function(){
+    if (!$(this).hasClass('active')){
+      $('.avatars img').removeClass('active')
+      $(this).addClass('active')
+      $('.comment').fadeOut(250, function(){
+        addComment();
+        $('.comment').fadeIn(250)
+      })
+    }
+  })
 </script>
 {%endblock%}
