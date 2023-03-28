@@ -19,7 +19,7 @@ def index(requests):
     content = {
         'avatars': avatars,
     }
-    return render(requests, 'image_store/main.html', content)
+    return render(requests, 'image_store/avatars.html', content)
 
 @login_required
 def chosen_avatars(requests):
