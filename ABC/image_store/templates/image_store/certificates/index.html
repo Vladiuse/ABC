@@ -23,8 +23,15 @@
     .frame img{
       width: 100%;
       cursor: pointer;
+      transition: all 0.3s ease-out;
     }
-  
+    .frame img.blur{
+      filter: blur(4px);
+    }
+
+    .frame .image{
+      position: relative;
+    }
   
     .top {
       width: 150px;
@@ -72,6 +79,8 @@
       /* border-right: 1px solid #C0A27A;
       border-left: 1px solid #C0A27A; */
   }
+
+
 
   #myModal img{
     width: 100%;
@@ -239,10 +248,35 @@
     }
   
   </style>
+  <style>
+    .zoom{
+      display: flex;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      /* background-color: red; */
+      opacity: 0;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease-out;
+      cursor: pointer;
+    }
+    .zoom i{
+      font-size: 40px;
+      color: #343434;
+    }
+    .zoom:hover{
+      /* filter: blur(4px); */
+      opacity: .5;
+    }
+  </style>
   
   <body>  
+
     <div class="container-frame">
-{%spaceless%}
+  {%spaceless%}
         {%for cert in certs%}
         {%if cert.frame_num == 1%}
         
@@ -258,6 +292,9 @@
           <div class="border">
             <div class="image">
               <img src="{{cert.image.url}}" />
+              <span class="zoom">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
             </div>
           </div>
         </div>
@@ -277,8 +314,11 @@
           <div class="frame-2">
             <div class="outer">
               <div class="wrapp">
-                <div class="matte">
+                <div class="matte image">
                   <img class="art" src="{{cert.image.url}}">
+                  <span class="zoom">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </span>
                 </div>
               </div>
             </div>
@@ -300,8 +340,11 @@
           <figure>
             <div class="outerBevel">
               <div class="flatSurface">
-                <div class="innerBevel">
+                <div class="innerBevel image">                 
                   <img src="{{cert.image.url}}" >
+                  <span class="zoom">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </span>
                 </div>
               </div>
             </div>
@@ -321,7 +364,12 @@
             </div>
           </div>
           <div class="frame-4">
-            <div><img class="art" src="{{cert.image.url}}"></div>
+            <div class="image"> 
+              <img class="art" src="{{cert.image.url}}">
+              <span class="zoom">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </div>
           </div>
         </div>
         <!-- FRAME-4 -->
@@ -336,7 +384,12 @@
             </div>
           </div>
           <div class="frame-5">
-            <div><img src="{{cert.image.url}}" /></div>
+            <div class="image">   
+              <img src="{{cert.image.url}}" />
+              <span class="zoom">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </div>
             
           </div>
         </div>
@@ -352,11 +405,16 @@
             </div>
           </div>
           <div class="frame-6">
-            <div><img src="{{cert.image.url}}" /></div>
+            <div class="image">  
+              <img src="{{cert.image.url}}" />
+              <span class="zoom">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </div>
             
           </div>
         </div>
-        <!-- FRAME-5 -->
+        <!-- FRAME-6 -->
         {%endif%}
 
         {%endfor%}
@@ -381,13 +439,24 @@
     </div>
   </div>
     <!-- Modal -->
-    <script>
-      $('img').click(function(){
-          console.log($(this).attr('src'), 'current')
-          let modal = $('#myModal')
-          let img=$('#show-img')
-          img.attr('src', $(this).attr('src'))
-          modal.modal('show')
-      })
+   <script>
+    let modal = $('#myModal')
+    let modalImg=$('#show-img')
+    $('.frame .zoom').hover(function(){
+      $(this).siblings().addClass('blur')
+      },
+      function(){
+        $(this).siblings().removeClass('blur')
+      }
+    )
+    $('.frame .zoom').click(function(){
+      let img = $(this).siblings()
+      showSertModal(img)
+    })
+
+    function showSertModal(showImg){
+      modalImg.attr('src', showImg.attr('src'))
+      modal.modal('show')
+      }
    </script>
 {%endblock%}
