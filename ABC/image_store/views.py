@@ -106,13 +106,7 @@ def iframe(request):
         }
         return render(request, 'image_store/iframe.html', content)
     else:
-        html = """
-        <form method="POST">
-        <input name="url" value="http://free2.inflax-new.com/"><br>
-        <button type="submit">OPEN</button>
-        </form>
-        """
-        return HttpResponse(html)
+        return render(request, 'image_store/iframe_url_form.html')
 
 def load_images_by_urls(request):
     load_result = []
@@ -128,6 +122,12 @@ def load_images_by_urls(request):
     if request.POST['model'] == 'badge':
         for url in urls:
             res = Badge.load_from_url(url)
+            load_result.append({'url': url, 'res': res})
+
+    if request.POST['model'] == 'certificate':
+        print('LOAD CERTS')
+        for url in urls:
+            res = Certificate.load_from_url(url)
             load_result.append({'url': url, 'res': res})
     content = {
         'load_result': load_result,

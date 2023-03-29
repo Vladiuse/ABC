@@ -137,15 +137,25 @@ class Avatar(models.Model):
 class Certificate(models.Model):
     image = models.ImageField(upload_to='certificates')
 
+    # @staticmethod
+    # def load_from_url(image_url):
+    #     file_ext = os.path.splitext(image_url)[-1]
+    #     IMAGE_NAME = str(uuid.uuid4()) + file_ext
+    #     res = req.get(image_url)
+    #     image_bytes = res.content
+    #     certificate = Certificate()
+    #     certificate.image = ImageFile(io.BytesIO(image_bytes), name=IMAGE_NAME)
+    #     certificate.save()
     @staticmethod
-    def load_from_url(image_url):
-        file_ext = os.path.splitext(image_url)[-1]
-        IMAGE_NAME = str(uuid.uuid4()) + file_ext
-        res = req.get(image_url)
-        image_bytes = res.content
-        certificate = Certificate()
-        certificate.image = ImageFile(io.BytesIO(image_bytes), name=IMAGE_NAME)
-        certificate.save()
+    def load_from_url(url):
+        img = load_img_like_bytes(url)
+        if img:
+            cert = Certificate()
+            cert.image = img
+            cert.save()
+            return cert
+        else:
+            return False
 
 class Badge(models.Model):
     BADGES_DIR = 'badges'
