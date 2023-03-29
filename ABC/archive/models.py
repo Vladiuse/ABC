@@ -6,7 +6,6 @@ from zipfile import ZipFile
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.template import Template
 from django.template import Context
-from forms.models import FormExample
 from django.core.files.storage import FileSystemStorage
 import shutil
 from archive.sreen_maker import ScreenMaker
@@ -110,12 +109,12 @@ class Site(models.Model):
 
     def render_template(self) -> str:
         """рендеринг сайта - добавление base и формы"""
-        form = FormExample.objects.get(pk=2)
+        # form = FormExample.objects.get(pk=2)
 
         index_html = self._get_index_html_text()
         data = {
             'base_tag': self.get_base_tag(),
-            'form': form,
+            # 'form': form,
         }
         context = Context(data)
         template = Template(index_html)

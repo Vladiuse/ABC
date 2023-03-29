@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from .models import FormExample
+from .models import FormExampleOLD, FormExample, CasinoExample
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 @login_required
 def examples(requests):
-    forms = FormExample.forms.only('id','image_url', 'url').all()
+    forms = FormExample.objects.only('id', 'image_url',).all()
     content = {
         'forms': forms
     }
@@ -22,7 +22,7 @@ def show_form(requests, form_id):
 
 @login_required
 def casino(requests):
-    forms = FormExample.casino.only('id','image_url', 'url').all()
+    forms = CasinoExample.objects.only('id', 'image_url').all()
     content = {
         'forms': forms,
     }

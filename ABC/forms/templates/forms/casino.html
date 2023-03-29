@@ -217,15 +217,14 @@ html {
 }
 </style>
 <div class='buttons'>
-    <a href='#' title='Title 1'>
+    <a href='#' title='Title 1' class="active" data-filter="roulette">
         <img src="{%static 'forms/images/casino.png'%}">
     </a>
-    <a class='active' href='#' title='Title 2'>
-        
-        <img src="{%static 'forms/images/box.png'%}">
+    <a class='' href='#' title='Title 2' data-filter="box">
+        <img src="{%static 'forms/images/box.png'%}" >
       <i data-feather="box"></i>
     </a>
-    <a href='#' title='Title 3'>
+    <a href='#' title='Title 3' data-filter="other">
         <img src="{%static 'forms/images/matr.png'%}">
     </a>
   </div>
@@ -234,10 +233,10 @@ html {
   <h2 style="text-align:center">Тут карточки с колесами и рулетками<br>карточки аналогично как у форм</h2>
   <div class="container">
   
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
         {%for form in forms%}
-        <div class="col">
-          <div class="card">
+        <div class="col" data-type="{{form.type}}" style="{%if form.type != form.ROULETTE %}display: none;{%endif%}">
+          <div class="card" >
             <img src="{{form.image_url}}" class="card-img-top" alt="...">
             <div class="card-body ">
               <a href="{% url 'forms:show_form' form.id %}" class="btn btn-dark btn-block" target="_blank">Show form</a>
@@ -251,6 +250,16 @@ html {
     $('.buttons a').click(function(){
         $('.buttons a').removeClass('active')
         $(this).addClass('active')
+        filterCards($(this).attr('data-filter'))
     })
+    function filterCards(filter){
+      $('.col').each(function(){
+          if ($(this).attr('data-type') == filter) 
+          {$(this).show()}
+          else
+          {$(this).hide()}
+      })
+
+    }
   </script>
 {%endblock%}

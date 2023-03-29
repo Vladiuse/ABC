@@ -7,6 +7,9 @@
     body{
         background-color: rgba(0, 0, 0, .7);
     }
+    .btn:hover{
+      opacity: 0.75;
+    }
     .btn-block{
       width: 100%;
     }
@@ -16,6 +19,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
     }
     .color{
       cursor: pointer;
@@ -40,14 +44,25 @@
     .color-black{
       background: #454545;
       box-shadow: 0 2px 0 #000000;
+      color: white;
+    }
+    .color-grey{
+      background: #838383;
+      box-shadow: 0 2px 0 #454545;
+      color: white;
+    }
+    .color-white{
+      background: #ececec;
+      box-shadow: 0 2px 0 #ffffff;
     }
     .color-blue{
       background: #2aa9e0;
-    box-shadow: 0 2px 0 #1a7aa4;
+      box-shadow: 0 2px 0 #1a7aa4;
+      color: white;
     }
-    .color-orange{
-      background: #eb8046;
-    box-shadow: 0 2px 0 #d3672d;
+    .color-green{
+      background: #5de02a;
+    box-shadow: 0 2px 0 #31a41a;
     }
     .color-pink{
       background: #db4286;
@@ -55,31 +70,50 @@
     }
     .color-red{
       background: #d94134;
-    box-shadow: 0 2px 0 #ab3329;
+      box-shadow: 0 2px 0 #ab3329;
+      color: white;
     }
     .color-yellow{
       background: #f2d54c;
     box-shadow: 0 2px 0 #dcb84b;
     }
+
+    #drop-color{
+      color: red;
+      font-size: 30px;
+      margin-right: 8px;
+      cursor: pointer;
+      transition: all 0.3 ease;
+    }
+    #drop-color:hover{
+      scale: 1.2;
+    }
 </style>
 
 <div class="palette">
-  <div class="color color-black">
+  <i class="fa-solid fa-xmark" id="drop-color" style="display: none;"></i>
+  <div class="color color-black" data-filter="black">
     <i class="fa-solid fa-check"></i>
   </div>
-  <div class="color color-blue">
+  <div class="color color-grey" data-filter="grey">
     <i class="fa-solid fa-check"></i>
   </div>
-  <div class="color color-orange">
+  <div class="color color-white" data-filter="white">
     <i class="fa-solid fa-check"></i>
   </div>
-  <div class="color color-pink">
+  <div class="color color-blue" data-filter="blue">
     <i class="fa-solid fa-check"></i>
   </div>
-  <div class="color color-red">
+  <div class="color color-green" data-filter="green">
     <i class="fa-solid fa-check"></i>
   </div>
-  <div class="color color-yellow">
+  <div class="color color-pink" data-filter="pink">
+    <i class="fa-solid fa-check"></i>
+  </div>
+  <div class="color color-red" data-filter="red">
+    <i class="fa-solid fa-check"></i>
+  </div>
+  <div class="color color-yellow" data-filter="yellow">
     <i class="fa-solid fa-check"></i>
   </div>
 </div>
@@ -88,11 +122,11 @@
   
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {%for form in forms%}
-        <div class="col">
+        <div class="col" data-color="{{form.color}}">
           <div class="card">
             <img src="{{form.image_url}}" class="card-img-top" alt="...">
             <div class="card-body ">
-              <a href="{% url 'forms:show_form' form.id %}" class="btn btn-dark btn-block" target="_blank">Show form</a>
+              <a href="{% url 'forms:show_form' form.id %}" class="btn color-{{form.color}} btn-block" target="_blank">Show form</a>
             </div>
           </div>
         </div>
@@ -103,7 +137,25 @@
   $('.color').click(function(){
     $('.color').removeClass('active')
     $(this).addClass('active')
+    let color = $(this).attr('data-filter')
+    filterFomrs(color)
+    $('#drop-color').show()
   })
+
+  $('#drop-color').click(function(){
+    $('.color').removeClass('active')
+    $('#drop-color').hide()
+    filterFomrs(null)
+  })
+
+  function filterFomrs(color){
+    $('.col').each(function(){
+      if ($(this).attr('data-color') == color || color==null)
+      {$(this).show()}
+      else
+      {$(this).hide()}
+    })
+  }
 </script>
 
 {%endblock%}
