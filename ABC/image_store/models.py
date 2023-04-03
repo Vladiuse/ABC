@@ -7,6 +7,8 @@ import random as r
 import requests as req
 from PIL import Image
 from django.core.files.images import ImageFile
+from django.contrib import admin
+from django.utils.html import format_html
 
 def get_random_archive_name():
     symbols = 'qwertyuiopasdfghjklzxcvbnm'
@@ -159,8 +161,21 @@ class Certificate(models.Model):
             return False
 
 class Badge(models.Model):
+    OTHER  = 'other'
+    CATEGORY = (
+        ['100%', '100%'],
+        ['social-network', 'Социальные сети и сервисы'],
+        ['quality', 'Качество'],
+        ['check', 'Галочки'],
+        [OTHER, 'Прочее'],
+    )
+
     BADGES_DIR = 'badges'
     image = models.ImageField(upload_to=BADGES_DIR)
+    type = models.CharField(max_length=30, choices=CATEGORY, default=OTHER)
+
+    class Meta:
+        ordering = ['type']
 
     @staticmethod
     def load_from_url(url):
@@ -173,8 +188,13 @@ class Badge(models.Model):
         else:
             return False
 
-    class Meta:
-        ordering = ['-id']
+    @admin.display
+    def image_prew(self):
+        return format_html(
+            '<img src="{}" / style="width:{}px;height: {}px">',
+            self.image.url,
+            80,80,
+        )
 
 # import requests as req
 # import os

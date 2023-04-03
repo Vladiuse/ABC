@@ -95,17 +95,20 @@ hr {
     </a>
 </div>
 
-<h1>Badges Collections</h1>
-
+<!-- <h1>Badges Collections</h1> -->
+{% regroup badges by get_type_display as badge_types %}
 <div class="container">
-    <h2>Loaded</h2>
+    {%for badge_type in badge_types%}
+    <h2>{{badge_type.grouper}}</h2>
     <div class="badges-wrapper">
-        {%for badge in badges%}
+        {%for badge in badge_type.list%}
         <div class="bagde-wrap">
             <img src="{{badge.image.url}}">
         </div>
         {%endfor%}
     </div>
+    <hr>
+    {%endfor%}
 
 <h2>Discounts</h2>
 
