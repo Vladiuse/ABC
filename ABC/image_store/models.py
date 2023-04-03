@@ -111,9 +111,10 @@ class Avatar(models.Model):
             os.remove(self.image.path)
         super().delete()
 
-    def save(self):
-        name, ext = os.path.splitext(self.image.name)
-        self.image.name = str(uuid.uuid4()) + ext
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            name, ext = os.path.splitext(self.image.name)
+            self.image.name = str(uuid.uuid4()) + ext
         super().save()
 
     @staticmethod
