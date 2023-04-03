@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFrame</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+      <!-- JQUERY -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<style>
+    iframe{
+        width: 100%;
+        height: 96vh;
+    }
+    textarea{
+        height: 100px;
+    }
+    #chosen-urls{
+        height: 300px;
+    }
+    #images-wrap{
+        padding-top: 20px;
+    }
+    #images-wrap img{
+        max-width: 80px;
+        max-height: 80px;
+        margin: 2px;
+    }
+
+</style>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8">
+                <iframe srcdoc="{{html_code|safe}}" id="iframe" frameborder="0"></iframe>
+            </div>
+            <div class="col-sm-4">
+                <br>
+                <button class="btn btn-primary" onclick="showChosenImages()">Показать</button>
+                <button class="btn btn-warning" onclick="removeAllChosenIframe()">Отчистить</button>
+                <br>
+                <h5>Выбраные iFrame: <span id="chosen-urls-len"></span></h5>
+                <textarea class="form-control" id="chosen-urls"></textarea>
+                <h5>ССылки руками: <span id="user-hand-urls-len"></span></h5>
+                <textarea class="form-control" id="user-hand-urls"></textarea>
+                <div id="images-wrap">
+                </div>
+                <div class="card text-center">
+                    <div class="card-header">
+                      <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="true" href="#" id="avatars-form">Avatars</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#" id="badges-from">Badges</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="certificates-from">Certificates</a>
+                          </li>
+                      </ul>
+                    </div>
+                    <div class="card-body">
+                        <!-- AVATAR FORM -->
+                      <div class="avatars-form load-form">
+                        <form method="POST" action="{%url 'image_store:load_images_by_urls'%}">
+                            {%csrf_token%}
+                            <input type="hidden" name="model" value="avatar"> 
+                            <input type="hidden" name="urls" value="" class="avatars-form-urls"> 
+                            {{avatar_form.as_p}}
+                            <button type="submit" class="btn btn-primary" disabled>Load Avarats</button>
+                        </form>
+                       
+                      </div>
+                    <!-- AVATAR FORM -->
+
+                      <!-- BADGES -->
+                      <div class="badges-from load-form" style="display: none;">
+                        <form method="POST" action="{%url 'image_store:load_images_by_urls'%}">
+                            {%csrf_token%}
+                            <input type="hidden" name="model" value="badge"> 
+                            <input type="hidden" name="urls" value="" class="avatars-form-urls"> 
+                            <button type="submit" class="btn btn-primary" disabled>Load Badges</button>
+                        </form>
+                      </div>
+                     <!-- BADGES -->
+
+                     <!-- CERTIFICATES -->
+                     <div class="certificates-from load-form" style="display: none;">
+                        <form method="POST" action="{%url 'image_store:load_images_by_urls'%}">
+                            {%csrf_token%}
+                            <input type="hidden" name="model" value="certificate"> 
+                            <input type="hidden" name="urls" value="" class="avatars-form-urls"> 
+                            <button type="submit" class="btn btn-primary" disabled>Load Certificates</button>
+                        </form>
+                      </div>
+                    <!-- CERTIFICATES -->
+                    </div>
+                  </div>
+                  <br>
+                  <a class="btn btn-primary" href="{%url 'image_store:iframe'%}">Открыть сайт</a>
+            </div>
+          </div>
+    </div>
+<script>
+    let base = '{{original_url}}'
+    iframe.onload = function () {
+        console.log('LOAD')
+    }
+    function getChosenSrcImages(){
+        // получить список выбраных в iFrame картинок
+        let images = iframe.contentWindow['getUrlOfChosen']()
+            let valid_image_crc = []
+            images.forEach(elem => {
+                if (!elem.startsWith('data:image'))
+                {
+                
+                if (!elem.startsWith('http'))
+                {valid_image_crc.push(base +elem)}
+                else{valid_image_crc.push(elem)}
+
+                }
+            });
+        return valid_image_crc
+    }
+    function getSrcUserInsert(){
+        // список ссылкок картинок вставленных ВРУЧНУЮ
+        if($('#user-hand-urls').val()==''){return []}
+        user_urls = $('#user-hand-urls').val().split('\n')
+        return user_urls
+    }
+    function getCommomSrc(){
+        // Получить общий список ссылок на картинки
+        all_images_src = getChosenSrcImages()
+        user_src = getSrcUserInsert()
+        common = all_images_src.concat(user_src)
+        return common
+    }
+    function addTextareaData(){
+        // добавить ссылки в поля и отобразить длины массивов с сылками
+        $('#chosen-urls').val(all_images_src.join('\n'))
+        $('#user-hand-urls').val(user_src.join('\n'))
+        $('#chosen-urls-len').text(all_images_src.length)
+        $('#user-hand-urls-len').text(user_src.length)
+    }
+    function showChosenImages(){
+        // отобразить выбранные картинки
+            $('#images-wrap').empty()
+            $('.card button').prop('disabled', false)
+             common = getCommomSrc()
+             addTextareaData()
+             common.forEach(src =>{
+                image = $(`<img src="${src}">`)
+                $('#images-wrap').append(image)
+            })
+        // add urls to forms inputs
+        $('.avatars-form-urls').val(common.join(','))
+        }
+    function removeAllChosenIframe(){
+        iframe.contentWindow['removeAllChosen']()
+        showChosenImages()
+        if ($('#user-hand-urls').val()==''){$('.card button').prop('disabled', true)}
+    }
+
+    $('.card a').click(function(){
+        $('.card a').removeClass('active')
+        $(this).addClass('active')
+        let formToShow = $(this).attr('id')
+        $('.load-form').hide()
+        $('.'+formToShow).show()
+    })
+</script>
+</body>
+</html>
