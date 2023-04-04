@@ -139,11 +139,33 @@
     @media screen and (max-width: 900px) {
       img { height: 350px; }
     }
+
+    #country-filter{
+      display: flex;
+      justify-content: center;
+    }
+    #country-filter div{
+      max-width: 800px;
+    }
+    #country-filter .btn{
+      margin-bottom: 3px;
+    }
   </style>
   <h1>Шаблоны новостных сайтов</h1>
+  <div class="" id="country-filter">
+    <div>
+      {%for country in countrys%}
+    <button class="btn {%if country.iso == 'ru'%}btn-dark{%else%}btn-outline-dark{%endif%}" data-country="{{country.iso}}">
+      <img class="flag-img " src="/static/flags/4x3/{{country.iso}}.svg">
+      {{country.name}}
+    </button>
+    {%endfor%}
+    </div>
+  </div>
   {%for site in sites%}
-      <div class="container"> 
-          <div class="device-wrapper">
+    
+      <div class="container country" data-country="{{site.country}}" style="display: {%if site.country != 'ru'%}none{%endif%};"> 
+          <div class="device-wrapper" >
               <picture>
                   <img class="desctop" src="{{site.desktop_screenshot.url}}" />
                   <i class="desctop-base"></i>
@@ -161,16 +183,37 @@
               <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id molestias non veritatis odit aperiam nihil consequuntur quod. Reprehenderit consequuntur, a eaque fuga, magni fugit incidunt accusantium harum vel veniam consequatur.</p>
               {%endif%}
               <p><i>Читают в странах:</i><img class="flag-img " src="/static/flags/4x3/{{site.country}}.svg"></p>
-              <a class="btn btn-dark" href="{{site.get_url}}" target="_blank">
+              <a class="btn btn-dark" href="{%url 'archive:show_site' site.dir_name %}" target="_blank">
                 <i class="fa-solid fa-eye"></i>
                 Посмотреть</a>
               <a class="btn btn-dark">
                 <i class="fa-solid fa-download"></i>
                 Скачать</a>
-              <a class="btn btn-dark" href="{{site.original_url}}" target="_blank">
-                <i class="fa-solid fa-earth-americas"></i>
-                Посмотреть оригинал сайта</a>
+                {%if site.original_url%}
+                <a class="btn btn-dark" href="{{site.original_url}}" target="_blank">
+                  <i class="fa-solid fa-earth-americas"></i>
+                  Посмотреть оригинал сайта</a>
+                {%endif%}   
           </div>
       </div> 
     {%endfor%}  
+
+<script>
+  function filterSites(iso_code){
+    $('.country').each(function(){
+      if ($(this).attr('data-country')== iso_code || iso_code == null)
+      {$(this).show()}
+      else
+      {$(this).hide()}
+    })
+  }
+
+  $('#country-filter .btn').click(function(){
+    $('#country-filter .btn').removeClass('btn-dark')
+    $('#country-filter .btn').addClass('btn-outline-dark')
+    $(this).addClass('btn-dark')
+    $(this).removeClass('btn-outline-dark')
+    filterSites($(this).attr('data-country'))
+  })
+</script>
 {%endblock%}

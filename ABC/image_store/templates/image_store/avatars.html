@@ -7,35 +7,18 @@
   <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+  <!--STYLE -->
+  <link rel="stylesheet" href="{% static 'image_store/css/load_image_tool.css' %}">
+{%endblock%}
+{%block bottom%}
+<script src="{%static 'image_store/js/load_image_tool.js'%}"></script>
 {%endblock%}
 {% block content %}
 
 
 <div id="chartdiv"></div>
 
-<div id="tabs" >
-
-  <div class="tab-nav-container" id="load-tabs">
-    <div class="tab active country-color active" id="load-button" style="display: none;">
-      <i class="fa-sharp fa-solid fa-download"></i>
-        <p>Скачать</p>
-    </div>
-    <div class="tab country-color active"  id="image-count">
-      <i class="fa-solid fa-image"></i>
-        <p>Выберите фото</p>
-    </div>
-    <div class="tab country-color active"  id="chosen-avatars-link" style="display: none;">
-      <i class="fa-solid fa-share-nodes"></i>
-        <p>Ссылка на выбраные</p>
-    </div>
-    <div class="tab esc active"  id="esc-avatars" style="display: none;">
-      <i class="fa-solid fa-xmark"></i>
-        <p>ESC</p>
-    </div>
-  </div>
-
-
-
+{%include 'image_store/image_load_tool.html'%}
 
   <div class="container">
     <div class="row">
@@ -102,82 +85,11 @@
      '31-49': true, 
      '50+': true,
   };
-
-
-
-  $('.item').click(function(){
-    $(this).toggleClass('active')
-    countChosenImages()
-  })
-
+  // при клике на чекбоксы возраста
   $('.age-filter input').click(function(){
     currentAge[$(this).attr('id')] = $(this).prop('checked')
     filterAvatars()
   })
-
-
-  function countChosenImages(){
-    let count = $('#avatars .item.active').length
-    if (count == 0) {
-      escAvatars()
-    } else {
-      $('#image-count p').text(count)
-      $('#esc-avatars').show()
-      $('#load-button').show()
-      $('#chosen-avatars-link').show()
-    }
-    
-  }
-
-
-  function escAvatars(){
-    $('#esc-avatars').hide()
-    $('#load-button').hide()
-    $('#chosen-avatars-link').hide()
-    $('.item').removeClass('active')
-    $('#image-count p').text('Выберите фото')
-    
-  }
-  $('#esc-avatars').click(function(){
-    escAvatars()
-  })
-
-  
-  function getChosenAvatarsId(){
-    // получить список id выбраных аватарок
-    let chosenAvatars = $('#avatars .item.active')
-    let ids = []
-    chosenAvatars.each(function(){
-      avatarId = $(this).data('id')
-      ids.push(avatarId)
-    })
-    return ids
-  }
-
-  
-  // ссылка на просмотр выбранных аватарок
-  $('#chosen-avatars-link').click(function(){
-    let strIds = getChosenAvatarsId().join(',')
-    let url = "{%url 'image_store:chosen_avatars'%}?avatars_ids=" + strIds
-    window.open(url, '_blank')
-  })
-
-  
-
-  $('#load-button').click(function(){
-    console.log('DOWNLOAD')
-    let strIds = getChosenAvatarsId().join(',')
-    let url = "{%url 'image_store:download_chosen_avatars'%}?avatars_ids=" + strIds
-    window.open(url, '_self')
-  })
-
-  // При клике на ESC
-  $(document).keyup(function(e) {
-     if (e.key === "Escape") { // escape key maps to keycode `27`
-      escAvatars()
-      }
-  });
-
 
   // фильтрация аватарок по выбраным фильтрам
   function filterAvatars(){

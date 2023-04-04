@@ -19,7 +19,6 @@
   <script src="https://kit.fontawesome.com/da43c2ea11.js" crossorigin="anonymous"></script>
   <!-- MY -->
   <link rel="stylesheet" href="{% static 'image_store/css/main.css' %}">
-  <link rel="stylesheet" href="{% static 'image_store/css/comm_n_tabs.css' %}">
   <!-- FLAGS -->
   <link rel="stylesheet" href="{% static 'image_store/flag-icons.min.css' %}">
 {%block head%}
@@ -124,7 +123,7 @@
   }
   .logo img{
       width: 80%;
-      
+      height: auto;
   }
 </style>
 <body>
@@ -132,13 +131,16 @@
   <header>
     <div class="nav-cont fixed-top">
       <div class="nav-left">
-      <div class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{%url 'image_store:index'%}">Аватарки</a>
-      </div>
-      <div class="nav-item"><a class="nav-link" href="{%url 'archive:index'%}">Шаблоны</a></div>
-      <div class="nav-item">
-        <a class="nav-link" href="{%url 'forms:examples'%}">Формы</a>
-      </div>
+        <div class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{%url 'image_store:index'%}">Аватарки</a>
+        </div>
+        <div class="nav-item"><a class="nav-link" href="{%url 'archive:index'%}">Шаблоны</a></div>
+        <div class="nav-item">
+          <a class="nav-link" href="{%url 'forms:examples'%}">Формы</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="{%url 'forms:casino'%}">Розыгрышы</a>
+        </div>
       </div>
       <div class="" id="center"></div>
       <div class="circle">
@@ -149,13 +151,13 @@
       </div>
       <div class="nav-right">
         <div class="nav-item">
-          <a class="nav-link" href="{%url 'forms:casino'%}">Розыгрышы</a>
-        </div>
-        <div class="nav-item">
           <a class="nav-link" href="{%url 'image_store:badges'%}" tabindex="-1" aria-disabled="true">Бэйджы и скидки</a>
         </div>
         <div class="nav-item">
           <a class="nav-link" href="{%url 'certificates' %}" tabindex="-1" aria-disabled="true">Сертификаты</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="{%url 'forms:casino'%}">Локализация</a>
         </div>
       </div>
   </div>
@@ -211,6 +213,8 @@ $('.circle').click(function(){
   window.location.href = '/';
 })
 </script>
+{%block bottom%}
+{%endblock%}
 </body>
 
 </html>
