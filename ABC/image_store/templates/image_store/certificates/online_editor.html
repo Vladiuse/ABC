@@ -66,6 +66,20 @@
     height: 5px;
     font-weight: 900;
   }
+  /* pre:focus-visible{
+    outline: 2px solid rgb(20, 57, 220);
+    border: 2px solid rgb(20, 57, 220);
+  }
+  text:focus-visible{
+    outline: 2px solid crimson;
+    border: 2px solid crimson;
+  } */
+  /* pre[contenteditable]{
+    outline: 2px solid rgb(20, 57, 220);
+  } */
+  pre:focus-visible{
+    outline: 2px solid rgb(20, 57, 220, 0.5);
+  }
   pre{
     overflow: visible;
     margin: 0;
@@ -128,6 +142,7 @@
     cursor: default;
     background-color: aquamarine;
     border: 2px inherit solid;
+
   }
   .color-picker:hover{
     border: 2px #1A6DFF solid;
@@ -142,6 +157,10 @@
     transform: rotate(-90deg);
     transition: transform 0.1s ease-in-out;
     cursor: default;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6px;
 }
 .open .open-arrow {
     transform: rotate(90deg);
@@ -149,12 +168,11 @@
 
 .choise{
   margin-top: 10px;
-}
-#font-choise{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .font-picker{
   width: 90px;
     height: 90px;
@@ -204,6 +222,10 @@
 
 #panel{
   padding: 10px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 @font-face{
@@ -420,40 +442,40 @@
   <div class="row" >
     <div class="col-8">
       <div id="sert-wrap">
-          <text id="text_offer_name"contenteditable="" style="
+          <!-- <text id="text_offer_name"contenteditable="" style="
               top: 40%;
               left: 39%;
               color: #313536;
               font-size: 35px;
               font-family: Roboto-Medium;
           ">
-            <pre>Some text</pre>
+            <pre>Offer name</pre>
           </text>
           <text id="text_date"contenteditable="" style="
           top: 20%;
           left: 19%;
           color: #1ca6c9;
-          font-size: 35px;
+          font-size: 45px;
           font-family: Roboto-Medium;
       ">
         <pre>Some text</pre>
-      </text>
-          <img src="./sert_1.jpeg" >
+      </text> -->
+          <img src="./sert_1.jpeg" id="sert-image">
           <!-- <img src="./serc_2.png" > -->
         </div>
       </div>
-      <div class="col-4" style="background-color: #f2f2f2;">
+      <div class="col-4" style="background-color: #f2f2f2; padding: 0;">
         <div id="panel">
 
         <h3>Настройки</h3>
-        <div class="seting-item">
+        <!-- <div class="seting-item">
           <div class="set-row">
               <div class="set-text">Text</div>
               <div class="set-control">
                 <input>
               </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="seting-item">
           <div class="set-row"> 
@@ -677,35 +699,6 @@
               <img src="./img_prew/SofiaSansExtraCondensed-VariableFont_wght.jpg">
               <span>SofiaS...</span>
           </div>
-          
-            <!-- <div class="font-picker">
-              <img src="https://fonts.watermarkly.com/sprites/Sail.png?app=visualwatermark">
-              <span>Arial</span>
-            </div>
-            <div class="font-picker">
-              <img src="https://fonts.watermarkly.com/sprites/Sail.png?app=visualwatermark">
-              <span>Arial</span>
-            </div>
-            <div class="font-picker">
-              <img src="https://fonts.watermarkly.com/sprites/Sail.png?app=visualwatermark">
-              <span>Arial</span>
-            </div>
-            <div class="font-picker">
-              <img src="https://fonts.watermarkly.com/sprites/Sail.png?app=visualwatermark">
-              <span>Arial</span>
-            </div>
-            <div class="font-picker">
-              <img src="https://fonts.watermarkly.com/sprites/Sail.png?app=visualwatermark">
-              <span>Arial</span>
-            </div>
-            <div class="font-picker">
-              <img src="https://fonts.watermarkly.com/sprites/Sail.png?app=visualwatermark">
-              <span>Arial</span>
-            </div>
-            <div class="font-picker">
-              <img src="https://fonts.watermarkly.com/sprites/Sail.png?app=visualwatermark">
-              <span>Arial</span>
-            </div> -->
           </div>
         </div>
 
@@ -718,34 +711,63 @@
               <span class="open-arrow" >‹</span>
           </div>
           <div id="color-choise" class="choise">
-            <div class="color-picker" style="background-color: black;"></div>
-            <div class="color-picker" style="background-color: rgb(128, 47, 47);"></div>
-            <div class="color-picker" style="background-color: rgb(140, 56, 143);"></div>
-            <div class="color-picker" style="background-color: rgb(112, 126, 86);"></div>
-            <div class="color-picker" style="background-color: rgb(34, 117, 92);"></div>
-            <div class="color-picker" style="background-color: rgb(114, 209, 173);"></div>
-            <div class="color-picker" style="background-color: rgb(153, 121, 168);"></div>
-            <div class="color-picker" style="background-color: rgb(89, 138, 11);"></div>
-            <div class="color-picker" style="background-color: rgb(63, 41, 116);"></div>
-            <div class="color-picker" style="background-color: rgb(173, 201, 166);"></div>
-            <div class="color-picker" style="background-color: rgb(213, 226, 28);"></div>
-            <div class="color-picker" style="background-color: rgb(156, 179, 158);"></div>
-            <div class="color-picker" style="background-color: rgb(36, 3, 58);"></div>
-            <div class="color-picker" style="background-color: rgb(182, 169, 184);"></div>
-            <div class="color-picker" style="background-color: black;"></div>
-            <div class="color-picker" style="background-color: rgb(128, 47, 47);"></div>
-            <div class="color-picker" style="background-color: rgb(140, 56, 143);"></div>
-            <div class="color-picker" style="background-color: rgb(112, 126, 86);"></div>
-            <div class="color-picker" style="background-color: rgb(34, 117, 92);"></div>
-            <div class="color-picker" style="background-color: rgb(114, 209, 173);"></div>
-            <div class="color-picker" style="background-color: rgb(153, 121, 168);"></div>
-            <div class="color-picker" style="background-color: rgb(89, 138, 11);"></div>
-            <div class="color-picker" style="background-color: rgb(63, 41, 116);"></div>
-            <div class="color-picker" style="background-color: rgb(173, 201, 166);"></div>
-            <div class="color-picker" style="background-color: rgb(213, 226, 28);"></div>
-            <div class="color-picker" style="background-color: rgb(156, 179, 158);"></div>
-            <div class="color-picker" style="background-color: rgb(36, 3, 58);"></div>
-            <div class="color-picker" style="background-color: rgb(182, 169, 184);"></div>
+            <div class="color-picker" style="background-color: rgb(0, 0, 0);"></div>
+<div class="color-picker" style="background-color: rgb(0, 0, 80);"></div>
+<div class="color-picker" style="background-color: rgb(0, 0, 160);"></div>
+<div class="color-picker" style="background-color: rgb(0, 0, 240);"></div>
+<div class="color-picker" style="background-color: rgb(0, 80, 0);"></div>
+<div class="color-picker" style="background-color: rgb(0, 80, 160);"></div>
+<div class="color-picker" style="background-color: rgb(0, 80, 240);"></div>
+<div class="color-picker" style="background-color: rgb(0, 160, 0);"></div>
+<div class="color-picker" style="background-color: rgb(0, 160, 80);"></div>
+<div class="color-picker" style="background-color: rgb(0, 160, 160);"></div>
+<div class="color-picker" style="background-color: rgb(0, 160, 240);"></div>
+<div class="color-picker" style="background-color: rgb(0, 240, 80);"></div>
+<div class="color-picker" style="background-color: rgb(0, 240, 240);"></div>
+<div class="color-picker" style="background-color: rgb(80, 0, 0);"></div>
+<div class="color-picker" style="background-color: rgb(80, 0, 80);"></div>
+<div class="color-picker" style="background-color: rgb(80, 0, 240);"></div>
+<div class="color-picker" style="background-color: rgb(80, 80, 0);"></div>
+<div class="color-picker" style="background-color: rgb(80, 80, 80);"></div>
+<div class="color-picker" style="background-color: rgb(80, 80, 160);"></div>
+<div class="color-picker" style="background-color: rgb(80, 80, 240);"></div>
+<div class="color-picker" style="background-color: rgb(80, 160, 0);"></div>
+<div class="color-picker" style="background-color: rgb(80, 160, 80);"></div>
+<div class="color-picker" style="background-color: rgb(80, 160, 160);"></div>
+<div class="color-picker" style="background-color: rgb(80, 160, 240);"></div>
+<div class="color-picker" style="background-color: rgb(80, 240, 0);"></div>
+<div class="color-picker" style="background-color: rgb(80, 240, 80);"></div>
+<div class="color-picker" style="background-color: rgb(80, 240, 160);"></div>
+<div class="color-picker" style="background-color: rgb(80, 240, 240);"></div>
+<div class="color-picker" style="background-color: rgb(160, 0, 0);"></div>
+<div class="color-picker" style="background-color: rgb(160, 0, 160);"></div>
+<div class="color-picker" style="background-color: rgb(160, 0, 240);"></div>
+<div class="color-picker" style="background-color: rgb(160, 80, 0);"></div>
+<div class="color-picker" style="background-color: rgb(160, 80, 80);"></div>
+<div class="color-picker" style="background-color: rgb(160, 80, 160);"></div>
+<div class="color-picker" style="background-color: rgb(160, 80, 240);"></div>
+<div class="color-picker" style="background-color: rgb(160, 160, 0);"></div>
+<div class="color-picker" style="background-color: rgb(160, 160, 80);"></div>
+<div class="color-picker" style="background-color: rgb(160, 160, 160);"></div>
+<div class="color-picker" style="background-color: rgb(160, 160, 240);"></div>
+<div class="color-picker" style="background-color: rgb(160, 240, 0);"></div>
+<div class="color-picker" style="background-color: rgb(160, 240, 80);"></div>
+<div class="color-picker" style="background-color: rgb(160, 240, 160);"></div>
+<div class="color-picker" style="background-color: rgb(160, 240, 240);"></div>
+<div class="color-picker" style="background-color: rgb(240, 0, 0);"></div>
+<div class="color-picker" style="background-color: rgb(240, 0, 80);"></div>
+<div class="color-picker" style="background-color: rgb(240, 0, 240);"></div>
+<div class="color-picker" style="background-color: rgb(240, 80, 0);"></div>
+<div class="color-picker" style="background-color: rgb(240, 80, 80);"></div>
+<div class="color-picker" style="background-color: rgb(240, 80, 160);"></div>
+<div class="color-picker" style="background-color: rgb(240, 80, 240);"></div>
+<div class="color-picker" style="background-color: rgb(240, 160, 0);"></div>
+<div class="color-picker" style="background-color: rgb(240, 160, 80);"></div>
+<div class="color-picker" style="background-color: rgb(240, 160, 160);"></div>
+<div class="color-picker" style="background-color: rgb(240, 160, 240);"></div>
+<div class="color-picker" style="background-color: rgb(240, 240, 0);"></div>
+<div class="color-picker" style="background-color: rgb(240, 240, 160);"></div>
+<div class="color-picker" style="background-color: rgb(240, 240, 240);"></div>
           </div>
         </div>
 
@@ -753,7 +775,7 @@
           <div class="set-row">
             <div class="set-text">Font-size</div>
             <div class="set-control">
-              <input type="range" type="range" min="15" max="45" step="1" value="35" data-area="#font-size-val" id="font-size">
+              <input type="range" type="range" min="15" max="60" step="1" value="35" data-area="#font-size-val" id="font-size">
               <span id="font-size-val">15</span>px
             </div>
           </div>
@@ -780,6 +802,7 @@
   let currentElem = $('#text_offer_name')
   let fontSizeRange = $('#font-size')
   let opasityRange = $('#opasity')
+  let sertImg  = document.getElementById('sert-image')
   let FONT_DATA = {'AdventPro-Italic-VariableFont_wdth,wght': {'img_prew': './img_prew/AdventPro-Italic-VariableFont_wdth,wght.jpg',
                                              'name': 'AdventPro-Italic-VariableFont_wdth,wght',
                                              'path': './fonts/AdventPro-Italic-VariableFont_wdth,wght.ttf'},
@@ -887,6 +910,7 @@
                         'path': './fonts/ZenAntique-Regular.ttf'}}
 
 
+
   $('.open-area').click(function(){
     $(this).toggleClass('open')
     let elem = $(this).attr('data-area')
@@ -917,7 +941,6 @@
     let font_family = fontKey
     let img_path = FONT_DATA[fontKey]['img_prew']
     let font_name = FONT_DATA[fontKey]['name']
-    // console.log(font_path, img_path)
     setToolBarFont(fontKey)
     setTextFont(font_family)
   })
@@ -930,7 +953,7 @@
     console.log('click opas')
     setTextOpacity($(this).val())
   })
-  $('text').click(function(){
+  $('#sert-wrap').on('click','text',function(){
     currentElem = $(this)
     setToolBarTextVals($(this))
   })
@@ -965,8 +988,6 @@
     setToolBarFont(
       elem.css('font-family')
     )
-    console.log(elem.css('font-size').replace('px', ''), 'FONT')
-    console.log(elem.css('opacity'), 'opacity')
     fontSizeRange.val(
       elem.css('font-size').replace('px', '')
     )
@@ -974,6 +995,87 @@
       elem.css('opacity')
     )
     showInputVal(fontSizeRange);showInputVal(opasityRange);
+  }
+  let sertWidthOrig = 1241;
+  let sertHeigthOrig = 1754;
+
+  let textBlocks = {
+    'text_offer_name' :{
+      'text':'Offer name',
+      'font-family': 'Roboto-Medium',
+      'font-size': '55px',
+      'opacity': '0.5',
+      'left': 797,
+      'top': 711,
+      'color': 'pink',
+    },
+    'text_offer_name2' :{
+      'text':'Point text',
+      'font-family': 'Roboto-Medium',
+      'font-size': '33px',
+      'opacity': '0.8',
+      'left': 685,
+      'top': 1115,
+      'color': 'green',
+    },
+    'text_offer_name3' :{
+      'text':'some date : 22.10.2022',
+      'font-family': 'Roboto-Medium',
+      'font-size': '14px',
+      'opacity': '0.8',
+      'left': 1007,
+      'top': 1487,
+      'color': 'green',
+    },
+  }
+   
+  addTextBlocks()
+  setToolBarTextVals($('#text_offer_name'))
+  function addTextBlocks(){
+    let sertBlock = document.getElementById('sert-wrap')
+    for (textKey in textBlocks){
+      textBlockData = textBlocks[textKey]
+      let textBlock  = document.createElement('text')
+      let textPRE = document.createElement('pre')
+      textPRE.textContent = textBlockData['text']
+
+      textPRE.setAttribute('contenteditable','')
+
+      textBlock.id = textKey
+      textBlock.style.fontFamily = textBlockData['font-family']
+      textBlock.style.fontSize = textBlockData['font-size']
+      textBlock.style.opacity = textBlockData['opacity']
+      textBlock.style.color = textBlockData['color']
+      textBlock.style.top = getCurrPostHeight(textBlockData['top']) + 'px'
+      textBlock.style.left = getCurrPostWidth(textBlockData['left']) + 'px'
+      textBlock.append(textPRE)
+      // textBlock.setAttribute('contenteditable','')
+      sertBlock.append(textBlock)
+    }
+  }
+  function getCurrPostWidth(x){
+    let imgWidth = sertImg.getBoundingClientRect().width
+    let widthDiff = imgWidth / sertWidthOrig
+    return Math.round(x * widthDiff + sertImg.getBoundingClientRect().x) - 1
+  }
+
+  function getCurrPostHeight(y){
+    let imgHeight = sertImg.getBoundingClientRect().height
+    let heightDiff = imgHeight / sertHeigthOrig
+    return Math.round(y * heightDiff + sertImg.getBoundingClientRect().y) - 1
+  }
+
+  window.addEventListener('resize', function(){
+    console.log('RE')
+    moveTextBlocks()
+  })
+
+  function moveTextBlocks(){
+     $('text').each(function(){
+        textBlockData = textBlocks[$(this).attr('id')]
+        $(this).css('top', getCurrPostHeight(textBlockData['top']) + 'px')
+        $(this).css('left', getCurrPostWidth(textBlockData['left']) + 'px')
+     })
   }
 </script>
 </body>
