@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Avatar, GeoGroup, Certificate, Badge
+from django.utils.html import format_html, mark_safe
 
 
 # Register your models here.
@@ -21,7 +22,18 @@ class BadgeAdmin(admin.ModelAdmin):
         for badge in queryset:
             badge.remove_background()
 
+class CertificateAdmin(admin.ModelAdmin):
+    list_display = ['id', 'image_prew']
+
+    def image_prew(self, obj):
+        # return mark_safe('<img src="{}" / style="width:{}px;height: {}px;>')
+        return format_html(
+            '<img src="{}" / style="width:{}px;height: {}px;"/>',
+            obj.image.url,
+            120,'auto',
+        )
+
 admin.site.register(Avatar, AvatarAdmin)
 admin.site.register(GeoGroup)
-admin.site.register(Certificate)
 admin.site.register(Badge, BadgeAdmin)
+admin.site.register(Certificate, CertificateAdmin)

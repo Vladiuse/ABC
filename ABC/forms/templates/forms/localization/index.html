@@ -1,0 +1,580 @@
+
+{%extends 'image_store/base.html'%}
+{%load static%}
+{%block content%}
+
+<style>
+    ._form_container {
+            display: flex;
+            justify-content: center;
+        }
+</style>
+<style>
+    header{
+        margin-top: 60px;
+    }
+.form_block {
+right: 7px;
+top: 5px;
+background: #FFFFFF;
+filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.25));
+border-radius: 8px;
+width: 100%;
+max-width: 500px;
+padding: 38px 30px 35px 30px;
+}
+.form_block p.red {
+font-size: 14px;
+line-height: 20px;
+text-align: center;
+color: #E91C06;
+margin-bottom: 30px;
+}
+.form_block .flex {
+-webkit-flex-wrap: wrap;
+-moz-flex-wrap: wrap;
+-ms-flex-wrap: wrap;
+-o-flex-wrap: wrap;
+flex-wrap: wrap;
+}
+.form_block .flex {
+display: flex;
+justify-content: space-between;
+margin-bottom: 0;
+}
+.form_block .flex p.old_prc {
+font-weight: normal;
+font-size: 20px;
+line-height: 23px;
+margin: 0;
+}
+.form_block .flex p {
+flex: 0 0 50%;
+margin: 0;
+}
+.form_block .flex p.old_prc span.old_prc_cc {
+display: block;
+font-size: 14px;
+line-height: 18px;
+color: #585858;
+margin-bottom: 1px;
+}
+.form_block .flex p.old_prc span.text_decor {
+text-decoration: line-through;
+}
+[class*=price_land_] {
+font-weight: inherit;
+font-size: inherit;
+font-style: inherit;
+color: inherit;
+}
+[class*=price_land_] {
+font-weight: inherit;
+font-size: inherit;
+font-style: inherit;
+color: inherit;
+}
+.form_block .flex p.one_prc {
+color: #1baf38!important;
+}
+.form_block .flex p.one_prc {
+font-weight: bold;
+font-size: 28px;
+line-height: 19px;
+color: #1d8288;
+}
+.form_block .flex p.one_prc span.new_prc_cc {
+display: block;
+font-size: 14px;
+line-height: 18px;
+font-weight: 400;
+color: #585858;
+margin-bottom: 1px;
+}
+.form_block .flex p.one_prc .numeral {
+font-weight: bold;
+font-size: 26px;
+line-height: 30px;
+}
+[class*=price_land_] {
+font-weight: inherit;
+font-size: inherit;
+font-style: inherit;
+color: inherit;
+}
+.form_block form {
+margin-top: 10px;
+}
+form p.label {
+color: #131313;
+font-size: 14px;
+line-height: 20px;
+margin: 0 0 3px 10px;
+text-align: left;
+}
+form input, form select {
+font-family: "Noto Sans", sans-serif;
+background: #f9f9f9;
+border: 1px solid #e7e7e7;
+box-sizing: border-box;
+border-radius: 4px;
+display: block;
+width: 100%;
+margin-bottom: 5px;
+height: 40px;
+color: #131313;
+padding-left: 10px;
+}
+.form_block p.last_p {
+text-align: center;
+margin: 26px 0 0 0;
+font-size: 14px;
+line-height: 17px;
+color: #585858;
+}
+.form_block .btn {
+max-width: 100%;
+background: linear-gradient(180deg, #EA5765 45.59%, #D7343E 100%);
+border-radius: 8px;
+color: #fff;
+font-size: 20px;
+line-height: 26px;
+font-weight: 700;
+padding: 5px 0;
+margin-top: 8px;
+cursor: pointer;
+text-transform: uppercase;
+border: none;
+display: block;
+width: 100%;
+position: relative;
+}
+.form_block .btn img {
+display: inline-block;
+vertical-align: middle;
+margin-right: 5px;
+}
+.form_block form .saffity {
+text-align: center;
+margin-top: 9px;
+}
+.form_block form .saffity img {
+display: inline-block;
+vertical-align: middle;
+}
+.form_block form .saffity .litt {
+margin: 0;
+font-size: 15px;
+line-height: 12px;
+color: #C4C4C4;
+display: inline-block;
+vertical-align: middle;
+text-align: left;
+width: 90%;
+padding-left: 10px;
+}
+</style>
+
+<style>
+#country-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#country-info select{
+    width: 250px;
+}
+#country-info h3{
+    margin: 0 15px;
+}
+</style>
+<div class="container">
+<div id="country-info">
+    <img class="flag-img " src="{%static 'forms/images/form_localization/gb.svg' %}" style="width: 60px;">
+    <h3>GB</h3>
+    <select class="form-select" aria-label="Default select example">
+        <option selected>
+            Англия</option>
+      </select>
+      <h3>Язык: Английский</h3>
+      <h3>Валюта: GBP (Фунт стерлингов)</h3>
+</div>
+</div>
+<br>
+<div class="container-fluid">
+<div class="row">
+    <div class="col-4">
+        <!-- FORM BLoCK -->
+<div class="_form_container">
+    <div class="form_block">
+        <p class="red">
+        <b>УСПЕЙ ЗАКАЗАТЬ ПО АКЦИИ!</b> <br>
+        <b>"Успейте заказать по специальной цене!"</b> <br>
+        <b>Специальное предложение</b> <br>
+        <b>Заполните форму заказа</b> <br>
+
+
+        Предложение действует только до:<br>
+        </p>
+        <div class="flex">
+        <p class="old_prc">
+        <span class="old_prc_cc">Обычная цена</span>
+        <span class="old_prc_cc">Цена без скидки</span>
+        <span class="old_prc_cc">Старая цена</span>
+        <span class="text_decor">
+        <text class="price_land_s4 numeral">39</text>
+        <text class="price_land_curr numeral">Euro</text>
+        </span>
+        </p>
+        <p class="one_prc">
+        <span class="new_prc_cc"><b>Промо-цена</b></span>
+        <span class="new_prc_cc"><b>Цена по скидке</b></span>
+        <span class="new_prc_cc"><b>Новая цена</b></span>
+        <span>
+        <text class="price_land_s1 numeral">1</text>
+        <text class="price_land_curr numeral">Euro</text><sup style="">*</sup>
+        </span>
+        </p>
+        </div>
+        <form action="https://trackerlead.biz/" method="POST">
+        <div class="form_flgr">
+        <div class="form_flgr_i">
+        <p class="label">Введите Вашу страну</p>
+        <select name="country" class="country_select">
+            <option value="AT">Англия</option>
+        </select>
+        </div>
+        <div class="form_flgr_i">
+        <p class="label">Введите Ваше имя</p>
+        <input type="text" name="name" placeholder="Ваше имя" required="" oldvalue="">
+        </div>
+        <div class="form_flgr_i">
+        <p class="label">Введите Ваш телефон</p>
+        <input type="tel" name="phone" placeholder="Ваш телефон" required="" oldvalue="">
+        </div>
+        <div class="form_flgr_i">
+            <p class="label">Введите Ваш адрес</p>
+            <input type="tel" name="phone" placeholder="Ваш адрес" required="" oldvalue="">
+        </div>
+        <div class="form_flgr_i">
+            <p class="label">Введите Ваш город</p>
+            <input type="tel" name="phone" placeholder="Ваш город" required="" oldvalue="">
+        </div>
+        </div>
+        <!-- <p class="last_p">Осталось всего <b><text class="numeral">5</text> упаковок</b> на европейском складе! НЕ УПУСТИ СВОЙ ШАНС! </p> -->
+
+        <button type="submit" class="btn">
+            Заказать
+        </button>
+        <button type="submit" class="btn">
+            Получить
+        </button>
+        <button type="submit" class="btn">
+            Оформить заказа
+        </button>
+        <!-- ПРИПИСКИ -->
+        <p style="margin: 0;text-align: center;font-size: 14px;padding-top: 4px;color: #000">*при заказе курса</p>
+        <p style="margin: 0;text-align: center;font-size: 14px;padding-top: 4px;color: #000">*Данные зашифрованы</p>
+        <p style="margin: 0;text-align: center;font-size: 14px;padding-top: 4px;color: #000">*Остерегайтесь подделок</p>
+        <p style="margin: 0;text-align: center;font-size: 14px;padding-top: 4px;color: #000">*Акция ограничена</p>
+        <p style="margin: 0;text-align: center;font-size: 14px;padding-top: 4px;color: #000">*Осталось товара: 10шт</p>
+        <!-- ПРИПИСКИ -->
+        <div class="saffity">
+        <img src="img/security-on.svg" alt="" data-pagespeed-url-hash="2781816637" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" data-pagespeed-lsc-url="https://a.low.drops.dm-norm-new.com/img/security-on.svg">
+        <p class="litt">
+        Мы не разглашаем Ваши личные данные и не передаем оставленную Вами информацию третьим лицам.
+        </p>
+        </div>
+    </form>
+        </div>
+</div>
+    <!-- FORM BLoCK -->
+    </div>
+    <div class="col-4">
+<!-- FORM BLoCK -->
+<div class="_form_container">
+    <div class="form_block">
+        <p class="red">
+        <b>HURRY TO ORDER ON THE PROMOTION!</b> <br>
+        <b>"Hurry up to order at a special price!"</b> <br>
+        <b>Special offer</b> <br>
+        <b>Fill out the order form</b> <br>
+
+
+        Offer valid only until:<br>
+        </p>
+        <div class="flex">
+        <p class="old_prc">
+        <span class="old_prc_cc">Common price</span>
+        <span class="old_prc_cc">Price without discount</span>
+        <span class="old_prc_cc">Old price</span>
+        <span class="text_decor">
+        <text class="price_land_s4 numeral">39</text>
+        <text class="price_land_curr numeral">Euro</text>
+        </span>
+        </p>
+        <p class="one_prc">
+        <span class="new_prc_cc"><b>Promo price</b></span>
+        <span class="new_prc_cc"><b>Discount price</b></span>
+        <span class="new_prc_cc"><b>New price</b></span>
+        <span>
+        <text class="price_land_s1 numeral">1</text>
+        <text class="price_land_curr numeral">Euro</text><sup style="">*</sup>
+        </span>
+        </p>
+        </div>
+        <form action="https://trackerlead.biz/" method="POST">
+        <div class="form_flgr">
+        <div class="form_flgr_i">
+        <p class="label">Enter your country</p>
+        <select name="country" class="country_select">
+            <option value="AT">England</option>
+        </select>
+        </div>
+        <div class="form_flgr_i">
+        <p class="label">Enter your name</p>
+        <input type="text" name="name" placeholder="your name" required="" oldvalue="">
+        </div>
+        <div class="form_flgr_i">
+        <p class="label">Enter your phone</p>
+        <input type="tel" name="phone" placeholder="your phone number" required="" oldvalue="">
+        </div>
+        <div class="form_flgr_i">
+            <p class="label">Enter your address</p>
+            <input type="tel" name="phone" placeholder="Your address" required="" oldvalue="">
+        </div>
+        <div class="form_flgr_i">
+            <p class="label">Enter your city</p>
+            <input type="tel" name="phone" placeholder="Your city" required="" oldvalue="">
+        </div>
+        </div>
+        <!-- <p class="last_p">All that's left <b><text class="numeral">5</text> packages</b> in the European warehouse! DON'T MISS YOUR CHANCE! </p> -->
+
+        <button type="submit" class="btn">
+            Order
+        </button>
+        <button type="submit" class="btn">
+            Get
+        </button>
+        <button type="submit" class="btn">
+            Checkout
+        </button>
+        <!-- ПРИПИСКИ -->
+        <p style="margin: 0; text-align: center; font-size: 14px; padding-top: 4px; color: #000">*when ordering a course</p>
+        <p style="margin: 0; text-align: center; font-size: 14px; padding-top: 4px; color: #000">*Data encrypted</p>
+        <p style="margin: 0; text-align: center; font-size: 14px; padding-top: 4px; color: #000">*Beware of fakes</p>
+        <p style="margin: 0; text-align: center; font-size: 14px; padding-top: 4px; color: #000">*Limited offer</p>
+        <p style="margin: 0; text-align: center; font-size: 14px; padding-top: 4px; color: #000">*Stock left: 10pcs</p>
+        <!-- ПРИПИСКИ -->
+        <div class="saffity">
+        <img src="img/security-on.svg" alt="" data-pagespeed-url-hash="2781816637" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" data-pagespeed-lsc-url="https://a.low.drops.dm-norm-new.com/img/security-on.svg">
+        <p class="litt">
+            We do not disclose your personal data and do not transfer the information you leave to third parties.
+        </p>
+        </div>
+    </form>
+        </div>
+</div>
+    <!-- FORM BLoCK -->
+    </div>
+    <div class="col-4">
+        <style>
+            .comment-block{
+                background-color: #1d8288;
+                color: white;
+                display: flex;
+                padding: 10px;
+                align-items: center;
+                margin: 4px;
+                
+            }
+            .comment-block img{
+                width: 40px;
+                height:  40px;
+                display: inline-block;
+                margin-right: 20px;
+            }
+            .comment-block .text{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+            }
+            .comment-block .text p{
+                margin: 0;
+            }
+
+            #names .sex{
+                width: 100%;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #names .sex i{
+                margin-right: 5px;
+            }
+            .m .sex{
+                background-color: rgba(25, 165, 230, 0.2);
+                color: rgb(25, 165, 230);
+            }
+            .w .sex{
+                background-color: rgba(201, 55, 157, 0.2);
+                color: rgba(201, 55, 157, 1);
+            }
+            .w textarea{
+                border: 1px rgba(201, 55, 157, 0.2) solid;
+            }
+            .w textarea:focus-visible{
+                outline: 1px rgba(201, 55, 157, 1) solid;
+            }
+            .m textarea{
+                border: 1px rgb(25, 165, 230) solid;
+            }
+            .m textarea:focus-visible{
+                outline: 1px rgb(25, 165, 230) solid;
+            }
+            textarea{
+                width: 100%;
+            }
+            #citys p{
+                margin: 0;
+            }
+            .comment-block.comment-time{
+                background-color: #ffffff;
+                color: #333;
+                margin: 1px;
+                padding: 2px;
+            }
+            .comment-block.comment-time img{
+                width: 20px;
+                height: 20px;
+            }
+        </style>
+        <div class="comment-block">
+            <img src="{%static 'forms/images/form_localization/chat.png' %}">
+            <div class="text">
+                <p>Коментарии:</p>
+                <p>Comments:</p>
+            </div>
+        </div>
+
+        <div class="comment-block">
+            <img src="{%static 'forms/images/form_localization/chat.png' %}">
+            <div class="text">
+                <p>Отзывы:</p>
+                <p>Reviews:</p>
+            </div>
+        </div>
+
+        <div class="comment-block">
+            <img src="{%static 'forms/images/form_localization/chat.png' %}">
+            <div class="text">
+                <p>Мнение покупателей:</p>
+                <p>Customer opinion:</p>
+            </div>
+        </div>
+
+        <!-- TIME -->
+        <div class="comment-block comment-time">
+            <img src="{%static 'forms/images/form_localization/time.png' %}">
+            <div class="text">
+                <p>Несколько часов назад</p>
+                <p>A few hours ago</p>
+            </div>
+        </div>
+        <div class="comment-block comment-time">
+            <img src="{%static 'forms/images/form_localization/time.png' %}">
+            <div class="text">
+                <p>1 час назад</p>
+                <p>1 hour ago</p>
+            </div>
+        </div>
+        <div class="comment-block comment-time">
+            <img src="{%static 'forms/images/form_localization/time.png' %}">
+            <div class="text">
+                <p>30 минут назад</p>
+                <p>30 minutes ago</p>
+            </div>
+        </div>
+        <div class="comment-block comment-time">
+            <img src="{%static 'forms/images/form_localization/time.png' %}">
+            <div class="text">
+                <p>только что</p>
+                <p>just now</p>
+            </div>
+        </div>
+        <div class="comment-block comment-time">
+            <img src="{%static 'forms/images/form_localization/time.png' %}">
+            <div class="text">
+                <p>Недавно</p>
+                <p>recently</p>
+            </div>
+        </div>
+        <!-- TIME -->
+        <div id="buttons">
+            <!-- <button class="btn btn-primary">Показать/Show</button> -->
+            <button class="btn btn-primary" style="background-color: #1d8288; border: none;">Оставить комментарий / leave a comment</button>
+        </div>
+        <div id="names">
+            <h3 style="margin-top: 20px;">Имена и фамилии 
+                <a href="#" class="link-primary" style="    font-size: 18px;">
+                    Сгенерировать новые
+                    <i class="fa-solid fa-rotate"></i>
+                </a>
+            </h3>
+            <div class="row">
+                <div class="col m">
+                    <div class="sex">
+                        <i class="fa-solid fa-mars"></i>
+                        Мужские
+                    </div>
+<textarea rows="8">
+Nicholas Richards
+Albert Williams
+Henry Vaughn
+Michael Bridges
+Duane Bowen
+Joseph Bishop
+James Manning
+</textarea>
+                </div>
+                <div class="col w">
+                    <div class="sex">
+                        <i class="fa-solid fa-venus"></i>
+                        Женские
+                    </div>
+<textarea rows="8">
+Margaret Wilson
+Nora Gonzalez
+Lorraine Parker
+Anna Wright
+Judith Wood
+Mae Young
+Mary Smith
+</textarea>
+                </div>
+            </div>
+        </div>
+        <div id="citys">
+            <h3>Города</h3>
+            <p>London</p>
+            <p>Birmingham</p>
+            <p>Leeds</p>
+            <p>Sheffield</p>
+            <p>Manchester</p>
+            <p>Liverpool</p>
+            <p>Bristol</p>
+            <p>Coventry</p>
+            <p>Bradford</p>
+            <!-- <p>nottingham</p>
+            <p>Leicester</p> -->
+        </div>
+<!--   COL -->
+    </div>
+</div>
+</div>
+
+
+{%endblock%}

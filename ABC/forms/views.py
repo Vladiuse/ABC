@@ -27,3 +27,6 @@ def casino(requests):
         'forms': forms,
     }
     return render(requests, 'forms/casino.html', content)
+
+def form_localization(request):
+    return render(request, 'forms/localization/index.html')
