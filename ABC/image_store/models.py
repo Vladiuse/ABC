@@ -9,6 +9,10 @@ from PIL import Image
 from django.core.files.images import ImageFile
 from django.contrib import admin
 from django.utils.html import format_html
+from rembg import remove
+
+
+import shutil
 
 def get_random_archive_name():
     symbols = 'qwertyuiopasdfghjklzxcvbnm'
@@ -19,6 +23,12 @@ def get_random_archive_name():
             char = char.upper()
         res += char
     return res
+
+def copy_file(path):
+    path_to_make_copy = '/home/vlad/WORK/badges'
+    file_name = os.path.basename(path)
+    dst = os.path.join(path_to_make_copy, file_name)
+    shutil.copyfile(path, dst)
 
 
 def load_img_like_bytes(img_url, img_name=str(uuid.uuid4())):
@@ -164,9 +174,15 @@ class Badge(models.Model):
     OTHER  = 'other'
     CATEGORY = (
         ['100%', '100%'],
+        ['discount', 'Скидки'],
+        ['approved', 'Approved'],
+        ['medical', 'Медицина'],
         ['social-network', 'Социальные сети и сервисы'],
         ['quality', 'Качество'],
         ['check', 'Галочки'],
+        ['money', 'Деньги'],
+        ['chat', 'Коментарии и чат'],
+        ['charts', 'Графики'],
         [OTHER, 'Прочее'],
     )
 
@@ -175,14 +191,17 @@ class Badge(models.Model):
     type = models.CharField(max_length=30, choices=CATEGORY, default=OTHER)
 
     class Meta:
-        ordering = ['type']
+        ordering = ['-pk']
 
     @staticmethod
-    def load_from_url(url):
+    def load_from_url(url, type=None):
+        if not type:
+            type = Badge.OTHER
         img = load_img_like_bytes(url)
         if img:
             badge = Badge()
             badge.image = img
+            badge.type = type
             badge.save()
             return badge
         else:
@@ -191,10 +210,25 @@ class Badge(models.Model):
     @admin.display
     def image_prew(self):
         return format_html(
-            '<img src="{}" / style="width:{}px;height: {}px">',
+            '<img src="{}" / style="width:{}px;height: {}px;background-color: #db7575">',
             self.image.url,
             80,80,
         )
+
+    def remove_background(self):
+        copy_file(self.image.path)
+        input_path = self.image.path
+        output_path = self.image.path
+        # print(input_path)
+        input = Image.open(input_path)
+        output = remove(input)
+        #
+        if self.image.path.endswith('.jpg'):
+            self.image.name = self.image.name.replace('.jpg', '.png')
+            output_path = output_path.replace('.jpg', '.png')
+        #
+        output.save(output_path)
+        self.save()
 
 # import requests as req
 # import os

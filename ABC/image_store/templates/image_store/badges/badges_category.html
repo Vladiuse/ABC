@@ -1,0 +1,26 @@
+{% extends 'image_store/badges/badges.html' %}
+
+
+{%block badges%}
+<style>
+.bagde-wrap {
+    width: 175px !important;
+    margin: 30px 8px;
+    }
+</style>
+
+
+<h1 class="category">{{category}}</h1>
+<div class="badges-wrapper">
+    {%for badge in badges%}
+    <div class="bagde-wrap item" id="{{badge.pk}}">
+        <img src="{{badge.image.url}}">
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}
+
+
+{%block example%}
+<h1>sdasdasdsa</h1>
+{%endblock%}

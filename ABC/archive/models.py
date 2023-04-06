@@ -9,6 +9,7 @@ from django.template import Context
 from django.core.files.storage import FileSystemStorage
 import shutil
 from archive.sreen_maker import ScreenMaker
+import time
 
 
 # Create your models here.
@@ -37,8 +38,18 @@ class Site(models.Model):
     country = models.CharField(max_length=2, verbose_name='iso code', blank=True, )
     original_url = models.URLField(blank=True, verbose_name='ссылка на оригинальный сайт')
 
+    class Meta:
+        ordering = ['-pk']
+
     def __str__(self):
         return str(self.dir_name)
+
+    def save(self, **kwargs):
+        if not self.pk:
+            super().save()
+            self.create_screenshots()
+        else:
+            super().save()
 
     @property
     def thrash_dir_path(self):
@@ -53,6 +64,9 @@ class Site(models.Model):
         super().delete()
 
     def create_screenshots(self):
+        print('CREATE SCREEN', self.pk, self.name)
+        print('COUNT SCREEN', Site.objects.count())
+        self.delete_screenshots()
         phone_screen_name = f'{self.dir_name}_ph_{uuid4()}.png'
         desktop_screen_name = f'{self.dir_name}_desk_{uuid4()}.png'
         path_to_save = FileSystemStorage().path(Site.SCREENSHOTS_DIR)
@@ -71,6 +85,13 @@ class Site(models.Model):
         self.desktop_screenshot = os.path.join(self.SCREENSHOTS_DIR, desktop_screen_name)
         self.save()
 
+    def delete_screenshots(self):
+        for filed in self.phone_screenshot, self.desktop_screenshot:
+            if filed:
+                path = filed.path
+                if os.path.exists(path):
+                    os.remove(path)
+
 
     @property
     def dir_path(self):
@@ -83,7 +104,7 @@ class Site(models.Model):
 
     @property
     def get_local_url(self):
-        return 'http://127.0.0.1:8000' + self.get_url
+        return f'http://127.0.0.1:8000/archive/{self.dir_name}'
 
     @property
     def base_tag_url(self):

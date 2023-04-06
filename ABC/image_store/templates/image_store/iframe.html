@@ -83,6 +83,7 @@
                             {%csrf_token%}
                             <input type="hidden" name="model" value="badge"> 
                             <input type="hidden" name="urls" value="" class="avatars-form-urls"> 
+                            {{badge_form.as_p}}
                             <button type="submit" class="btn btn-primary" disabled>Load Badges</button>
                         </form>
                       </div>

@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .iframe_viewer import Land
 import requests as req
-from .forms import AvatarsAddForm
+from .forms import AvatarsAddForm, BadgeForm
 
 
 @login_required
@@ -62,13 +62,26 @@ def download_chosen_avatars(requests):
 
 @login_required
 def badges(requests):
-    badges = Badge.objects.all()
-    range_16 = range(16)
+    badges = Badge.objects.order_by('type').all()
     content = {
         'badges': badges,
-        'range_16': range_16,
+        'range_16': range(16),
     }
-    return render(requests, 'image_store/badges.html', content)
+    return render(requests, 'image_store/badges/badges.html', content)
+
+
+@login_required
+def badges_category(requests, category):
+    for type, ru_name in Badge.CATEGORY:
+        if ru_name == category:
+            type = type
+            break
+    badges = Badge.objects.filter(type=type).order_by('type').all()
+    content = {
+        'badges': badges,
+        'category': category,
+    }
+    return render(requests, 'image_store/badges/badges_category.html', content)
 
 @login_required
 def certificates(request):
@@ -103,6 +116,7 @@ def iframe(request):
             'html_code': html_code,
             'original_url': Land.get_url_for_base_tag(url),
             'avatar_form': AvatarsAddForm(),
+            'badge_form': BadgeForm(),
         }
         return render(request, 'image_store/iframe.html', content)
     else:
@@ -120,8 +134,9 @@ def load_images_by_urls(request):
             load_result.append({'url': url, 'res': res})
 
     if request.POST['model'] == 'badge':
+        type = request.POST['type']
         for url in urls:
-            res = Badge.load_from_url(url)
+            res = Badge.load_from_url(url, type=type)
             load_result.append({'url': url, 'res': res})
 
     if request.POST['model'] == 'certificate':

@@ -14,6 +14,12 @@ class BadgeAdmin(admin.ModelAdmin):
     list_display = ['id', 'type', 'image_prew', 'image']
     list_editable = ['type']
 
+    actions = ['remove_background']
+
+    @admin.action(description='Удалить фон')
+    def remove_background(self, request, queryset):
+        for badge in queryset:
+            badge.remove_background()
 
 admin.site.register(Avatar, AvatarAdmin)
 admin.site.register(GeoGroup)

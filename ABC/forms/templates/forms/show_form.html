@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Форма №{{form.pk}}</title>
+    <base href="/media/forms_images/{{form.pk}}/">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <!--ICONS-->
   <script src="https://kit.fontawesome.com/da43c2ea11.js" crossorigin="anonymous"></script>
     <style>
         /* Стили подкрашивания кода формы */
         {{form.colored_styes}}
+        body{
+            margin: 0;
+            padding: 0;
+        }
     </style>
     <style id="user-stiles">
         .glowing:hover {

@@ -25,6 +25,7 @@ class CodeExample(models.Model):
     js = models.TextField(blank=True)
 
     image_url = models.URLField(blank=True)
+    original_site =  models.URLField(blank=True)
 
     def get_colored_code(self, code, lexer):
         return highlight(code, lexer(encodings='utf-8'), HtmlFormatter())

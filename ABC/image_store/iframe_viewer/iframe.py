@@ -39,8 +39,16 @@ class Land:
         self.human_text = None
         self.img_doubles = None
 
+        self.add_jquery()
+
     def get_no_protocol_url(self):
         return self.url.replace('http://', '')
+
+    def add_jquery(self):
+        new_tag = self.soup.new_tag('script')
+        new_tag['src'] = 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'
+        self.soup.html.head.append(new_tag)
+
 
     def _get_title(self):
         """найти title сайта"""

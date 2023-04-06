@@ -1,7 +1,13 @@
 
+    console.log('custom JS START')
     $('img').click(function(){
         $(this).toggleClass('chosen')
+        console.log('click')
     })
+    // $('img').mousedown(function(){
+    //     $(this).toggleClass('chosen')
+    // })
+    
     function getUrlOfChosen(){
         console.log('getUrlOfChosen')
         images = $('img.chosen')
@@ -14,6 +20,26 @@
     function removeAllChosen(){
         $('img.chosen').removeClass('chosen')
     }
-       var country_iframe = 'XX'
-    console.log(country, country_iframe,'in iframe')
-    console.log('JQ')
+
+    let a_to_prev = []
+    function dropImagesLiks(){
+        $('a').each(function(){
+            if ($(this).children('img').length){
+                a_to_prev.push($(this))
+                $(this).attr('href', '')
+                $(this).click(function(e){
+                    e.preventDefault()
+                })
+            }
+        })
+        
+    }
+    $('a').click(function(e){
+        e.preventDefault()
+    })
+    function removeA(){
+        $('a').remove()
+    }
+    removeA()
+    // dropImagesLiks()
+    console.log('custom JS in site WORK')

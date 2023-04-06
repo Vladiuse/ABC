@@ -1,5 +1,5 @@
 from django import forms
-from .models import Avatar
+from .models import Avatar, Badge
 
 
 class AvatarsAddForm(forms.ModelForm):
@@ -11,4 +11,15 @@ class AvatarsAddForm(forms.ModelForm):
     class Meta:
         model = Avatar
         fields = ['category', 'sex']
+
+
+class BadgeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['type'].widget.attrs.update({'class': 'form-control'})
+
+    class Meta:
+        model = Badge
+        fields = ['type']
+
 

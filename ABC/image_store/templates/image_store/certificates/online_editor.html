@@ -480,7 +480,7 @@
         <div class="seting-item">
           <div class="set-row"> 
               <div class="set-text">Font</div>
-              <div class="set-control open open-area" data-area="#font-choise">
+              <div class="set-control open-area" data-area="#font-choise" style="display: none;">
                 <div id="current-font">
                   <img id="current-font-img" src="https://fonts.watermarkly.com/sprites/Sail.png?app=visualwatermark">
                   <div id="font-sep"></div>
@@ -703,14 +703,14 @@
         </div>
 
         <div class="seting-item">
-          <div class="set-row open open-area" data-area="#color-choise">
+          <div class="set-row open-area" data-area="#color-choise">
               <div class="set-text">Color</div>
               <div class="set-control">
                 <div id="current-color"></div>
               </div>
               <span class="open-arrow" >‹</span>
           </div>
-          <div id="color-choise" class="choise">
+          <div id="color-choise" class="choise" style="display: none;">
             <div class="color-picker" style="background-color: rgb(0, 0, 0);"></div>
 <div class="color-picker" style="background-color: rgb(0, 0, 80);"></div>
 <div class="color-picker" style="background-color: rgb(0, 0, 160);"></div>
@@ -1066,7 +1066,6 @@
   }
 
   window.addEventListener('resize', function(){
-    console.log('RE')
     moveTextBlocks()
   })
 

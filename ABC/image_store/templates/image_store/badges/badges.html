@@ -11,20 +11,20 @@
 
 {%include 'image_store/image_load_tool.html'%}
 <style>
-    body{
-        background: #2C303C;
-    }
-    header{
-        margin-bottom: 75px;
-    }
-    h1 {
+body{
+    background: #2C303C;
+}
+header{
+    margin-bottom: 75px;
+}
+/* h1 {
     text-align: center;
     color: #999 !important;
     background: rgba(0, 0, 0, 0.36);
     margin: 0;
     padding: 5px;
-}
-h2 {
+} */
+.category {
 
     text-align: center;
     color: #999;
@@ -34,6 +34,7 @@ h2 {
     position: relative;
 }
 hr {
+    margin-top: 80px !important;
     height: 4px;
     margin: 30px 20px;
     border-top: 2px solid #1C1E26;
@@ -46,6 +47,10 @@ hr {
     margin: 16px 0;
     /* justify-content: center; */
 }
+.badges-wrapper a{
+    margin-top: 45px;
+    font-size: 22px;
+}
 .badges-wrapper img{
     cursor: pointer;
     width: 100%;
@@ -57,7 +62,7 @@ hr {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 110px;
+    width: 130px;
     margin: 20px 5px;
 }
 .badges-wrapper img:hover{
@@ -104,22 +109,35 @@ hr {
         <img src="https://amazing-cdn.com/cap.detonnic-new.com/img/satisfaction.png" alt="" >
     </a>
 </div>
-
-<!-- <h1>Badges Collections</h1> -->
-{% regroup badges by get_type_display as badge_types %}
 <div class="container">
+<!-- BADGES -->
+{%block badges%}
+
+
+{% regroup badges by get_type_display as badge_types %}
+
     {%for badge_type in badge_types%}
-    <h2>{{badge_type.grouper}}</h2>
+    <h1 class="category">{{badge_type.grouper}}</h1>
     <div class="badges-wrapper">
         {%for badge in badge_type.list%}
-        <div class="bagde-wrap item">
+        {%if forloop.counter0 < 18%}
+        <div class="bagde-wrap item" id="{{badge.pk}}">
             <img src="{{badge.image.url}}">
         </div>
+        {%endif%}
         {%endfor%}
+        {%if badge_type.list|length >= 18%}
+        <a href="{%url 'image_store:badges_category' badge_type.grouper %}" class="link-secondary">Посмотреть все</a>
+        {%endif%}
     </div>
     <hr>
-    {%endfor%}
+{%endfor%}
 
+{%endblock%}
+<!-- BADGES -->
+
+{%block example%}
+<!-- EXAMPLE -->
 <h2>Discounts</h2>
 
     <div class="badges-wrapper">
@@ -157,6 +175,11 @@ hr {
     </div>
     {%endfor%}
 </div>
+<!-- EXAMPLE -->
+{%endblock%}
+
+
+
 </div>
 <script>
     $('#side-scroll a').click(function(){

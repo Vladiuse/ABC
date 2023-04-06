@@ -10,6 +10,7 @@ urlpatterns = [
     path('download_chosen_avatars', views.download_chosen_avatars, name='download_chosen_avatars'),
 
     path('badges', views.badges, name='badges'),
+    path('badges/<str:category>', views.badges_category, name='badges_category'),
 
     path('iframe', views.iframe, name='iframe'),
     path('load_images_by_urls', views.load_images_by_urls, name='load_images_by_urls'),

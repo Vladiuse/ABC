@@ -1,3 +1,5 @@
+import time
+
 from PIL import Image
 from selenium import webdriver
 from time import sleep
@@ -8,6 +10,7 @@ class ScreenMaker:
     DESKTOP = (900, 1440)
     # PHONE = (1088 + 170, 544 + 40) # old
     PHONE = (1088 + 70, 544 + 40)
+    SLEEP_AFTER_RESIZE = 1
 
     SCROLL_PX_W = 15
 
@@ -26,6 +29,7 @@ class ScreenMaker:
         if del_scroll:
             width += self.SCROLL_PX_W
         self.browser.set_window_size(width, height)
+        time.sleep(self.SLEEP_AFTER_RESIZE)
         self.browser.get_screenshot_as_file(path_to_save)
         if del_scroll:
             self.delete_scroll_from_image(path_to_save)
