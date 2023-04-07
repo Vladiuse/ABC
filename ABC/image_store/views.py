@@ -3,7 +3,7 @@ import zipfile
 from django.shortcuts import render
 from django.http import FileResponse, HttpResponse
 from django.conf import settings
-from .models import Avatar, SexCounter, get_random_archive_name, Certificate, Badge
+from .models import Avatar, SexCounter, get_random_archive_name, Certificate, Badge, Font
 # Create your views here.
 import random as r
 from django.contrib.auth.decorators import login_required
@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .iframe_viewer import Land
 import requests as req
 from .forms import AvatarsAddForm, BadgeForm
+
 
 
 @login_required
@@ -148,5 +149,16 @@ def load_images_by_urls(request):
         'load_result': load_result,
     }
     return render(request, 'image_store/iframe_load_res.html', content)
+
+
+def edit_serts(request):
+    fonts = Font.objects.all()
+    certificate = Certificate.objects.get(pk=41)
+
+    content = {
+        'fonts': fonts,
+        'certificate': certificate,
+    }
+    return render(request, 'image_store/certificates/online_editor.html', content)
 
 

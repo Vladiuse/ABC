@@ -11,6 +11,10 @@ from django.contrib import admin
 from django.utils.html import format_html
 from rembg import remove
 
+from PIL import ImageFont
+from PIL import ImageDraw
+from django.core.files import File
+
 
 import shutil
 
@@ -150,15 +154,6 @@ class Avatar(models.Model):
 class Certificate(models.Model):
     image = models.ImageField(upload_to='certificates')
 
-    # @staticmethod
-    # def load_from_url(image_url):
-    #     file_ext = os.path.splitext(image_url)[-1]
-    #     IMAGE_NAME = str(uuid.uuid4()) + file_ext
-    #     res = req.get(image_url)
-    #     image_bytes = res.content
-    #     certificate = Certificate()
-    #     certificate.image = ImageFile(io.BytesIO(image_bytes), name=IMAGE_NAME)
-    #     certificate.save()
     @staticmethod
     def load_from_url(url):
         img = load_img_like_bytes(url)
@@ -169,6 +164,16 @@ class Certificate(models.Model):
             return cert
         else:
             return False
+
+class CertText(models.Model):
+    text = models.CharField(max_length=255, default='Text')
+    font_family = models.ForeignKey('Font', on_delete=models.PROTECT)
+    font_size = models.IntegerField(default=30)
+    opacity = models.FloatField(default=1)
+    color = models.CharField(max_length=10, default='black')
+    top = models.IntegerField(default=0)
+    left = models.IntegerField(default=0)
+    cert = models.ForeignKey(Certificate, on_delete=models.CASCADE)
 
 class Badge(models.Model):
     OTHER  = 'other'
@@ -183,6 +188,8 @@ class Badge(models.Model):
         ['money', 'Деньги'],
         ['chat', 'Коментарии и чат'],
         ['charts', 'Графики'],
+        ['free', 'Бесплатно'],
+        ['number_one', 'Номер 1'],
         [OTHER, 'Прочее'],
     )
 
@@ -229,6 +236,58 @@ class Badge(models.Model):
         #
         output.save(output_path)
         self.save()
+
+
+class Font(models.Model):
+    name = models.CharField(max_length=50, blank=True)
+    file = models.FileField(upload_to='fonts')
+    icon = models.ImageField(upload_to='fonts/images', blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+
+    def save(self, **kwargs):
+        if not self.pk:
+            super().save(**kwargs)
+            self.create_font_img()
+            self.get_font_name()
+        else:
+            super().save(**kwargs)
+
+    def get_font_name(self):
+        file =  os.path.basename(self.file.path)
+        file_name, ext = os.path.splitext(file)
+        self.name = file_name
+        self.save()
+
+    def create_font_img(self):
+        BORDER_SIZE = 20
+        FONT_SIZE = 80
+        BACKGROUND_COLOR = (255, 255, 255)
+        TEXT_COLOR = (0, 0, 0)
+        TEXT = 'Ag'
+        font = ImageFont.truetype(self.file.path, FONT_SIZE)
+        left, top, width, heigth = font.getbbox(TEXT)
+        if width > heigth:
+            W_DIFF = 0
+            H_DIFF = abs(width - heigth)
+        else:
+            W_DIFF = abs(width - heigth)
+            H_DIFF = 0
+        img_size = max(width, heigth) + BORDER_SIZE
+        img = Image.new('RGB', (img_size, img_size), color=BACKGROUND_COLOR)
+        draw = ImageDraw.Draw(img)
+        draw.text((BORDER_SIZE / 2 + W_DIFF / 2, BORDER_SIZE / 2 + H_DIFF / 2), TEXT, TEXT_COLOR, font=font)
+        blob = io.BytesIO()
+        img.save(blob, 'JPEG')
+        self.icon = File(blob, 'name.jpg')
+        self.save()
+        # img_path = f"./img_prew/{font_data['name']}.jpg"
+        # img.save(img_path)
+        # return img_path
+
 
 # import requests as req
 # import os

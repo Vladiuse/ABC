@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Avatar, GeoGroup, Certificate, Badge
+from .models import Avatar, GeoGroup, Certificate, Badge, Font, CertText
 from django.utils.html import format_html, mark_safe
 
 
@@ -22,8 +22,15 @@ class BadgeAdmin(admin.ModelAdmin):
         for badge in queryset:
             badge.remove_background()
 
+
+class CertTextInline(admin.TabularInline):
+    model = CertText
+
 class CertificateAdmin(admin.ModelAdmin):
     list_display = ['id', 'image_prew']
+    inlines = [
+        CertTextInline,
+    ]
 
     def image_prew(self, obj):
         # return mark_safe('<img src="{}" / style="width:{}px;height: {}px;>')
@@ -33,7 +40,18 @@ class CertificateAdmin(admin.ModelAdmin):
             120,'auto',
         )
 
+class FontAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'image_prew']
+
+    def image_prew(self, obj):
+        return format_html(
+            '<img src="{}" / style="width:{}px;height: {}px;"/>',
+            obj.icon.url,
+            120,'auto',
+        )
+
 admin.site.register(Avatar, AvatarAdmin)
 admin.site.register(GeoGroup)
 admin.site.register(Badge, BadgeAdmin)
 admin.site.register(Certificate, CertificateAdmin)
+admin.site.register(Font, FontAdmin)
