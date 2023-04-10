@@ -14,7 +14,7 @@ def examples(requests):
 
 @login_required
 def show_form(requests, form_id):
-    form = FormExample.objects.get(pk=form_id)
+    form = FormExample.objects.get(pk=141)
     content = {
         'form': form,
     }
@@ -27,6 +27,15 @@ def casino(requests):
         'forms': forms,
     }
     return render(requests, 'forms/casino.html', content)
+
+@login_required
+def show_casino(request, casino_id):
+    # casino = CasinoExample.objects.get(pk=casino_id)
+    form = FormExample.objects.get(pk=141)
+    content = {
+        'form': form,
+    }
+    return render(request, 'forms/show_form.html', content)
 
 def form_localization(request):
     return render(request, 'forms/localization/index.html')

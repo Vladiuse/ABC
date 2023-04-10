@@ -2,9 +2,12 @@
 {%block content%}
 
 <div class="container">
+  <br>
+
   <a class="btn btn-primary" href="{%url 'image_store:download_chosen_avatars'%}?avatars_ids={{avatars_ids}}" role="button">
     <i class="fa-sharp fa-solid fa-download"></i>
     Скачать</a>
+    <br>
     <br>
     {%for avatar in avatars%}
     <img src="{{avatar.image.url}}">
