@@ -152,10 +152,9 @@ def load_images_by_urls(request):
     return render(request, 'image_store/iframe_load_res.html', content)
 
 
-def edit_serts(request):
+def edit_cert(request):
     fonts = Font.objects.all()
-    certificate = Certificate.objects.get(pk=41)
-
+    certificate = Certificate.objects.get(pk=request.GET['cert_id'])
     content = {
         'fonts': fonts,
         'certificate': certificate,
@@ -165,9 +164,10 @@ def edit_serts(request):
 
 @csrf_exempt
 def create_cert(request):
+    cert_id = request.POST['cert_id']
     font_zoom = request.POST['font_zoom']
     text_blocks = request.POST['text_blocks']
-    cert = Certificate.objects.get(pk=41)
+    cert = Certificate.objects.get(pk=cert_id)
     img_path = cert.add_text_on_image(font_zoom, json.loads(text_blocks))
     res = {
         'img_path': img_path,

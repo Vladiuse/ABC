@@ -14,26 +14,6 @@
   crossorigin="anonymous"></script>
 </head>
 <body>
-<!-- <style>
-  text{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    border: 2px red solid;
-    width: 5px;
-    height: 5px;
-  }
-  pre{
-    overflow: visible;
-    margin: 0;
-  }
-</style>
-
-<text style="top: 37%;left: 41%;">
-  <pre contenteditable style="font-size: 2.5vh;  color: green;font-weight: 800;">Offer Name</pre>
-</text>
-<img src="./1.jpeg" style="height: 90vh;"> -->
 <style>
   body{
     background-color: #101010;
@@ -48,36 +28,17 @@
     height: 100%;
     position: relative;
     background-color: #202020;
-    /* height: 50vh; */
-
-    /* background-image: url(./serc_2.png); */
-    /* background-image: url(/sert_1.jpeg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center, center; */
     }
     text{
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    /* border: 1px red solid; */
     width: 2px;
     height: 2px;
     background-color: red;
-    font-weight: 900;
   }
-  /* pre:focus-visible{
-    outline: 2px solid rgb(20, 57, 220);
-    border: 2px solid rgb(20, 57, 220);
-  }
-  text:focus-visible{
-    outline: 2px solid crimson;
-    border: 2px solid crimson;
-  } */
-  /* pre[contenteditable]{
-    outline: 2px solid rgb(20, 57, 220);
-  } */
+
   pre:focus-visible{
     outline: 2px solid rgb(20, 57, 220, 0.5);
   }
@@ -87,8 +48,6 @@
     font-family: inherit;
   }
   img{
-    /* width: 100%;
-    height: 100%; */
     max-height: 100%;
     max-width: 100%;
   }
@@ -98,9 +57,6 @@
     border-radius: 4px;
     box-shadow: 0 2px 10px 1px rgb(0 0 0 / 20%);
     background-color: #f2f2f2;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
     padding: 10px;
     color: black;
     margin: 12px 0;
@@ -109,10 +65,7 @@
   .seting-item input{
     width: 100%;
   }
-  /* .seting-item > div{
 
-
-  } */
   .set-row{
     display: flex;
     width: 100%;
@@ -242,26 +195,7 @@
   <div class="row" >
     <div class="col-8">
       <div id="sert-wrap">
-          <!-- <text id="text_offer_name"contenteditable="" style="
-              top: 40%;
-              left: 39%;
-              color: #313536;
-              font-size: 35px;
-              font-family: Roboto-Medium;
-          ">
-            <pre>Offer name</pre>
-          </text>
-          <text id="text_date"contenteditable="" style="
-          top: 20%;
-          left: 19%;
-          color: #1ca6c9;
-          font-size: 45px;
-          font-family: Roboto-Medium;
-      ">
-        <pre>Some text</pre>
-      </text> -->
           <img src="{{certificate.image.url}}" id="sert-image">
-          <!-- <img src="./serc_2.png" > -->
         </div>
       </div>
       <div class="col-4" style="background-color: #f2f2f2; padding: 0;">
@@ -276,7 +210,6 @@
               </div>
           </div>
         </div> -->
-
         <div class="seting-item">
           <div class="set-row"> 
               <div class="set-text">Font</div>
@@ -298,6 +231,7 @@
           </div>
             {%endfor%}
 
+        </div>
         </div>
 
         <div class="seting-item">
@@ -496,8 +430,9 @@
     )
     showInputVal(fontSizeRange);showInputVal(opasityRange);
   }
-  let sertWidthOrig = 1241;
-  let sertHeigthOrig = 1754;
+  let sertWidthOrig = {{certificate.image.width}};
+  let sertHeigthOrig = {{certificate.image.height}};
+  let cert_id = {{certificate.pk}}
 
   let textBlocks = {
     {%for text in certificate.certtext_set.all%}
@@ -513,9 +448,10 @@
     {%endfor%}
   }
    
+
+  var currentElem = null
   addTextBlocks()
-  let currentElem = $('#text_offer_name')
-  setToolBarTextVals(currentElem)
+
   function addTextBlocks(){
     let sertBlock = document.getElementById('sert-wrap')
     for (textKey in textBlocks){
@@ -534,8 +470,14 @@
       textBlock.style.top = getCurrPostHeight(textBlockData['top']) + 'px'
       textBlock.style.left = getCurrPostWidth(textBlockData['left']) + 'px'
       textBlock.append(textPRE)
-      // textBlock.setAttribute('contenteditable','')
       sertBlock.append(textBlock)
+    }
+    if (currentElem == null)
+    {
+      currentElem = $('#'+textKey)
+      console.log(currentElem.css('font-size'), textKey)
+      currentElem.trigger('click')
+      currentElem.find('pre').focus().select()
     }
   }
   function getCurrPostWidth(x){
@@ -584,13 +526,12 @@
     let url  = "{%url 'image_store:create_cert' %}"
     let block_data = getTextBlockData()
     data = {
-      // 'csrfmiddlewaretoken': getCookie('csrftoken'),
       'text_blocks': JSON.stringify(block_data),
       'font_zoom': getFontZoom(),
+      'cert_id': cert_id,
     }
     console.log(data)
     $.post(url, data=data, function(responce){
-      console.log(responce)
       window.open('/' + responce['img_path'], "_blank")
     })
   }

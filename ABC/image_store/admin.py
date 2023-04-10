@@ -27,7 +27,8 @@ class CertTextInline(admin.TabularInline):
     model = CertText
 
 class CertificateAdmin(admin.ModelAdmin):
-    list_display = ['id', 'image_prew']
+    list_display = ['id', 'image_prew', 'editable']
+    list_filter = ['editable']
     inlines = [
         CertTextInline,
     ]

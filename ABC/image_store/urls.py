@@ -15,6 +15,6 @@ urlpatterns = [
 
     path('iframe', views.iframe, name='iframe'),
     path('load_images_by_urls', views.load_images_by_urls, name='load_images_by_urls'),
-    path('edit_serts', views.edit_serts, name='edit_serts'),
+    path('edit_cert', views.edit_cert, name='edit_cert'),
     path('create_cert', views.create_cert, name='create_cert'),
 ]

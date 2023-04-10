@@ -156,7 +156,17 @@ class Avatar(models.Model):
 
 
 class Certificate(models.Model):
+    READABLE = 'readable'
+    EDITABLE = 'editable'
+    OTHER = 'other'
+    TYPES = [
+        (READABLE, 'Читаемые'),
+        (EDITABLE, 'редактируемые'),
+        (OTHER, 'Прочее'),
+    ]
+    type = models.CharField(choices=TYPES, default=OTHER, max_length=20)
     image = models.ImageField(upload_to='certificates')
+    editable = models.BooleanField(default=False)
 
     @staticmethod
     def load_from_url(url):

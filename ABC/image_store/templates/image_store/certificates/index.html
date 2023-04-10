@@ -274,14 +274,20 @@
   </style>
   
   <body>  
-
+    <div class="container" style="justify-content: center;display: flex;">
+      <div class="btn-group" id="cert-filter">
+        <a href="#" class="btn btn-light active" aria-current="page" onclick="filterCerts(null)">Все</a>
+        <a href="#" class="btn btn-light" onclick="filterCerts('readable')">Читаемые</a>
+        <a href="#" class="btn btn-light" onclick="filterCerts('True')">Редактируемые</a>
+      </div>
+    </div>
     <div class="container-frame">
   {%spaceless%}
         {%for cert in certs%}
         {%if cert.frame_num == 1%}
         
         <!-- FRAME-1 -->
-      <div class="frame">
+      <div class="frame" data-filter="{{cert.editable}} {{cert.type}}" >
         <div class="top">
           <div class="pin">
             <div class="rope left"></div>
@@ -291,7 +297,7 @@
         <div class="frame-1">
           <div class="border">
             <div class="image">
-              <img src="{{cert.image.url}}" />
+              <img src="{{cert.image.url}}" id="{{cert.pk}}" data-editable="{{cert.editable}}"/>
               <span class="zoom">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </span>
@@ -304,7 +310,7 @@
         {%elif cert.frame_num == 2%}
         
         <!-- FRAME-2 -->
-        <div class="frame">
+        <div class="frame" data-filter="{{cert.editable}} {{cert.type}}">
           <div class="top">
             <div class="pin">
               <div class="rope left"></div>
@@ -315,7 +321,7 @@
             <div class="outer">
               <div class="wrapp">
                 <div class="matte image">
-                  <img class="art" src="{{cert.image.url}}">
+                  <img class="art" src="{{cert.image.url}}" id="{{cert.pk}}" data-editable="{{cert.editable}}">
                   <span class="zoom">
                     <i class="fa-solid fa-magnifying-glass"></i>
                   </span>
@@ -329,7 +335,7 @@
         {%elif cert.frame_num == 3%}
         
         <!-- FRAME-3 -->
-       <div class="frame">
+       <div class="frame" data-filter="{{cert.editable}} {{cert.type}}">
         <div class="top">
           <div class="pin">
             <div class="rope left"></div>
@@ -341,7 +347,7 @@
             <div class="outerBevel">
               <div class="flatSurface">
                 <div class="innerBevel image">                 
-                  <img src="{{cert.image.url}}" >
+                  <img src="{{cert.image.url}}" id="{{cert.pk}}" data-editable="{{cert.editable}}"/>
                   <span class="zoom">
                     <i class="fa-solid fa-magnifying-glass"></i>
                   </span>
@@ -356,7 +362,7 @@
         {%elif cert.frame_num == 4%}
         
         <!-- FRAME-4 -->
-        <div class="frame">
+        <div class="frame" data-filter="{{cert.editable}} {{cert.type}}">
           <div class="top">
             <div class="pin">
               <div class="rope left"></div>
@@ -365,7 +371,7 @@
           </div>
           <div class="frame-4">
             <div class="image"> 
-              <img class="art" src="{{cert.image.url}}">
+              <img class="art" src="{{cert.image.url}}" id="{{cert.pk}}" data-editable="{{cert.editable}}">
               <span class="zoom">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </span>
@@ -376,7 +382,7 @@
   
         {%elif cert.frame_num == 5%}
         <!-- FRAME-5 -->
-        <div class="frame">
+        <div class="frame" data-filter="{{cert.editable}} {{cert.type}}">
           <div class="top">
             <div class="pin">
               <div class="rope left"></div>
@@ -385,7 +391,7 @@
           </div>
           <div class="frame-5">
             <div class="image">   
-              <img src="{{cert.image.url}}" />
+              <img src="{{cert.image.url}}" id="{{cert.pk}}" data-editable="{{cert.editable}}"/>
               <span class="zoom">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </span>
@@ -397,7 +403,7 @@
 
         {%elif cert.frame_num == 6%}
         <!-- FRAME-6 -->
-        <div class="frame">
+        <div class="frame" data-filter="{{cert.editable}} {{cert.type}}">
           <div class="top">
             <div class="pin">
               <div class="rope left"></div>
@@ -406,7 +412,7 @@
           </div>
           <div class="frame-6">
             <div class="image">  
-              <img src="{{cert.image.url}}" />
+              <img src="{{cert.image.url}}"  id="{{cert.pk}}" data-editable="{{cert.editable}}"/>
               <span class="zoom">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </span>
@@ -426,15 +432,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="btn btn-primary" style="display: none;" id="edit-sert">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Добавить текст</button>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <img src="" id="show-img">
         </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div> -->
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <!-- <button type="button" class="btn btn-primary" style="display: none;" id="edit-sert">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Добавить текст</button> -->
+        </div>
       </div>
     </div>
   </div>
@@ -442,6 +453,8 @@
    <script>
     let modal = $('#myModal')
     let modalImg=$('#show-img')
+    let editBtn = $('#edit-sert')
+    let chosenImgId = null
     $('.frame .zoom').hover(function(){
       $(this).siblings().addClass('blur')
       },
@@ -454,9 +467,33 @@
       showSertModal(img)
     })
 
+    editBtn.click(function(){
+      let url = "{%url 'image_store:edit_cert' %}"
+      window.open(url + '?cert_id='+ chosenImgId, '_target')
+    })
+
     function showSertModal(showImg){
       modalImg.attr('src', showImg.attr('src'))
+      chosenImgId = showImg.attr('id')
+      console.log(showImg.attr('data-editable') == 'True', showImg.attr('data-editable'))
+      if (showImg.attr('data-editable') == 'True') {editBtn.show()}
+      else {editBtn.hide()}
       modal.modal('show')
+      }
+
+      function filterCerts(filter){
+        if (filter == null){
+          $('.frame').show()
+          return
+        }
+        $('.frame').each(function(){
+          let types = $(this).attr('data-filter')
+          if (types.includes(filter))
+          {$(this).show()}
+          else
+          {$(this).hide()}
+          console.log(types, typeof(types))
+        })
       }
    </script>
 {%endblock%}
