@@ -1,7 +1,8 @@
 import os
 import zipfile
+import json
 from django.shortcuts import render
-from django.http import FileResponse, HttpResponse
+from django.http import FileResponse, HttpResponse, JsonResponse
 from django.conf import settings
 from .models import Avatar, SexCounter, get_random_archive_name, Certificate, Badge, Font
 # Create your views here.
@@ -161,4 +162,17 @@ def edit_serts(request):
     }
     return render(request, 'image_store/certificates/online_editor.html', content)
 
+
+@csrf_exempt
+def create_cert(request):
+    font_zoom = request.POST['font_zoom']
+    text_blocks = request.POST['text_blocks']
+    cert = Certificate.objects.get(pk=41)
+    img_path = cert.add_text_on_image(font_zoom, json.loads(text_blocks))
+    res = {
+        'img_path': img_path,
+    }
+    return JsonResponse(res)
+    # result = json.loads(text_blocks)
+    # return JsonResponse(result, safe=False)
 

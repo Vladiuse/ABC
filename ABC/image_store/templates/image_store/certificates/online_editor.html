@@ -282,9 +282,9 @@
               <div class="set-text">Font</div>
               <div class="set-control open-area" data-area="#font-choise">
                 <div id="current-font">
-                  <img id="current-font-img" src="https://fonts.watermarkly.com/sprites/Sail.png?app=visualwatermark">
+                  <img id="current-font-img" src="{{fonts.0.icon.url}}">
                   <div id="font-sep"></div>
-                  <span id="current-font-name">Font name</span>
+                  <span id="current-font-name">{{fonts.0.name}}</span>
                 </div>
                 <span class="open-arrow">‹</span>
               </div>
@@ -388,7 +388,7 @@
               </div>
           </div>
         </div>
-        <button class="btn btn-primary">Создать</button>
+        <button class="btn btn-primary" onclick="createCert()">Создать</button>
 
         </div>
       </div>
@@ -501,7 +501,7 @@
 
   let textBlocks = {
     {%for text in certificate.certtext_set.all%}
-    'text_{{text.pk}}' :{
+    '{{text.pk}}' :{
       'text':'{{text.text}}',
       'font-family': '{{text.font_family}}',
       'font-size': '{{text.font_size}}px',
@@ -511,33 +511,6 @@
       'color': '{{text.color}}',
     },
     {%endfor%}
-    // 'text_offer_name' :{
-    //   'text':'Offer name',
-    //   'font-family': 'Roboto-Medium',
-    //   'font-size': '55px',
-    //   'opacity': '0.5',
-    //   'left': 797,
-    //   'top': 700,
-    //   'color': 'pink',
-    // },
-    // 'text_offer_name2' :{
-    //   'text':'Point text',
-    //   'font-family': 'Roboto-Medium',
-    //   'font-size': '33px',
-    //   'opacity': '0.8',
-    //   'left': 644,
-    //   'top': 1064,
-    //   'color': 'green',
-    // },
-    // 'text_offer_name3' :{
-    //   'text':'some date : 22.10.2022',
-    //   'font-family': 'Roboto-Medium',
-    //   'font-size': '55px',
-    //   'opacity': '0.8',
-    //   'left': 479,
-    //   'top': 1532,
-    //   'color': 'green',
-    // },
   }
    
   addTextBlocks()
@@ -593,6 +566,34 @@
     return sertHeigthOrig / $('#sert-image').css('height').replace('px', '')
   }
   console.log(getFontZoom())
+  function getTextBlockData(){
+    let text_blocks = {}
+    $('text').each(function(){
+      text_blocks[$(this).attr('id')] = {}
+      let data = text_blocks[$(this).attr('id')]
+      data['font-family'] = $(this).css('font-family')
+      data['font-size'] = $(this).css('font-size')
+      data['color'] = $(this).css('color')
+      data['opacity'] = $(this).css('opacity')
+      data['text'] = $(this).text()
+    })
+    return text_blocks
+  }
+
+  function createCert(){
+    let url  = "{%url 'image_store:create_cert' %}"
+    let block_data = getTextBlockData()
+    data = {
+      // 'csrfmiddlewaretoken': getCookie('csrftoken'),
+      'text_blocks': JSON.stringify(block_data),
+      'font_zoom': getFontZoom(),
+    }
+    console.log(data)
+    $.post(url, data=data, function(responce){
+      console.log(responce)
+      window.open('/' + responce['img_path'], "_blank")
+    })
+  }
 </script>
 </body>
 </html>

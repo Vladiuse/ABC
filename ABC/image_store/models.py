@@ -28,6 +28,10 @@ def get_random_archive_name():
         res += char
     return res
 
+def get_color(rgb_color):
+    colors = rgb_color[4:-1].split(', ')
+    return list(map(int,colors))
+
 def copy_file(path):
     path_to_make_copy = '/home/vlad/WORK/badges'
     file_name = os.path.basename(path)
@@ -164,6 +168,34 @@ class Certificate(models.Model):
             return cert
         else:
             return False
+
+    def add_text_on_image(self, font_zoom, text_blocks):
+        FONT_FIX = 0.9
+        img = Image.open(self.image.path).convert('RGBA')
+        txt = Image.new('RGBA', img.size, (255, 255, 255, 0))
+        for cert_text in self.certtext_set.all():
+            text_data = text_blocks[str(cert_text.pk)]
+            WIDTH = cert_text.left  # left
+            HEIGHT = cert_text.top  # top
+            font_size = int(text_data['font-size'].replace('px', ''))
+            FONT_SIZE = int(font_size * float(font_zoom) * FONT_FIX)
+            COLOR = get_color(text_data['color'])
+            opacity = int(float(text_data['opacity']) * 255)
+            COLOR.append(opacity)
+            COLOR = tuple(COLOR)
+            TEXT = text_data['text']
+            draw = ImageDraw.Draw(txt)
+            draw.point((WIDTH, HEIGHT), fill=(0, 255, 0))
+            font_model = Font.objects.get(name=text_data['font-family'])
+            font = ImageFont.truetype(font_model.file.path, FONT_SIZE)
+            left, top, width, heigth = font.getbbox(TEXT)
+            draw.text((WIDTH - width / 2, HEIGHT - heigth / 2), TEXT, fill=COLOR, font=font)
+        combined = Image.alpha_composite(img, txt)
+        path_to_save = f'media/certificates_temp/{uuid.uuid4()}.png'
+        combined.save(path_to_save)
+        return path_to_save
+
+
 
 class CertText(models.Model):
     text = models.CharField(max_length=255, default='Text')
