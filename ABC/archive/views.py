@@ -1,4 +1,7 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+import os.path
+
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, FileResponse
 from .models import Site
 from django.contrib.auth.decorators import login_required
 
@@ -29,8 +32,16 @@ def index(requests):
     }
     return render(requests, 'archive/index.html', content)
 
+@login_required
 def show_site(requests, dir_name):
     """Показать сайт"""
     site = get_object_or_404(Site, dir_name=dir_name)
     site_html = site.render_template()
     return HttpResponse(site_html)
+
+@login_required
+def site_load_zip(request, site_id):
+    site = Site.objects.get(pk=site_id)
+    file_name = os.path.basename(site.zip_archive.path)
+    response = FileResponse(open(site.zip_archive.path, 'rb'), filename=file_name)
+    return response

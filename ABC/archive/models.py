@@ -3,13 +3,14 @@ from uuid import uuid4
 from django.conf import settings
 import os
 from zipfile import ZipFile
-from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.files.uploadedfile import SimpleUploadedFile, File
 from django.template import Template
 from django.template import Context
 from django.core.files.storage import FileSystemStorage
 import shutil
 from archive.sreen_maker import ScreenMaker
 import time
+import io
 
 
 # Create your models here.
@@ -128,7 +129,7 @@ class Site(models.Model):
             index = file.read()
         return index
 
-    def render_template(self) -> str:
+    def render_template(self, clean=False) -> str:
         """рендеринг сайта - добавление base и формы"""
         # form = FormExample.objects.get(pk=2)
 
@@ -137,6 +138,8 @@ class Site(models.Model):
             'base_tag': self.get_base_tag(),
             # 'form': form,
         }
+        if clean:
+            data = {}
         context = Context(data)
         template = Template(index_html)
         res = template.render(context)
@@ -149,8 +152,13 @@ class Site(models.Model):
         zip_file = ZipFile(zip_path_to_save, 'w')
         for root, dirs, files in os.walk(dir_path):
             for file in files:
-                file_path = os.path.join(root, file)
-                path_in_zip = os.path.relpath(file_path, dir_path)
-                zip_file.write(file_path, path_in_zip)
+                if not file.endswith('index.html'):
+                    file_path = os.path.join(root, file)
+                    path_in_zip = os.path.relpath(file_path, dir_path)
+                    zip_file.write(file_path, path_in_zip)
+        zip_file.writestr('index.html',self.render_template(clean=True))
         zip_file.close()
+        self.zip_archive = os.path.relpath(zip_path_to_save, settings.MEDIA_ROOT)
+        self.save()
+        # print(zip_file, type(zip_file))
 

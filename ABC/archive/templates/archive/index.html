@@ -186,9 +186,11 @@
               <a class="btn btn-dark" href="{%url 'archive:show_site' site.dir_name %}" target="_blank">
                 <i class="fa-solid fa-eye"></i>
                 Посмотреть</a>
-              <a class="btn btn-dark">
+              {%if site.zip_archive %}
+              <a class="btn btn-dark" href="{%url 'archive:site_load_zip' site.pk%}">
                 <i class="fa-solid fa-download"></i>
                 Скачать</a>
+              {%endif%}
                 {%if site.original_url%}
                 <a class="btn btn-dark" href="{{site.original_url}}" target="_blank">
                   <i class="fa-solid fa-earth-americas"></i>
