@@ -9,7 +9,7 @@ from PIL import Image
 from django.core.files.images import ImageFile
 from django.contrib import admin
 from django.utils.html import format_html
-from rembg import remove
+#from rembg import remove
 
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -220,6 +220,13 @@ class CertText(models.Model):
     left = models.IntegerField(default=0)
     cert = models.ForeignKey(Certificate, on_delete=models.CASCADE)
 
+class BadgeCategory(models.Model):
+    category = models.CharField(max_length=20, primary_key=True)
+    ru = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.ru
+
 class Badge(models.Model):
     OTHER  = 'other'
     CATEGORY = (
@@ -240,7 +247,8 @@ class Badge(models.Model):
 
     BADGES_DIR = 'badges'
     image = models.ImageField(upload_to=BADGES_DIR)
-    type = models.CharField(max_length=30, choices=CATEGORY, default=OTHER)
+    # type = models.CharField(max_length=30, choices=CATEGORY, default=OTHER)
+    type = models.ForeignKey(BadgeCategory,on_delete=models.SET_NULL, null=True,blank=True)
 
     class Meta:
         ordering = ['-pk']

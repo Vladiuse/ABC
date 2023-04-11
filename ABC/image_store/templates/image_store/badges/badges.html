@@ -135,6 +135,22 @@ hr {
     <hr>
 {%endfor%}
 
+{%for category in badge_categorys%}
+    <h1 class="category">{{category.ru}}</h1>
+    <div class="badges-wrapper">
+        {%for badge in category.badge_set.all%}
+            {%if forloop.counter0 < 18%}
+            <div class="bagde-wrap item" id="{{badge.pk}}">
+                <img src="{{badge.image.url}}">
+            </div>
+            {%endif%}
+        {%endfor%}
+        {%if category.badge_set.all|length >= 18%}
+        <a href="{%url 'image_store:badges_category' category.pk %}" class="link-secondary">Посмотреть все</a>
+        {%endif%}
+    </div>
+{%endfor%}
+
 {%endblock%}
 <!-- BADGES -->
 

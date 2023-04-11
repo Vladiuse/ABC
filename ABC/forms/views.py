@@ -30,10 +30,10 @@ def casino(requests):
 
 @login_required
 def show_casino(request, casino_id):
-    # casino = CasinoExample.objects.get(pk=casino_id)
-    form = FormExample.objects.get(pk=141)
+    casino = CasinoExample.objects.get(pk=142)
+    # form = FormExample.objects.get(pk=141)
     content = {
-        'form': form,
+        'form': casino,
     }
     return render(request, 'forms/show_form.html', content)
 

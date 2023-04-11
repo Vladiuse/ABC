@@ -4,7 +4,7 @@ import json
 from django.shortcuts import render
 from django.http import FileResponse, HttpResponse, JsonResponse
 from django.conf import settings
-from .models import Avatar, SexCounter, get_random_archive_name, Certificate, Badge, Font
+from .models import Avatar, SexCounter, get_random_archive_name, Certificate, Badge, Font, BadgeCategory
 # Create your views here.
 import random as r
 from django.contrib.auth.decorators import login_required
@@ -65,21 +65,20 @@ def download_chosen_avatars(requests):
 
 @login_required
 def badges(requests):
-    badges = Badge.objects.order_by('type').all()
+    badge_categorys = BadgeCategory.objects.prefetch_related('badge_set')
+    # badges = Badge.objects.order_by('type').all()
     content = {
-        'badges': badges,
+        'badge_categorys': badge_categorys,
+        # 'badges': badges,
         'range_16': range(16),
     }
     return render(requests, 'image_store/badges/badges.html', content)
 
 
 @login_required
-def badges_category(requests, category):
-    for type, ru_name in Badge.CATEGORY:
-        if ru_name == category:
-            type = type
-            break
-    badges = Badge.objects.filter(type=type).order_by('type').all()
+def badges_category(requests, category_id):
+    category = BadgeCategory.objects.prefetch_related('badge_set').get(pk=category_id)
+    badges = category.badge_set.all()
     content = {
         'badges': badges,
         'category': category,

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Avatar, GeoGroup, Certificate, Badge, Font, CertText
+from .models import Avatar, GeoGroup, Certificate, Badge, Font, CertText, BadgeCategory
 from django.utils.html import format_html, mark_safe
 
 
