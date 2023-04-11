@@ -136,13 +136,13 @@ def load_images_by_urls(request):
             load_result.append({'url': url, 'res': res})
 
     if request.POST['model'] == 'badge':
-        type = request.POST['type']
+        category = request.POST['type']
+        badge_cat = BadgeCategory.objects.get(pk=category)
         for url in urls:
-            res = Badge.load_from_url(url, type=type)
+            res = Badge.load_from_url(url, type=badge_cat)
             load_result.append({'url': url, 'res': res})
 
     if request.POST['model'] == 'certificate':
-        print('LOAD CERTS')
         for url in urls:
             res = Certificate.load_from_url(url)
             load_result.append({'url': url, 'res': res})

@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['abc.vim-store.ru', '127.0.0.1']
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = ''
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = '/login/'
 

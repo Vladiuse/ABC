@@ -1,16 +1,30 @@
 {%extends 'image_store/base.html'%}
+{%load static%}
+
+{%block head%}
+  <!-- MY -->
+  <link rel="stylesheet" href="{% static 'image_store/css/main.css' %}">
+{%endblock%}
 {%block content%}
 
-<div class="container">
-  <br>
-
+<div style="display: flex; justify-content: center; margin-top: 70px; margin-bottom: 30px;">
   <a class="btn btn-primary" href="{%url 'image_store:download_chosen_avatars'%}?avatars_ids={{avatars_ids}}" role="button">
     <i class="fa-sharp fa-solid fa-download"></i>
     Скачать</a>
-    <br>
-    <br>
-    {%for avatar in avatars%}
+</div>
+<div class="container">
+
+    <!-- {%for avatar in avatars%}
     <img src="{{avatar.image.url}}">
-    {%endfor%}
+    {%endfor%} -->
+    <div class="images">
+      
+      {%for avatar in avatars%}
+      <div class="item" data-age="{{avatar.age}}" >
+        <img src="{{avatar.image.url}}" >
+      </div>
+      {%endfor%}
+    </div>
+
 </div>
 {%endblock%}

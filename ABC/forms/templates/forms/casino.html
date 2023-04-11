@@ -3,6 +3,12 @@
 {%load static%}
 {%block content%}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<style>
+  .card-body {
+    align-items: end;
+    display: flex;
+}
+</style>
 
 <style>
     .buttons a img{
@@ -236,7 +242,7 @@ html {
     <div class="row row-cols-1 row-cols-md-4 g-4">
         {%for form in forms%}
         <div class="col" data-type="{{form.type}}" style="{%if form.type != form.ROULETTE %}display: none;{%endif%}">
-          <div class="card" >
+          <div class="card h-100" >
             <img src="{{form.image_url}}" class="card-img-top" alt="...">
             <div class="card-body ">
               <a href="{% url 'forms:show_casino' form.id %}" class="btn btn-dark btn-block" target="_blank">Show form</a>

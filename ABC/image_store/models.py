@@ -9,7 +9,7 @@ from PIL import Image
 from django.core.files.images import ImageFile
 from django.contrib import admin
 from django.utils.html import format_html
-#from rembg import remove
+from rembg import remove
 
 from PIL import ImageFont
 from PIL import ImageDraw
