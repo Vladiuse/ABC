@@ -532,7 +532,11 @@
     }
     console.log(data)
     $.post(url, data=data, function(responce){
-      window.open('/' + responce['img_path'], "_blank")
+      console.log(responce)
+      if (responce['img_path']) {
+        window.open('/' + responce['img_path'], "_blank")
+      }
+      
     })
   }
 </script>

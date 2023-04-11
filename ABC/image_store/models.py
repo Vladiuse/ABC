@@ -14,6 +14,7 @@ from rembg import remove
 from PIL import ImageFont
 from PIL import ImageDraw
 from django.core.files import File
+from django.conf import settings
 
 
 import shutil
@@ -156,6 +157,7 @@ class Avatar(models.Model):
 
 
 class Certificate(models.Model):
+    CERT_TEMP_DIR = 'certificates_temp'
     READABLE = 'readable'
     EDITABLE = 'editable'
     OTHER = 'other'
@@ -201,7 +203,8 @@ class Certificate(models.Model):
             left, top, width, heigth = font.getbbox(TEXT)
             draw.text((WIDTH - width / 2, HEIGHT - heigth / 2), TEXT, fill=COLOR, font=font)
         combined = Image.alpha_composite(img, txt)
-        path_to_save = f'media/certificates_temp/{uuid.uuid4()}.png'
+        # path_to_save = f'media/certificates_temp/{uuid.uuid4()}.png'
+        path_to_save = os.path.join(settings.MEDIA_ROOT, Certificate.CERT_TEMP_DIR, str(uuid.uuid4())+'.png')
         combined.save(path_to_save)
         return path_to_save
 

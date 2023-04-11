@@ -172,7 +172,7 @@ def create_cert(request):
         cert = Certificate.objects.get(pk=cert_id)
         img_path = cert.add_text_on_image(font_zoom, json.loads(text_blocks))
         res = {
-            'img_path': img_path,
+            'img_path': 'media/' + os.path.relpath(img_path,settings.MEDIA_ROOT),
         }
         return JsonResponse(res)
     except BaseException as error:
