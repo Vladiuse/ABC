@@ -51,7 +51,8 @@ def download_chosen_avatars(requests):
     avatars_ids = avatars_ids_str.split(',')
     avatars = Avatar.objects.filter(id__in=avatars_ids)
     zipfile_name = get_random_archive_name()
-    zip_file_path = f'media/{Avatar.TEMP_ZIPS_PATH}/{zipfile_name}.zip'
+    # zip_file_path = f'media/{Avatar.TEMP_ZIPS_PATH}/{zipfile_name}.zip'
+    zip_file_path = os.path.join(settings.MEDIA_ROOT, Avatar.TEMP_ZIPS_PATH, zipfile_name + '.zip')
     zip_file = zipfile.ZipFile(zip_file_path, 'w')
     counter = SexCounter()
     for avatar in avatars:
@@ -167,12 +168,17 @@ def create_cert(request):
     cert_id = request.POST['cert_id']
     font_zoom = request.POST['font_zoom']
     text_blocks = request.POST['text_blocks']
-    cert = Certificate.objects.get(pk=cert_id)
-    img_path = cert.add_text_on_image(font_zoom, json.loads(text_blocks))
-    res = {
-        'img_path': img_path,
-    }
-    return JsonResponse(res)
+    try:
+        cert = Certificate.objects.get(pk=cert_id)
+        img_path = cert.add_text_on_image(font_zoom, json.loads(text_blocks))
+        res = {
+            'img_path': img_path,
+        }
+        return JsonResponse(res)
+    except BaseException as error:
+        return JsonResponse({
+            'error': str(error),
+        })
     # result = json.loads(text_blocks)
     # return JsonResponse(result, safe=False)
 
